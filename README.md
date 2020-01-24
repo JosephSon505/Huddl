@@ -9,7 +9,7 @@
 	* You can use any text editor you want, but for javascript I find this the best because they have some dope extensions
 * Node.js: https://nodejs.org/en/
 * Postman: https://www.getpostman.com/
-	* You can use any app to test API. this is the one I use and am familiar with. Others are probably really similar / identical. Personal preference.
+	* You can use any app to test API. This is the one I use and am familiar with. Others are probably really similar / identical. Personal preference.
 
 ### Command Line Stuff
 
@@ -35,8 +35,10 @@ npm start
 ```
 
 If you already have it running locally, I have found that saving your code actually refreshes the page for you.
+
 If not:
 <kbd>⌃C</kbd> to stop running locally.
+
 Then
 ```
 npm start
@@ -47,6 +49,7 @@ you should see your front-end changes now
 ### Firebase / Backend 
 
 In order to push your edits / new functions to Firebase you **MUST** run these commands. 
+
 Otherwise, your code will not actually change / work.
 
 In Huddl-server directory type:
