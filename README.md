@@ -13,7 +13,9 @@
 
 ### Command Line Stuff
 
-Firebase tools: 
+(Note: You can't run npm commands without download node.js first)
+
+Firebase tools:
 ```
 npm install -g firebase-tools
 ```
@@ -21,7 +23,9 @@ Next you have to log in to firebase:
 ```
 firebase login
 ```
-this should take you to a website where you can login with a Gmail account (the provided Huddl account) 
+This should take you to a Google website where you can login with a Gmail account (the provided Huddl account).
+
+If this doesn't open a browser or tab, then I think the terminal gives you a link you can go to.
 
 
 
@@ -58,3 +62,11 @@ firebase deploy
 ```
 
 If you don't find that the function is working properly, either you messed up (LOL) or you have to restart the app locally
+
+
+
+## Deployment
+
+I'll write this stuff after we get gmail and actual files set up. 
+
+TL;DR - you have to use npm run build and deploy that to firebase to host it. It's simple don't worry
