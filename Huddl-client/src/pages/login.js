@@ -44,6 +44,8 @@ class login extends React.Component {
       password: '',
       loading: false
     };
+
+    this.handleSignUp = this.handleSignUp.bind(this);
   }
 
   render() {
@@ -86,9 +88,10 @@ class login extends React.Component {
 
             <Button type='submit' variant='contained' color='primary' className={classes.button} fullWidth disabled={this.state.loading}>
               Log In
-                        {this.state.loading && (
-                <CircularProgress size={26} className={classes.progress} />
-              )}
+              { this.state.loading && ( <CircularProgress size={26} className={classes.progress} />) }
+            </Button>
+            <Button variant='contained' color='secondary' onClick={this.handleSignUp} className={classes.cancel} fullWidth>
+              Sign Up
             </Button>
           </form>
         </Grid>
@@ -109,12 +112,18 @@ class login extends React.Component {
     });
 
     console.log(userData);
+
+    // TODO: AXIOS goes here - Call the routes we created
   }
 
   handleChange = (event) => {
     this.setState({
       [event.target.name]: event.target.value
     });
+  }
+
+  handleSignUp = (event) => {
+    this.props.history.push('/signup');
   }
 }
 

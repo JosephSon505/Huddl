@@ -1,6 +1,8 @@
 const { db, admin } = require('../util/admin');
 const config = require('../util/config');
 const firebase = require('firebase');
+
+// bring in validation functions from this folder
 const { validateSignupData, validateLoginData } = require('../util/validation');
 
 firebase.initializeApp(config);
