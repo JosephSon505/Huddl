@@ -63,10 +63,10 @@ class SignUp extends React.Component {
         <Grid item sm>
           <Typography variant="h2" className={classes.pageTitle}>
             Huddl
-                    </Typography>
+          </Typography>
           <Typography variant="h4" className={classes.pageTitle}>
             Sign Up
-                    </Typography>
+          </Typography>
           <form noValidate onSubmit={this.handleSubmit} >
             <TextField
               id='firstName'
