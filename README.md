@@ -36,7 +36,13 @@ These folders are exactly what they sound like, server is for the firebase funct
 
 ### Huddl-server
 
-Something about the server; after I get firebase set up
+Go to the functions folder: this is where everything is.
+
+index.js is where all of the routes are.
+
+util folder holds all of the utility files we need: config, admin / firebase details, helper functions, validation functions, etc.
+
+handlers folder holds all of the handler functions. All routes in index.js will call a function in the handler folder. 
 
 ### Huddl-client 
 
@@ -98,6 +104,7 @@ Otherwise, your code will not actually change / work.
 
 In Huddl-server directory type:
 ```
+cd functions
 firebase deploy
 ```
 
