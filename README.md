@@ -29,6 +29,46 @@ If this doesn't open a browser or tab, then I think the terminal gives you a lin
 
 
 
+## Basic Structure of Repo
+
+I divided the repo into 2 separate folders: Huddl-server and Huddl-client. 
+These folders are exactly what they sound like, server is for the firebase functions for their server, and client is for the front end stuff.
+
+### Huddl-server
+
+Something about the server; after I get firebase set up
+
+### Huddl-client 
+
+Go to src folder: this is where everything is.
+
+There are two folders here: pages and components.
+
+* Pages: This is where the actual pages you see are going to be
+* Components: This is stuff like the navigation bar. Things we can re-use on multiple pages (component of a page)
+
+#### Adding Pages
+
+After you add a page in the pages folder you have to bring it in through a router so that we can actually navigate to the page. 
+
+Example: Say I created a page called user.js
+
+1. Go to /src and open App.js
+2. Import user by typing 
+```javascript
+import user from './pages/user';
+```
+3. Add the route in between tags `<Switch>`
+```javascript
+<Route exact path="/user" component={user} />
+```
+
+
+### Important Stuff We Are Using
+* Axios
+* Material-UI
+* react-router-dom
+
 ## Testing
 
 ### React Changes / Front End Changes
