@@ -25,6 +25,10 @@ const styles = {
     margin: '40px auto 0px auto',
     position: 'relative'
   },
+  cancel: {
+    margin: '20px auto 0px auto',
+    position: 'relative'
+  },
   customError: {
     color: 'red',
     fontSize: '0.8rem',

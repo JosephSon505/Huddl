@@ -40,6 +40,12 @@ const styles = {
   cancel: {
     marginTop: '20px',
     marginBottom: '50px'
+  },
+  selectDiv: {
+    marginTop: '20px'
+  },
+  selectTitle: {
+    marginBottom: '10px'
   }
 };
 
@@ -75,11 +81,10 @@ class SignUp extends React.Component {
             Sign Up
           </Typography>
           <form noValidate onSubmit={this.handleSubmit} >
-            {this.displayTextFields()}
-            <br /><br />
-            {this.displaySelect()}
-
-            <Button type='submit' variant='contained' color='primary' className={classes.button} fullWidth disabled={loading}>
+            { this.displayTextFields() }
+            { this.displaySelect() }
+            { this.displayMoreDetails() }
+            <Button type='submit' variant='contained' color='primary' className={classes.button} fullWidth disabled={this.checkButtonDisabled() || loading}>
               Sign Up
               {loading && (<CircularProgress size={26} className={classes.progress} />)}
             </Button>
@@ -169,9 +174,11 @@ class SignUp extends React.Component {
   }
 
   displaySelect() {
+    const { classes } = this.props;
+
     return (
-      <div>
-        <InputLabel id='user-group'>Select User Group</InputLabel> <br />
+      <div className={classes.selectDiv} >
+        <InputLabel id='user-group' className={classes.selectTitle}>Select User Group</InputLabel>
         <Select
           variant='outlined'
           id='user-group'
@@ -188,6 +195,37 @@ class SignUp extends React.Component {
         </Select>
       </div>
     );
+  }
+
+  displayMoreDetails() {
+    if(this.state.userGroup === 'volunteer') return this.volunteerDetails();
+    else if(this.state.userGroup === 'doctor') return this.doctorDetails();
+
+    return (
+      <div>
+        more info goes here
+      </div>
+    );
+  }
+
+  volunteerDetails() {
+    return (
+      <div>
+        volunteer details here
+      </div>
+    );
+  }
+
+  doctorDetails() {
+    return (
+      <div>
+        doctor details here
+      </div>
+    );
+  }
+
+  checkButtonDisabled() {
+    return !(this.state.firstName && this.state.lastName && this.state.email && this.state.password && this.state.confirmPassword && this.state.handle && this.state.userGroup);
   }
 
   handleSubmit = (event) => {
