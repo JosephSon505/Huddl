@@ -1,5 +1,8 @@
 import React from 'react'
 
+// Axios Import
+import axios from 'axios';
+
 // Material UI Imports
 import withStyles from '@material-ui/core/styles/withStyles';
 import Grid from '@material-ui/core/Grid';
@@ -247,6 +250,15 @@ class SignUp extends React.Component {
     console.log(newUserData);
 
     // TODO: AXIOS goes here - call the signup route
+    axios.post('/signup', newUserData).then(data => {
+      this.props.history.push('/');
+    }).catch(err => {
+      this.setState({
+        errors: err.response.data.errors,
+        loading: false
+      });
+    });
+    
   }
 
   handleChange = (event) => {
