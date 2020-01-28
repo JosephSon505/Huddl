@@ -8,6 +8,9 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
+// Axios Import
+import axios from 'axios';
+
 // CSS imports
 import '../App.css';
 
@@ -46,7 +49,8 @@ class login extends React.Component {
     this.state = {
       email: '',
       password: '',
-      loading: false
+      loading: false,
+      errors: {}
     };
 
     this.handleSignUp = this.handleSignUp.bind(this);
@@ -54,6 +58,7 @@ class login extends React.Component {
 
   render() {
     const { classes } = this.props;
+    const { errors } = this.state;
 
     return (
       <Grid container className={classes.form}>
@@ -90,9 +95,15 @@ class login extends React.Component {
               fullWidth
             />
 
+            {errors && errors.general && (
+              <Typography variant='body2' className={classes.customError}>
+                {errors.general}
+              </Typography>
+            )}
+
             <Button type='submit' variant='contained' color='primary' className={classes.button} fullWidth disabled={this.state.loading}>
               Log In
-              { this.state.loading && ( <CircularProgress size={26} className={classes.progress} />) }
+              {this.state.loading && (<CircularProgress size={26} className={classes.progress} />)}
             </Button>
             <Button variant='contained' color='secondary' onClick={this.handleSignUp} className={classes.cancel} fullWidth>
               Sign Up
@@ -115,9 +126,15 @@ class login extends React.Component {
       loading: true
     });
 
-    console.log(userData);
-
     // TODO: AXIOS goes here - Call the routes we created
+    axios.post('/login', userData).then(data => {
+      this.props.history.push('/');
+    }).catch(err => {
+      this.setState({
+        errors: err.response.data.errors,
+        loading: false
+      });
+    });
   }
 
   handleChange = (event) => {
