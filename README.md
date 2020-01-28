@@ -30,14 +30,17 @@ If this doesn't open a browser or tab, then I think the terminal gives you a lin
 ## After Cloning Repo or Pulling from Github
 
 1. cd into Huddl-client
+
 `
 npm install
 `
+
 2. cd into Huddl-server
 `
 npm install
 `
-These steps are *ESSENTIAL* to you running / deploying your own code. 
+
+These steps are **ESSENTIAL** to you running / deploying your own code. 
 Without it, you will not have the correct modules that other people might have installed.
 
 

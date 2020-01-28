@@ -50,7 +50,11 @@ class login extends React.Component {
       email: '',
       password: '',
       loading: false,
-      errors: {}
+      errors: {
+        "general": "",
+        "email": "",
+        "password": ""
+      }
     };
 
     this.handleSignUp = this.handleSignUp.bind(this);
@@ -78,6 +82,8 @@ class login extends React.Component {
               type='email'
               label='Email'
               variant='outlined'
+              helperText={errors.email}
+              error={errors.email ? true : false}
               className={classes.textField}
               value={this.state.email}
               onChange={this.handleChange}
@@ -89,6 +95,8 @@ class login extends React.Component {
               type='password'
               label='Password'
               variant='outlined'
+              helperText={errors.password}
+              error={errors.password ? true : false}
               className={classes.textField}
               value={this.state.password}
               onChange={this.handleChange}
@@ -123,7 +131,12 @@ class login extends React.Component {
     };
 
     this.setState({
-      loading: true
+      loading: true,
+      errors: {
+        "general": "",
+        "email": "",
+        "password": "" 
+      }
     });
 
     // TODO: AXIOS goes here - Call the routes we created
