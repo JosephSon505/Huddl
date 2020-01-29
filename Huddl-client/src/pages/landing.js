@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-
-// imports from Material UI
-import Button from '@material-ui/core/Button';
+import Navbar from '../components/Navbar';
 
 class landing extends Component {
 
@@ -14,13 +12,11 @@ class landing extends Component {
     render() {
         return (
             <div>
-                <h1>Landing Page</h1>
-                <Button className='button' onClick={ this.testLoginPage }>
-                    Click Here to Log In 
-                </Button>    
-                <Button className='button' onClick={ this.testSignupPage }>
-                    Click Here to Sign Up
-                </Button>    
+                <Navbar />
+
+                <div className="container">
+                    <h1>Landing Page</h1>
+                </div>
             </div>
         )
     }
