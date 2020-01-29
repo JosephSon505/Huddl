@@ -141,7 +141,7 @@ class login extends React.Component {
 
     // TODO: AXIOS goes here - Call the routes we created
     axios.post('/login', userData).then(data => {
-      this.props.history.push('/');
+      this.props.history.push('/home');
     }).catch(err => {
       this.setState({
         errors: err.response.data.errors,

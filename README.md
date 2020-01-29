@@ -22,6 +22,11 @@ sudo npm install -g firebase-tools
 Next you have to log in to firebase:
 ```
 firebase login
+
+```
+you may have to sudo:
+```
+sudo firebase login
 ```
 This should take you to a Google website where you can login with a Gmail account (the provided Huddl account).
 
@@ -35,7 +40,8 @@ If this doesn't open a browser or tab, then I think the terminal gives you a lin
 npm install
 `
 
-2. cd into Huddl-server
+2. cd into Huddl-server; cd into functions
+
 `
 npm install
 `

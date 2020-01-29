@@ -251,7 +251,7 @@ class SignUp extends React.Component {
 
     // TODO: AXIOS goes here - call the signup route
     axios.post('/signup', newUserData).then(data => {
-      this.props.history.push('/');
+      this.props.history.push('/home');
     }).catch(err => {
       this.setState({
         errors: err.response.data.errors,
