@@ -1,6 +1,7 @@
 # Huddl
 
 
+
 ## Before Starting
 
 ### Download the following:
@@ -32,6 +33,8 @@ This should take you to a Google website where you can login with a Gmail accoun
 
 If this doesn't open a browser or tab, then I think the terminal gives you a link you can go to.
 
+
+
 ## After Cloning Repo or Pulling from Github
 
 1. cd into Huddl-client
@@ -46,8 +49,39 @@ npm install
 npm install
 `
 
+**NOTE:** if npm install doesn't work then you might have to try `sudo npm install`
+
 These steps are **ESSENTIAL** to you running / deploying your own code. 
 Without it, you will not have the correct modules that other people might have installed.
+
+
+
+## Version Control
+
+To reduce merge conflicts and a lot of unneccessary work, checkout branches that you're working on.
+
+Go to Huddl directory:
+
+`git branch` - shows the current branch you're working on
+
+Steps to checkout new branch and push the branch so others can see it:
+```
+git pull
+git checkout -b [Name of your branch]
+git push origin [Name of your branch]
+```
+
+After you're done working on your branch and it's completely finished, merge your branch into master
+```
+git checkout master
+git merge [Name of branch merging into master]
+```
+
+To delete the branch locally / on Github
+```
+git branch -d [Name of branch to be deleted]
+git push origin :[Name of branch to be deleted]
+```
 
 
 
@@ -91,11 +125,15 @@ import user from './pages/user';
 <Route exact path="/user" component={user} />
 ```
 
-
 ### Important Stuff We Are Using
+
 * Axios
 * Material-UI
 * react-router-dom
+* Express
+* cors
+
+
 
 ## Testing
 
