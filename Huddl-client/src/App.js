@@ -12,6 +12,8 @@ import landing from './pages/landing';
 import login from './pages/login';
 import signup from './pages/signup';
 import home from './pages/home';
+import aboutus from './pages/aboutus';
+import faq from './pages/faq';
 
 // theme
 const theme = createMuiTheme({
@@ -42,6 +44,8 @@ class App extends Component {
               <Route exact path="/login" component={login} />
               <Route exact path="/signup" component={signup} />
               <Route exact path="/home" component={home} />
+              <Route exact path="/aboutus" component={aboutus} />
+              <Route exact path="/faq" component={faq} />
             </Switch>
           </Router>
         </div>
