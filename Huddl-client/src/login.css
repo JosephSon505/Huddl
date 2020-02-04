@@ -1,0 +1,67 @@
+.loginTitle {
+    font-family: arial;
+    font-style: normal;
+    font-weight: lighter;
+    font-size: 350%;
+    color:white !important; 
+    z-index: 1;
+    margin-left: 24%;
+}
+h2{
+    font-style: normal;
+    font-weight: lighter;  
+}
+
+.heading {
+    text-align: right;
+    letter-spacing: 0.00035em;
+    vertical-align:top;
+    margin-left: 24%;
+    margin-top: 10%;
+    width: 30%;
+    height: 10%;
+    line-height: 80px;
+    position: relative;
+}
+
+.rect {
+  position: absolute;
+    width: 61%;
+    height: 47%;
+    left: -70px;
+    top: -10%;
+    background: #1EA37D;
+    border-radius: 71px;
+    z-index: -1;
+}
+
+.login-form-1{
+    margin-top: 5%;
+}
+
+.login-button-3{
+    font-family: Hind !important;
+    font-style: normal !important;
+    font-weight: lighter !important;
+    width: 30% !important;
+    padding: 2% !important;
+    border-radius: 10px !important;
+    position: relative;
+}
+
+.signup{
+    color: #8E8E8E;
+    font-family: Hind;
+    font-style: normal;
+    font-weight: lighter;
+    font-size: 20px;
+    position: relative;
+    width: 30%;
+    height: 5%;
+    left: 35%;
+    margin-top: -10%;
+}
+a {
+    color: #1EA37D;
+}
+

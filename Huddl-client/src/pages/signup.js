@@ -16,6 +16,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 
 // import css files
 import '../App.css'
+import '../signup.css';
 
 // styles for this page
 const styles = {
@@ -74,30 +75,37 @@ class SignUp extends React.Component {
     const { loading } = this.state;
 
     return (
+
+      <div>
+          <div className="signupHeading signupTitle">
+            <h2 className={classes.pageTitle}>
+                Welcome to <b>Huddl!</b>
+              </h2>
+          </div>
+
       <Grid container className={classes.form}>
         <Grid item sm />
         <Grid item sm>
-          <Typography variant="h2" className={classes.pageTitle}>
-            Huddl
-          </Typography>
-          <Typography variant="h4" className={classes.pageTitle}>
-            Sign Up
-          </Typography>
-          <form noValidate onSubmit={this.handleSubmit} >
-            { this.displayTextFields() }
-            { this.displaySelect() }
-            { this.displayMoreDetails() }
-            <Button type='submit' variant='contained' color='primary' className={classes.button} fullWidth disabled={this.checkButtonDisabled() || loading}>
-              Sign Up
-              {loading && (<CircularProgress size={26} className={classes.progress} />)}
-            </Button>
-            <Button variant='contained' color='secondary' onClick={this.handleCancel} className={classes.cancel} fullWidth>
-              Cancel
-            </Button>
-          </form>
+
+        
+            <form noValidate onSubmit={this.handleSubmit} >
+              { this.displayTextFields() }
+              { this.displaySelect() }
+              { this.displayMoreDetails() }
+              <Button type='submit' variant='contained' color='primary' className={classes.button} >
+                Sign Up
+                {loading && (<CircularProgress size={26} className={classes.progress} />)}
+              </Button>
+
+              
+            </form>
+            <div className="signup">
+                Already have an account? <a href="/login">Log In</a>
+            </div>
         </Grid>
         <Grid item sm />
       </Grid>
+    </div>
     );
   }
 
@@ -105,7 +113,7 @@ class SignUp extends React.Component {
     const { classes } = this.props;
 
     return (
-      <div>
+      <div class="signup-div">
         <TextField
           id='firstName'
           name='firstName'
@@ -197,6 +205,7 @@ class SignUp extends React.Component {
           <MenuItem value='doctor'>doctor</MenuItem>
         </Select>
       </div>
+
     );
   }
 
@@ -205,8 +214,8 @@ class SignUp extends React.Component {
     else if(this.state.userGroup === 'doctor') return this.doctorDetails();
 
     return (
-      <div>
-        more info goes here
+      <div class="description">
+        desc
       </div>
     );
   }

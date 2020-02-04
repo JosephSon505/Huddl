@@ -1,0 +1,68 @@
+.signupTitle {
+    font-family: arial;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 350%;
+    color:#1EA37D !important; 
+}
+
+.signupHeading {
+    text-align: left;
+    letter-spacing: 0.00035em;
+    vertical-align:top;
+    margin-left: 25%;
+    margin-top: 10%;
+    width: 30%;
+    height: 10%;
+    line-height: 70px;
+    position: relative;
+}
+
+.SignUp-form-1{
+    margin-top: 3%;
+    margin-left: -8%;
+    width: 120%;
+    
+}
+.signup-div {
+    width: 150%;
+    height: 40%;
+    -webkit-column-count: 2;
+}
+
+.SignUp-selectDiv-8 {
+    margin-left: 40%;
+}
+.description{
+    margin-left: 40%;
+    color: #8E8E8E;
+}
+
+
+.SignUp-button-4{
+    font-family: Hind !important;
+    font-style: normal !important;
+    font-weight: lighter !important;
+    font-size: 18px !important;
+    width: 30% !important;
+    padding: 2% !important;
+    border-radius: 10px !important;
+    position: fixed;
+    left: 20%;
+    margin-top:4% !important;
+}
+
+.signup{
+    color: #8E8E8E;
+    font-family: Hind;
+    font-style: normal;
+    font-weight: lighter;
+    font-size: 20px;
+    position: fixed;
+    width: 40%;
+    left: 29%;
+    margin-top: 2%;
+}
+a {
+    color: #1EA37D;
+}
