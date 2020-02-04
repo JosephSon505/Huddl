@@ -37,14 +37,16 @@ class Navbar extends Component {
     return (
       <AppBar color='secondary'>
         <Toolbar>
-          <Typography variant='h4' color='primary' className={classes.title}>Huddl</Typography>
+          <Typography variant='h4' color='primary' className={classes.title}>
+            <div style={{ fontWeight: 'bold', fontSize: 40 }}>huddl</div>
+          </Typography>
 
           <section className={classes.leftToolBar}>
-            <Button className={classes.button} color="inherit" component={Link} to="/" >
-              About Us
+            <Button className={classes.button} color="inherit" component={Link} to="/aboutus" >
+              ABOUT US
             </Button>
 
-            <Button className={classes.button} color="inherit" component={Link} to="/" >
+            <Button className={classes.button} color="inherit" component={Link} to="/faq" >
               FAQ
             </Button>
           </section>
