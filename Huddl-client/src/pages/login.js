@@ -90,7 +90,7 @@ class login extends React.Component {
                 name='email'
                 type='email'
                 label='Email'
-                variant='outlined'
+                variant='standard'
                 helperText={errors.email}
                 error={errors.email ? true : false}
                 className={classes.textField}
@@ -103,7 +103,7 @@ class login extends React.Component {
                 name='password'
                 type='password'
                 label='Password'
-                variant='outlined'
+                variant='standard'
                 helperText={errors.password}
                 error={errors.password ? true : false}
                 className={classes.textField}

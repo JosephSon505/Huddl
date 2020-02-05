@@ -116,7 +116,7 @@ class SignUp extends React.Component {
           name='firstName'
           type='text'
           label='First Name'
-          variant='outlined'
+          variant='standard'
           className={classes.textField}
           value={this.state.firstName}
           onChange={this.handleChange}
@@ -127,7 +127,7 @@ class SignUp extends React.Component {
           name='lastName'
           type='text'
           label='Last Name'
-          variant='outlined'
+          variant='standard'
           className={classes.textField}
           value={this.state.lastName}
           onChange={this.handleChange}
@@ -138,7 +138,7 @@ class SignUp extends React.Component {
           name='email'
           type='email'
           label='Email'
-          variant='outlined'
+          variant='standard'
           className={classes.textField}
           value={this.state.email}
           onChange={this.handleChange}
@@ -149,7 +149,7 @@ class SignUp extends React.Component {
           name='password'
           type='password'
           label='Password'
-          variant='outlined'
+          variant='standard'
           className={classes.textField}
           value={this.state.password}
           onChange={this.handleChange}
@@ -160,7 +160,7 @@ class SignUp extends React.Component {
           name='confirmPassword'
           type='password'
           label='Confirm Password'
-          variant='outlined'
+          variant='standard'
           className={classes.textField}
           value={this.state.confirmPassword}
           onChange={this.handleChange}
@@ -171,7 +171,7 @@ class SignUp extends React.Component {
           name='handle'
           type='text'
           label='Handle'
-          variant='outlined'
+          variant='standard'
           className={classes.textField}
           value={this.state.handle}
           onChange={this.handleChange}
@@ -188,7 +188,7 @@ class SignUp extends React.Component {
       <div className={classes.selectDiv} >
         <InputLabel id='user-group' className={classes.selectTitle}>Select User Group</InputLabel>
         <Select
-          variant='outlined'
+          variant='standard'
           id='user-group'
           open={this.state.userGroupSelectOpen}
           onClose={this.handleSelectClose}
