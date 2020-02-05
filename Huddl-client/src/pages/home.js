@@ -1,16 +1,22 @@
 import React, { Component } from 'react';
 
+// Styled Components Imports
+import Sidebar from '../components/Sidebar';
+import Teams from '../components/Teams';
+import Header from '../components/Header';
+import Messages from '../components/Messages';
+import SendMessage from '../components/Input';
+import AppLayout from '../components/AppLayout';
+
 // Material-UI Imports
 import withStyles from '@material-ui/core/styles/withStyles';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
 
 const styles = {
   borderRight: {
     borderRight: '1px solid black',
     backgroundColor: '#1EA37D',
     height: '100%'
-  }, 
+  },
   card: {
     backgroundColor: '#1EA37D',
   },
@@ -20,37 +26,32 @@ const styles = {
 };
 
 class home extends Component {
+
   render() {
     const { classes } = this.props;
 
     return (
-      <div className={ classes.container }>
-        <Grid container spacing={10}>
-          <Grid item sm={4} xs={12} className={classes.borderRight}>
-            <Typography variant='h4'>
-              Profile Section
-            </Typography>
+      <AppLayout>
+        <Teams>Teams</Teams>
 
-            <Typography variant='h4'>
-              Forums
-            </Typography>
+        <Sidebar
+          ngo="Test"
+          username="Joe"
+          channels={[{id: 1, name: 'general'}, {id: 2, name: 'random'}]}
+          users={[{id: 1, name: 'slackbot'}, {name:2, name: 'user1'}]}
+        />
 
-            <Typography variant='h4'>
-              Direct Messages
-            </Typography>
+        <Header channelName='ChannelName' />
 
+        <Messages>
+          <ul className="message-list">
+            <li></li>
+            <li></li>
+          </ul>
+        </Messages>
 
-            <Typography variant='h4'>
-              Telepsychiatry
-            </Typography>
-            
-          </Grid>
-
-          <Grid item sm={8} xs={12}>
-            <p>Messaging platform</p>
-          </Grid>
-        </Grid>
-      </div>
+        <SendMessage />
+      </AppLayout>
     );
   }
 }
