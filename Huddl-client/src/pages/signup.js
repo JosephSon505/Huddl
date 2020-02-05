@@ -6,28 +6,37 @@ import axios from 'axios';
 // Material UI Imports
 import withStyles from '@material-ui/core/styles/withStyles';
 import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import InputLabel from '@material-ui/core/InputLabel';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import EmailIcon from '@material-ui/icons/Email';
+import LockOpenIcon from '@material-ui/icons/LockOpen';
+import TextFormatTwoToneIcon from '@material-ui/icons/TextFormatTwoTone';
 
 // import css files
 import '../App.css'
-import '../signup.css';
+import '../css/signup.css';
 
 // styles for this page
 const styles = {
   form: {
-    textAlign: 'center'
+    textAlign: 'center',
+    margin: '0',
+    padding: '0'
   },
   pageTitle: {
     margin: '20px auto 20px auto'
   },
   textField: {
     margin: '8px auto 8px auto'
+  },
+  buttonDiv: {
+    margin: '0',
+    textAlign: 'center'
   },
   button: {
     margin: '40px auto 0px auto',
@@ -46,10 +55,14 @@ const styles = {
     marginBottom: '50px'
   },
   selectDiv: {
-    marginTop: '20px'
+    margin: '20px 0 0 0',
   },
   selectTitle: {
     marginBottom: '10px'
+  },
+  details: {
+    margin: '0',
+    textAlign: 'center'
   }
 };
 
@@ -83,102 +96,160 @@ class SignUp extends React.Component {
           </h2>
         </div>
 
-        <Grid container className={classes.form}>
-          <Grid item sm />
-          <Grid item sm>
+        <Grid container alignContent='center' alignItems='center' className={classes.form}>
+          <Grid item xs={3} />
+          <Grid item xs={6} >
             <form noValidate onSubmit={this.handleSubmit} >
-              {this.displayTextFields()}
+              <Grid container spacing={1} className={classes.form}>
+                <Grid item xs={6}>
+                  <TextField
+                    id='firstName'
+                    name='firstName'
+                    type='text'
+                    label='First Name'
+                    placeholder='First Name'
+                    variant='standard'
+                    className={classes.textField}
+                    value={this.state.firstName}
+                    onChange={this.handleChange}
+                    fullWidth
+                    InputProps={{
+                      startAdornment: (
+                        <InputAdornment position="start">
+                          <TextFormatTwoToneIcon />
+                        </InputAdornment>
+                      ),
+                    }}
+                  />
+                </Grid>
+
+                <Grid item xs={6}>
+                  <TextField
+                    id='lastName'
+                    name='lastName'
+                    type='text'
+                    label='Last Name'
+                    placeholder='Last Name'
+                    variant='standard'
+                    className={classes.textField}
+                    value={this.state.lastName}
+                    onChange={this.handleChange}
+                    fullWidth
+                    InputProps={{
+                      startAdornment: (
+                        <InputAdornment position="start">
+                          <TextFormatTwoToneIcon />
+                        </InputAdornment>
+                      ),
+                    }}
+                  />
+                </Grid>
+
+                <Grid item xs={6}>
+                  <TextField
+                    id='email'
+                    name='email'
+                    type='email'
+                    label='Email'
+                    placeholder='Email'
+                    variant='standard'
+                    className={classes.textField}
+                    value={this.state.email}
+                    onChange={this.handleChange}
+                    fullWidth
+                    InputProps={{
+                      startAdornment: (
+                        <InputAdornment position="start">
+                          <EmailIcon />
+                        </InputAdornment>
+                      ),
+                    }}
+                  />
+                </Grid>
+
+                <Grid item xs={6}>
+                  <TextField
+                    id='handle'
+                    name='handle'
+                    type='text'
+                    label='Handle'
+                    placeholder='Handle'
+                    variant='standard'
+                    className={classes.textField}
+                    value={this.state.handle}
+                    onChange={this.handleChange}
+                    fullWidth
+                    InputProps={{
+                      startAdornment: (
+                        <InputAdornment position="start">
+                          @
+                        </InputAdornment>
+                      ),
+                    }}
+                  />
+                </Grid>
+
+                <Grid item xs={6}>
+                  <TextField
+                    id='password'
+                    name='password'
+                    type='password'
+                    label='Password'
+                    placeholder='Password'
+                    variant='standard'
+                    className={classes.textField}
+                    value={this.state.password}
+                    onChange={this.handleChange}
+                    fullWidth
+                    InputProps={{
+                      startAdornment: (
+                        <InputAdornment position="start">
+                          <LockOpenIcon />
+                        </InputAdornment>
+                      ),
+                    }}
+                  />
+                </Grid>
+
+                <Grid item xs={6}>
+                  <TextField
+                    id='confirmPassword'
+                    name='confirmPassword'
+                    type='password'
+                    label='Confirm Password'
+                    placeholder='Confirm Password'
+                    variant='standard'
+                    className={classes.textField}
+                    value={this.state.confirmPassword}
+                    onChange={this.handleChange}
+                    fullWidth
+                    InputProps={{
+                      startAdornment: (
+                        <InputAdornment position="start">
+                          <LockOpenIcon />
+                        </InputAdornment>
+                      ),
+                    }}
+                  />
+                </Grid>
+              </Grid>
               {this.displaySelect()}
               {this.displayMoreDetails()}
-              <Button type='submit' variant='contained' color='primary' className={classes.button} >
-                Sign Up
-                {loading && (<CircularProgress size={26} className={classes.progress} />)}
-              </Button>
+              <div className={classes.buttonDiv}>
+                <Button type='submit' variant='contained' color='primary' className={classes.button} >
+                  Sign Up
+                    {loading && (<CircularProgress size={26} className={classes.progress} />)}
+                </Button>
+              </div>
             </form>
-
             <div className="signup">
               Already have an account? <a href="/login">Log In</a>
             </div>
           </Grid>
-          <Grid item sm />
+          <Grid item xs={3} />
         </Grid>
       </div>
     );
-  }
-
-  displayTextFields() {
-    const { classes } = this.props;
-
-    return (
-      <div className="signup-div">
-        <TextField
-          id='firstName'
-          name='firstName'
-          type='text'
-          label='First Name'
-          variant='standard'
-          className={classes.textField}
-          value={this.state.firstName}
-          onChange={this.handleChange}
-          fullWidth
-        />
-        <TextField
-          id='lastName'
-          name='lastName'
-          type='text'
-          label='Last Name'
-          variant='standard'
-          className={classes.textField}
-          value={this.state.lastName}
-          onChange={this.handleChange}
-          fullWidth
-        />
-        <TextField
-          id='email'
-          name='email'
-          type='email'
-          label='Email'
-          variant='standard'
-          className={classes.textField}
-          value={this.state.email}
-          onChange={this.handleChange}
-          fullWidth
-        />
-        <TextField
-          id='password'
-          name='password'
-          type='password'
-          label='Password'
-          variant='standard'
-          className={classes.textField}
-          value={this.state.password}
-          onChange={this.handleChange}
-          fullWidth
-        />
-        <TextField
-          id='confirmPassword'
-          name='confirmPassword'
-          type='password'
-          label='Confirm Password'
-          variant='standard'
-          className={classes.textField}
-          value={this.state.confirmPassword}
-          onChange={this.handleChange}
-          fullWidth
-        />
-        <TextField
-          id='handle'
-          name='handle'
-          type='text'
-          label='Handle'
-          variant='standard'
-          className={classes.textField}
-          value={this.state.handle}
-          onChange={this.handleChange}
-          fullWidth
-        />
-      </div>
-    )
   }
 
   displaySelect() {
@@ -207,27 +278,33 @@ class SignUp extends React.Component {
   }
 
   displayMoreDetails() {
+    const { classes } = this.props;
+
     if (this.state.userGroup === 'volunteer') return this.volunteerDetails();
     else if (this.state.userGroup === 'doctor') return this.doctorDetails();
 
     return (
-      <div className="description">
+      <div className={classes.details}>
         desc
       </div>
     );
   }
 
   volunteerDetails() {
+    const { classes } = this.props;
+
     return (
-      <div>
+      <div className={classes.details}>
         volunteer details here
       </div>
     );
   }
 
   doctorDetails() {
+    const { classes } = this.props;
+
     return (
-      <div>
+      <div className={classes.details}>
         doctor details here
       </div>
     );

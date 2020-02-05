@@ -7,15 +7,16 @@ import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import EmailIcon from '@material-ui/icons/Email';
+import LockOpenIcon from '@material-ui/icons/LockOpen';
 
 // Axios Import
 import axios from 'axios';
 
 // CSS imports
 import '../App.css';
-import '../login.css';
-
-
+import '../css/login.css';
 
 const styles = {
   form: {
@@ -64,8 +65,6 @@ class login extends React.Component {
 
   render() {
 
-
-
     const { classes } = this.props;
     const { errors } = this.state;
 
@@ -80,8 +79,8 @@ class login extends React.Component {
         </div>
 
         <Grid container className={classes.form}>
-          <Grid item sm />
-          <Grid item sm>
+          <Grid item sm xs={4}/>
+          <Grid item sm xs={4}>
 
             <form noValidate onSubmit={this.handleSubmit} >
 
@@ -89,20 +88,27 @@ class login extends React.Component {
                 id='email'
                 name='email'
                 type='email'
-                label='Email'
                 variant='standard'
+                placeholder='Email'
                 helperText={errors.email}
                 error={errors.email ? true : false}
                 className={classes.textField}
                 value={this.state.email}
                 onChange={this.handleChange}
                 fullWidth
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <EmailIcon />
+                    </InputAdornment>
+                  ),
+                }}
               />
               <TextField
                 id='password'
                 name='password'
                 type='password'
-                label='Password'
+                placeholder='password'
                 variant='standard'
                 helperText={errors.password}
                 error={errors.password ? true : false}
@@ -110,6 +116,13 @@ class login extends React.Component {
                 value={this.state.password}
                 onChange={this.handleChange}
                 fullWidth
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <LockOpenIcon />
+                    </InputAdornment>
+                  ),
+                }}
               />
 
               {errors && errors.general && (
@@ -130,7 +143,7 @@ class login extends React.Component {
               Don't have an account? <a href="/signup">Sign Up</a>
             </div>
           </Grid>
-          <Grid item sm />
+          <Grid item sm xs={4}/>
         </Grid>
 
       </div>
