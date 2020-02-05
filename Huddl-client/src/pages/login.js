@@ -13,14 +13,15 @@ import axios from 'axios';
 
 // CSS imports
 import '../App.css';
+import '../login.css';
+
+
 
 const styles = {
   form: {
     textAlign: 'center'
   },
-  pageTitle: {
-    margin: '20px auto 20px auto'
-  },
+
   textField: {
     margin: '20px auto 20px auto'
   },
@@ -60,22 +61,33 @@ class login extends React.Component {
     this.handleSignUp = this.handleSignUp.bind(this);
   }
 
+
   render() {
+    
+    
+
     const { classes } = this.props;
     const { errors } = this.state;
 
     return (
+
+      // React.createElement('div', {className: 'rect'}, 'hello'),
+
+      <div>
+        <div className="rect"/>
+      
+      <div className="heading loginTitle">
+        <h2 className={classes.pageTitle}>
+        Welcome  to <b>Huddl!</b>
+          </h2>
+      </div>
+
       <Grid container className={classes.form}>
         <Grid item sm />
         <Grid item sm>
-          <Typography variant="h2" className={classes.pageTitle}>
-            Huddl
-          </Typography>
-          <Typography variant="h4" className={classes.pageTitle}>
-            Log In
-          </Typography>
 
           <form noValidate onSubmit={this.handleSubmit} >
+
             <TextField
               id='email'
               name='email'
@@ -113,13 +125,19 @@ class login extends React.Component {
               Log In
               {this.state.loading && (<CircularProgress size={26} className={classes.progress} />)}
             </Button>
-            <Button variant='contained' color='secondary' onClick={this.handleSignUp} className={classes.cancel} fullWidth>
-              Sign Up
-            </Button>
+
+            
+
           </form>
+
+          <div className="signup">
+              Don't have an account? <a href="/signup">Sign Up</a>
+            </div>
         </Grid>
         <Grid item sm />
       </Grid>
+
+      </div>
     );
   }
 
