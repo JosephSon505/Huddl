@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 // Styled Components Imports
 import Sidebar from '../components/Sidebar';
@@ -27,6 +28,26 @@ const styles = {
 
 class home extends Component {
 
+  constructor() {
+    super();
+
+    this.state = {
+      users: []
+    };
+  }
+
+  componentDidMount() {
+    // get all users on the same team and then store in state
+    axios.get('/users').then(res => {
+      this.setState({
+        users: res.data
+      });
+      console.log(this.state.users)
+    }).catch(err => {
+      console.log(err);
+    })
+  }
+
   render() {
     const { classes } = this.props;
 
@@ -37,8 +58,8 @@ class home extends Component {
         <Sidebar
           ngo="Test"
           username="Joe"
-          channels={[{id: 1, name: 'general'}, {id: 2, name: 'random'}]}
-          users={[{id: 1, name: 'slackbot'}, {name:2, name: 'user1'}]}
+          channels={[{ id: 1, name: 'general' }, { id: 2, name: 'random' }]}
+          users={this.state.users}
         />
 
         <Header channelName='ChannelName' />

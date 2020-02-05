@@ -19,7 +19,9 @@ const Container = styled.div`
 `;
 
 const channel = ({id, name}) => <li key={`channel-${id}`}>{name}</li>;
-const user = ({id, name}) => <li key={`user-${id}`}>{name}</li>;
+const user = (user) => (
+  <li key={`user-${user.userID}`}>{user.handle}</li>
+);
 
 export default ({ ngo, username, channels, users }) => (
   <ChannelWrapper>

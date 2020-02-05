@@ -247,8 +247,6 @@ class SignUp extends React.Component {
       userGroup: this.state.userGroup
     };
 
-    console.log(newUserData);
-
     // TODO: AXIOS goes here - call the signup route
     axios.post('/signup', newUserData).then(data => {
       this.props.history.push('/home');

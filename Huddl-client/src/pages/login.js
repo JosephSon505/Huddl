@@ -144,7 +144,7 @@ class login extends React.Component {
       this.props.history.push('/home');
     }).catch(err => {
       this.setState({
-        errors: err.response.data.errors,
+        errors: err?.response?.data?.errors,
         loading: false
       });
     });

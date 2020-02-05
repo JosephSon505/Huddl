@@ -103,3 +103,23 @@ exports.login = (req, res) => {
         }
     });
 };
+
+// get all users in the database
+exports.getAllUsers = (req, res) => {
+    db.collection('Users').orderBy('firstName').get().then((data) => {
+        let users = [];
+        data.forEach((doc) => {
+            users.push({
+                userID: doc.data().userID,
+                firstName: doc.data().firstName,
+                lastName: doc.data().lastName,
+                email: doc.data().email,
+                handle: doc.data().handle
+            });
+        });
+        return res.json(users);
+    }).catch(error => {
+        res.status(500).json({error: `Error getting all users`});
+        console.error("Error: " + error);    
+    });
+}
