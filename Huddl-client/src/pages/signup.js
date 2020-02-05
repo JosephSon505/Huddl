@@ -77,35 +77,32 @@ class SignUp extends React.Component {
     return (
 
       <div>
-          <div className="signupHeading signupTitle">
-            <h2 className={classes.pageTitle}>
-                Welcome to <b>Huddl!</b>
-              </h2>
-          </div>
+        <div className="signupHeading signupTitle">
+          <h2 className={classes.pageTitle}>
+            Welcome to <b>Huddl!</b>
+          </h2>
+        </div>
 
-      <Grid container className={classes.form}>
-        <Grid item sm />
-        <Grid item sm>
-
-        
+        <Grid container className={classes.form}>
+          <Grid item sm />
+          <Grid item sm>
             <form noValidate onSubmit={this.handleSubmit} >
-              { this.displayTextFields() }
-              { this.displaySelect() }
-              { this.displayMoreDetails() }
+              {this.displayTextFields()}
+              {this.displaySelect()}
+              {this.displayMoreDetails()}
               <Button type='submit' variant='contained' color='primary' className={classes.button} >
                 Sign Up
                 {loading && (<CircularProgress size={26} className={classes.progress} />)}
               </Button>
-
-              
             </form>
+
             <div className="signup">
-                Already have an account? <a href="/login">Log In</a>
+              Already have an account? <a href="/login">Log In</a>
             </div>
+          </Grid>
+          <Grid item sm />
         </Grid>
-        <Grid item sm />
-      </Grid>
-    </div>
+      </div>
     );
   }
 
@@ -113,7 +110,7 @@ class SignUp extends React.Component {
     const { classes } = this.props;
 
     return (
-      <div class="signup-div">
+      <div className="signup-div">
         <TextField
           id='firstName'
           name='firstName'
@@ -210,11 +207,11 @@ class SignUp extends React.Component {
   }
 
   displayMoreDetails() {
-    if(this.state.userGroup === 'volunteer') return this.volunteerDetails();
-    else if(this.state.userGroup === 'doctor') return this.doctorDetails();
+    if (this.state.userGroup === 'volunteer') return this.volunteerDetails();
+    else if (this.state.userGroup === 'doctor') return this.doctorDetails();
 
     return (
-      <div class="description">
+      <div className="description">
         desc
       </div>
     );
@@ -267,7 +264,7 @@ class SignUp extends React.Component {
         loading: false
       });
     });
-    
+
   }
 
   handleChange = (event) => {

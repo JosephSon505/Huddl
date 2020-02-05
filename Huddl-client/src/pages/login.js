@@ -63,79 +63,75 @@ class login extends React.Component {
 
 
   render() {
-    
-    
+
+
 
     const { classes } = this.props;
     const { errors } = this.state;
 
     return (
-
-      // React.createElement('div', {className: 'rect'}, 'hello'),
-
       <div>
-        <div className="rect"/>
-      
-      <div className="heading loginTitle">
-        <h2 className={classes.pageTitle}>
-        Welcome  to <b>Huddl!</b>
+        <div className="rect" />
+
+        <div className="heading loginTitle">
+          <h2 className={classes.pageTitle}>
+            Welcome  to <b>Huddl!</b>
           </h2>
-      </div>
+        </div>
 
-      <Grid container className={classes.form}>
-        <Grid item sm />
-        <Grid item sm>
+        <Grid container className={classes.form}>
+          <Grid item sm />
+          <Grid item sm>
 
-          <form noValidate onSubmit={this.handleSubmit} >
+            <form noValidate onSubmit={this.handleSubmit} >
 
-            <TextField
-              id='email'
-              name='email'
-              type='email'
-              label='Email'
-              variant='outlined'
-              helperText={errors.email}
-              error={errors.email ? true : false}
-              className={classes.textField}
-              value={this.state.email}
-              onChange={this.handleChange}
-              fullWidth
-            />
-            <TextField
-              id='password'
-              name='password'
-              type='password'
-              label='Password'
-              variant='outlined'
-              helperText={errors.password}
-              error={errors.password ? true : false}
-              className={classes.textField}
-              value={this.state.password}
-              onChange={this.handleChange}
-              fullWidth
-            />
+              <TextField
+                id='email'
+                name='email'
+                type='email'
+                label='Email'
+                variant='outlined'
+                helperText={errors.email}
+                error={errors.email ? true : false}
+                className={classes.textField}
+                value={this.state.email}
+                onChange={this.handleChange}
+                fullWidth
+              />
+              <TextField
+                id='password'
+                name='password'
+                type='password'
+                label='Password'
+                variant='outlined'
+                helperText={errors.password}
+                error={errors.password ? true : false}
+                className={classes.textField}
+                value={this.state.password}
+                onChange={this.handleChange}
+                fullWidth
+              />
 
-            {errors && errors.general && (
-              <Typography variant='body2' className={classes.customError}>
-                {errors.general}
-              </Typography>
-            )}
+              {errors && errors.general && (
+                <Typography variant='body2' className={classes.customError}>
+                  {errors.general}
+                </Typography>
+              )}
 
-            <Button type='submit' variant='contained' color='primary' className={classes.button} fullWidth disabled={this.state.loading}>
-              Log In
-              {this.state.loading && (<CircularProgress size={26} className={classes.progress} />)}
-            </Button>
+              <Button type='submit' variant='contained' color='primary' className={classes.button} fullWidth disabled={this.state.loading}>
+                Log In {this.state.loading && (<CircularProgress size={26} className={classes.progress} />)}
+              </Button>
 
-            
 
-          </form>
 
-          <div className="signup">
+            </form>
+
+            <div className="signup">
               Don't have an account? <a href="/signup">Sign Up</a>
             </div>
+          </Grid>
+          <Grid item sm />
         </Grid>
-        <Grid item sm />
-      </Grid>
 
       </div>
     );
@@ -153,7 +149,7 @@ class login extends React.Component {
       errors: {
         "general": "",
         "email": "",
-        "password": "" 
+        "password": ""
       }
     });
 
