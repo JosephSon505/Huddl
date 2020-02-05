@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 
 // Axios Import
 import axios from 'axios';
@@ -243,7 +244,10 @@ class SignUp extends React.Component {
               </div>
             </form>
             <div className="signup">
-              Already have an account? <a href="/login">Log In</a>
+              Already have an account?
+              <Button className='button' color="primary" component={Link} to="/login" >
+                Log In
+              </Button>
             </div>
           </Grid>
           <Grid item xs={3} />

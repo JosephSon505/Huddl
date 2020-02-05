@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 
 // Material UI Imports
 import withStyles from '@material-ui/core/styles/withStyles';
@@ -140,7 +141,10 @@ class login extends React.Component {
             </form>
 
             <div className="signup">
-              Don't have an account? <a href="/signup">Sign Up</a>
+              Don't have an account?
+              <Button className='button' color="primary" component={Link} to="/signup" >
+                Sign Up
+              </Button>
             </div>
           </Grid>
           <Grid item sm xs={4}/>
