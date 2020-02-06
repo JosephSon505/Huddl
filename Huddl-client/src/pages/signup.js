@@ -6,6 +6,7 @@ import axios from 'axios';
 
 // Material UI Imports
 import withStyles from '@material-ui/core/styles/withStyles';
+import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
@@ -17,6 +18,7 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import EmailIcon from '@material-ui/icons/Email';
 import LockOpenIcon from '@material-ui/icons/LockOpen';
 import TextFormatTwoToneIcon from '@material-ui/icons/TextFormatTwoTone';
+import FormHelperText from '@material-ui/core/FormHelperText';
 
 // import css files
 import '../App.css'
@@ -64,6 +66,11 @@ const styles = {
   details: {
     margin: '0',
     textAlign: 'center'
+  },
+  selectError: {
+    marginTop: '10px',
+    textAlign: 'center',
+    color: 'red'
   }
 };
 
@@ -81,12 +88,23 @@ class SignUp extends React.Component {
       userGroup: '',
       userGroupSelectOpen: false,
       loading: false,
+
+      errors: {
+        "general": "",
+        "email": "",
+        "password": "",
+        "confirmPassword": "",
+        "firstName": "",
+        "lastName": "",
+        "handle": "",
+        "userGroup": ""
+      }
     };
   }
 
   render() {
     const { classes } = this.props;
-    const { loading } = this.state;
+    const { loading, errors } = this.state;
 
     return (
 
@@ -109,6 +127,8 @@ class SignUp extends React.Component {
                     type='text'
                     label='First Name'
                     placeholder='First Name'
+                    helperText={errors.firstName}
+                    error={errors.firstName ? true : false}
                     variant='standard'
                     className={classes.textField}
                     value={this.state.firstName}
@@ -131,6 +151,8 @@ class SignUp extends React.Component {
                     type='text'
                     label='Last Name'
                     placeholder='Last Name'
+                    helperText={errors.lastName}
+                    error={errors.lastName ? true : false}
                     variant='standard'
                     className={classes.textField}
                     value={this.state.lastName}
@@ -153,6 +175,8 @@ class SignUp extends React.Component {
                     type='email'
                     label='Email'
                     placeholder='Email'
+                    helperText={errors.email}
+                    error={errors.email ? true : false}
                     variant='standard'
                     className={classes.textField}
                     value={this.state.email}
@@ -175,6 +199,8 @@ class SignUp extends React.Component {
                     type='text'
                     label='Handle'
                     placeholder='Handle'
+                    helperText={errors.handle}
+                    error={errors.handle ? true : false}
                     variant='standard'
                     className={classes.textField}
                     value={this.state.handle}
@@ -197,6 +223,8 @@ class SignUp extends React.Component {
                     type='password'
                     label='Password'
                     placeholder='Password'
+                    helperText={errors.password}
+                    error={errors.password ? true : false}
                     variant='standard'
                     className={classes.textField}
                     value={this.state.password}
@@ -219,6 +247,8 @@ class SignUp extends React.Component {
                     type='password'
                     label='Confirm Password'
                     placeholder='Confirm Password'
+                    helperText={errors.confirmPassword}
+                    error={errors.confirmPassword ? true : false}
                     variant='standard'
                     className={classes.textField}
                     value={this.state.confirmPassword}
@@ -236,6 +266,13 @@ class SignUp extends React.Component {
               </Grid>
               {this.displaySelect()}
               {this.displayMoreDetails()}
+
+              {errors && errors.general && (
+                <Typography variant='body2' className={classes.customError}>
+                  {errors.general}
+                </Typography>
+              )}
+
               <div className={classes.buttonDiv}>
                 <Button type='submit' variant='contained' color='primary' className={classes.button} >
                   Sign Up
@@ -243,6 +280,7 @@ class SignUp extends React.Component {
                 </Button>
               </div>
             </form>
+
             <div className="signup">
               Already have an account?
               <Button className='button' color="primary" component={Link} to="/login" >
@@ -276,6 +314,7 @@ class SignUp extends React.Component {
           <MenuItem value='volunteer'>Volunteer</MenuItem>
           <MenuItem value='doctor'>doctor</MenuItem>
         </Select>
+        <FormHelperText className={classes.selectError}>{this.state.errors.userGroup}</FormHelperText>
       </div>
 
     );
@@ -315,7 +354,10 @@ class SignUp extends React.Component {
   }
 
   checkButtonDisabled() {
-    return !(this.state.firstName && this.state.lastName && this.state.email && this.state.password && this.state.confirmPassword && this.state.handle && this.state.userGroup);
+    return !(this.state.firstName && this.state.lastName && 
+      this.state.email && this.state.password && 
+      this.state.confirmPassword && this.state.handle && 
+      this.state.userGroup);
   }
 
   handleSubmit = (event) => {
