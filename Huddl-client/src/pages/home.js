@@ -32,8 +32,11 @@ class home extends Component {
     super();
 
     this.state = {
-      users: []
+      users: [],
+      receiver: 'General'
     };
+
+    this.setReceiver = this.setReceiver.bind(this);
   }
 
   componentDidMount() {
@@ -48,6 +51,12 @@ class home extends Component {
     })
   }
 
+  setReceiver(user) {
+    this.setState({
+      receiver: user
+    });
+  }
+
   render() {
     const { classes } = this.props;
 
@@ -58,11 +67,12 @@ class home extends Component {
         <Sidebar
           ngo="Test"
           username="Joe"
-          channels={[{ id: 1, name: 'general' }, { id: 2, name: 'random' }]}
+          channels={[{ id: 1, name: 'General' }, { id: 2, name: 'Random' }, {id: 3, name: 'FAQ'}]}
           users={this.state.users}
+          setReceiver = {this.setReceiver}
         />
 
-        <Header channelName='ChannelName' />
+        <Header channelName={this.state.receiver} />
 
         <Messages>
           <ul className="message-list">
