@@ -69,9 +69,12 @@ class home extends Component {
           <div>
             
           </div>
-          <Chatscreen currentUsername='jltanner@usc.edu' style={{position:'absolute', left:'70%', top:'70%'}}></Chatscreen>
           
-          <Chatscreen currentUsername='practiceuser0'style={{position:'absolute', left:'30%', top:'30%'}}></Chatscreen>
+          <Chatscreen currentUsername='jltanner@usc.edu' style={{position:'absolute', left:'100%', top:'100%'}}></Chatscreen>
+          
+          <Chatscreen currentUsername='aahadpat@usc.edu'style={{position:'absolute', left:'30%', top:'30%'}}></Chatscreen>
+          <Chatscreen currentUsername='sandeep@gmail.com'style={{position:'absolute', left:'30%', top:'30%'}}></Chatscreen>
+
           <Grid item sm={8} xs={12}>
             <p>Messaging platform</p>
           </Grid>

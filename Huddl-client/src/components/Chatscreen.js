@@ -44,7 +44,7 @@ class ChatScreen extends Component {
       .then(currentUser => {
         this.setState({ currentUser })
         return currentUser.subscribeToRoom({
-          roomId: "9d5730f7-3763-4417-9e2c-b415e1b1f1d3",
+          roomId: "c5a18273-2a23-4cc3-b01e-6ff1d9ccd87a",
           messageLimit: 100,
           hooks: {
             onMessage: message => {
@@ -101,7 +101,7 @@ class ChatScreen extends Component {
         <div style={styles.chatContainer}>
           <aside style={styles.whosOnlineListContainer}>
             <WhosOnlineList
-                currentUser={this.state.currentUser}
+                currentUser={this.state.currentUser.name}
                 users={this.state.currentRoom.users}
             />
           </aside>
