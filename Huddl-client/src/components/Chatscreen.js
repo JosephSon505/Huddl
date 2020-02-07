@@ -81,8 +81,12 @@ class ChatScreen extends Component {
          overflowY: 'scroll',
          flex: 1,
          postion: 'absolute',
-         top: '500px',
+         top: '50%',
          left: '50%',
+         margin: '70px',
+         border: 'solid',
+         width: '20%',
+         fontSize: 15
        },
        ul: {
          listStyle: 'none',
@@ -90,11 +94,12 @@ class ChatScreen extends Component {
        li: {
          marginTop: 13,
          marginBottom: 13,
+         fontSize: 5
        },
        senderUsername: {
          fontWeight: 'bold',
        },
-       message: { fontSize: 200 },
+       message: { fontSize: 100 },
      }
     return (
       <div style={styles.container}>

@@ -48,7 +48,7 @@ class home extends Component {
             </ChatkitProvider> */}
           <Grid container spacing={10}>
 
-          {/* <Grid item sm={4} xs={12} className={classes.borderRight}>
+          <Grid item sm={4} xs={12} className={classes.borderRight}>
             <Typography variant='h4'>
               Profile Section
             </Typography>
@@ -66,7 +66,7 @@ class home extends Component {
               Telepsychiatry
             </Typography>
             
-          </Grid> */}
+          </Grid>
           
           <Grid item sm={8} xs={12}>
             <p>Messaging platform</p>
@@ -74,7 +74,7 @@ class home extends Component {
 
 
         </Grid>
-        <Chatscreen currentUsername={userId} style={{position:'absolute', left:'100%', top:'100%'}, {width: '100px'}}></Chatscreen>
+        <Chatscreen currentUsername={userId} ></Chatscreen>
 
       </div>
     );
