@@ -21,7 +21,8 @@ exports.signup = (req, res) => {
         confirmPassword: req.body.confirmPassword,
         firstName: req.body.firstName,
         lastName: req.body.lastName,
-        handle: req.body.handle
+        handle: req.body.handle,
+        userGroup: req.body.userGroup
     };
 
     // make sure user fields are valid before proceeding; if not return error

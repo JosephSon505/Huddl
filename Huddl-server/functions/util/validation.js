@@ -27,6 +27,8 @@ exports.validateSignupData = (data) => {
     if (isEmpty(data.lastName)) errors.lastName = 'Last name must not be empty';
     if (isEmpty(data.handle)) errors.handle = 'Handle must not be empty';
 
+    if(isEmpty(data.userGroup)) errors.userGroup = 'Select a group';
+
     // if any errors then return the errors
     return {
         errors,
