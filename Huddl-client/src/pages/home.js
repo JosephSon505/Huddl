@@ -8,6 +8,11 @@ import { ChatkitProvider, TokenProvider } from '@pusher/chatkit-client-react';
 
 const instanceLocator = '<v1:us1:9a9699f8-9213-45c5-aa54-bf106dd7ead9>';
 
+const urlParams = new URLSearchParams(window.location.search);
+const userId = urlParams.get('userEmail');
+const otherUserId = urlParams.get('otherUserId');
+ 
+
 const styles = {
   borderRight: {
     borderRight: '1px solid black',
