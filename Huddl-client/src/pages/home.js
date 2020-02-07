@@ -4,11 +4,11 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 
 import React, { Component } from 'react';
-import { ChatkitProvider, TokenProvider } from '@pusher/chatkit-client-react';
+//import { ChatkitProvider, TokenProvider } from '@pusher/chatkit-client-react';
 
 import Chatscreen from '../components/Chatscreen';
 
-const instanceLocator = '<v1:us1:9a9699f8-9213-45c5-aa54-bf106dd7ead9>';
+//const instanceLocator = '<v1:us1:9a9699f8-9213-45c5-aa54-bf106dd7ead9>';
 
 const urlParams = new URLSearchParams(window.location.search);
 const userId = urlParams.get('userEmail');
