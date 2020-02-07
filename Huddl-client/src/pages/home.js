@@ -6,6 +6,8 @@ import Typography from '@material-ui/core/Typography';
 import React, { Component } from 'react';
 import { ChatkitProvider, TokenProvider } from '@pusher/chatkit-client-react';
 
+import Chatscreen from '../components/Chatscreen';
+
 const instanceLocator = '<v1:us1:9a9699f8-9213-45c5-aa54-bf106dd7ead9>';
 
 const urlParams = new URLSearchParams(window.location.search);
@@ -27,9 +29,9 @@ const styles = {
   }
 };
 
-const tokenProvider = new TokenProvider({
-  url: '<https://us1.pusherplatform.io/services/chatkit_token_provider/v1/9a9699f8-9213-45c5-aa54-bf106dd7ead9/token>',
-});
+// const tokenProvider = new TokenProvider({
+//   url: '<https://us1.pusherplatform.io/services/chatkit_token_provider/v1/9a9699f8-9213-45c5-aa54-bf106dd7ead9/token>',
+// });
 
 class home extends Component {
   render() {
@@ -37,15 +39,15 @@ class home extends Component {
 
     return (
       <div className={ classes.container }>
-          <ChatkitProvider
+          {/* <ChatkitProvider
               instanceLocator={instanceLocator}
               tokenProvider={tokenProvider}
-              userId='sandeep'
+              userId='jltanner@usc.edu'
             >
-            </ChatkitProvider>
+            </ChatkitProvider> */}
           <Grid container spacing={10}>
 
-          <Grid item sm={4} xs={12} className={classes.borderRight}>
+          {/* <Grid item sm={4} xs={12} className={classes.borderRight}>
             <Typography variant='h4'>
               Profile Section
             </Typography>
@@ -63,8 +65,13 @@ class home extends Component {
               Telepsychiatry
             </Typography>
             
-          </Grid>
-
+          </Grid> */}
+          <div>
+            
+          </div>
+          <Chatscreen currentUsername='jltanner@usc.edu' style={{position:'absolute', left:'70%', top:'70%'}}></Chatscreen>
+          
+          <Chatscreen currentUsername='practiceuser0'style={{position:'absolute', left:'30%', top:'30%'}}></Chatscreen>
           <Grid item sm={8} xs={12}>
             <p>Messaging platform</p>
           </Grid>
