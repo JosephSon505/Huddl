@@ -12,8 +12,7 @@ const instanceLocator = '<v1:us1:9a9699f8-9213-45c5-aa54-bf106dd7ead9>';
 
 const urlParams = new URLSearchParams(window.location.search);
 const userId = urlParams.get('userEmail');
-const otherUserId = urlParams.get('otherUserId');
- 
+console.log(userId); 
 
 const styles = {
   borderRight: {
@@ -69,16 +68,14 @@ class home extends Component {
             
           </Grid> */}
           
-          <Chatscreen currentUsername='jltanner@usc.edu' style={{position:'absolute', left:'100%', top:'100%'}}></Chatscreen>
-          
-          {/* <Chatscreen currentUsername='aahadpat@usc.edu'style={{position:'absolute', left:'30%', top:'30%'}}></Chatscreen>
-
-          <Chatscreen currentUsername='sandeep@gmail.com'style={{position:'absolute', left:'30%', top:'30%'}}></Chatscreen> */}
-
           <Grid item sm={8} xs={12}>
             <p>Messaging platform</p>
           </Grid>
+
+
         </Grid>
+        <Chatscreen currentUsername={userId} style={{position:'absolute', left:'100%', top:'100%'}, {width: '100px'}}></Chatscreen>
+
       </div>
     );
   }
