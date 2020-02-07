@@ -33,6 +33,8 @@ const styles = {
 //   url: '<https://us1.pusherplatform.io/services/chatkit_token_provider/v1/9a9699f8-9213-45c5-aa54-bf106dd7ead9/token>',
 // });
 
+
+
 class home extends Component {
   render() {
     const { classes } = this.props;
@@ -66,14 +68,12 @@ class home extends Component {
             </Typography>
             
           </Grid> */}
-          <div>
-            
-          </div>
           
           <Chatscreen currentUsername='jltanner@usc.edu' style={{position:'absolute', left:'100%', top:'100%'}}></Chatscreen>
           
-          <Chatscreen currentUsername='aahadpat@usc.edu'style={{position:'absolute', left:'30%', top:'30%'}}></Chatscreen>
-          <Chatscreen currentUsername='sandeep@gmail.com'style={{position:'absolute', left:'30%', top:'30%'}}></Chatscreen>
+          {/* <Chatscreen currentUsername='aahadpat@usc.edu'style={{position:'absolute', left:'30%', top:'30%'}}></Chatscreen>
+
+          <Chatscreen currentUsername='sandeep@gmail.com'style={{position:'absolute', left:'30%', top:'30%'}}></Chatscreen> */}
 
           <Grid item sm={8} xs={12}>
             <p>Messaging platform</p>
