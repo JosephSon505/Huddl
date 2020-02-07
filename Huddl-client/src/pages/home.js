@@ -1,9 +1,12 @@
-import React, { Component } from 'react';
-
 // Material-UI Imports
 import withStyles from '@material-ui/core/styles/withStyles';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
+
+import React, { Component } from 'react';
+import { ChatkitProvider, TokenProvider } from '@pusher/chatkit-client-react';
+
+const instanceLocator = '<v1:us1:9a9699f8-9213-45c5-aa54-bf106dd7ead9>';
 
 const styles = {
   borderRight: {
@@ -19,13 +22,24 @@ const styles = {
   }
 };
 
+const tokenProvider = new TokenProvider({
+  url: '<https://us1.pusherplatform.io/services/chatkit_token_provider/v1/9a9699f8-9213-45c5-aa54-bf106dd7ead9/token>',
+});
+
 class home extends Component {
   render() {
     const { classes } = this.props;
 
     return (
       <div className={ classes.container }>
-        <Grid container spacing={10}>
+          <ChatkitProvider
+              instanceLocator={instanceLocator}
+              tokenProvider={tokenProvider}
+              userId='sandeep'
+            >
+            </ChatkitProvider>
+          <Grid container spacing={10}>
+
           <Grid item sm={4} xs={12} className={classes.borderRight}>
             <Typography variant='h4'>
               Profile Section

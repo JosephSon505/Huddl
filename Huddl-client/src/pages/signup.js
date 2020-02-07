@@ -84,7 +84,8 @@ class SignUp extends React.Component {
     };
   }
 
-  render() {
+  render() { 
+
     const { classes } = this.props;
     const { loading } = this.state;
 
@@ -338,7 +339,7 @@ class SignUp extends React.Component {
 
     // TODO: AXIOS goes here - call the signup route
     axios.post('/signup', newUserData).then(data => {
-      this.props.history.push('/home');
+      this.props.history.push('/home' +  + '?userEmail=' + newUserData.email);
     }).catch(err => {
       this.setState({
         errors: err.response.data.errors,
