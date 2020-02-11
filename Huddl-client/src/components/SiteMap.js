@@ -6,16 +6,16 @@ import withStyles from '@material-ui/styles/withStyles';
 //Styles
 
 const styles = {
-    button: {
-        width: '100%',
-        marginTop: '3%',
-        marginBottom: '3%',
-    },
 }
+
+
 
 var siteMapContainer = {
     width: '100VW',
     height: '20%',
+    padding: '5%',
+    paddingLeft: '8%',
+    paddingRight: '8%',
     backgroundColor: 'black',
     display: 'flex',
     flexDirection: 'column',
@@ -26,8 +26,6 @@ var siteMapContainer = {
 var contentWrapper = {
     display: 'flex',
     fledDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
     flex: 3
 }
 
@@ -42,6 +40,7 @@ var mastheadContainer = {
 
 }
 
+
 var contentContainer = {
     display: 'flex',
     flexDirection: 'column',
@@ -52,8 +51,10 @@ var contentContainer = {
     paddingLeft: '3.5%',
     paddingRight: '3.5%',
     fontSize: '25px',
-    color: 'white'
+    color: 'white',
 }
+
+
 
 export class SiteMap extends Component {
     render() {
@@ -64,32 +65,46 @@ export class SiteMap extends Component {
             <div style={siteMapContainer}>
                 <div style={contentWrapper}>
                     <div style={contentContainer}>
-                        <div className="subHeader" className="siteMapLine"> Our mission</div>
-                        <div className="text">Huddl seeks to alleviate mental health concerns of humanitarian aid workers in order to improve the quality of care for the refugees with whom they interact and decrease high turnover rates. Help us help others.</div>
+                        <hr></hr>
+                        <div className="text"><h3><b>Our Mission</b></h3></div>
+                        <div className="text">Huddl seeks to break the silence on humanitarian aid worker
+                        mental health and provide them with sustained psychological support. Help us help others.
+                        </div>
                     </div>
-                    <div style={contentContainer}>
-                        <div className="subHeader" className="siteMapLine">Navigate</div>
-                        <Button className={classes.button} color="inherit" variant="outlined" component={Link} to="/aboutus" >
-                            ABOUT
-            </Button>
 
-                        <Button className={classes.button} color="inherit" variant="outlined" component={Link} to="/faq" >
-                            FAQ
-            </Button>
-                        <Button className={classes.button} color="inherit" variant="outlined" component={Link} to="/faq" >
-                            Support
-            </Button>
-                        <Button className={classes.button} color="inherit" variant="outlined" component={Link} to="/faq" >
-                            Partners
-            </Button>
-                    </div>
                     <div style={contentContainer}>
-                        <div className="subHeader" className="siteMapLine">Contact us</div>
+                    <hr></hr>
+                    <div className="text"><h3><b>Navigate</b></h3></div>
+                        <div className="text">
+                            <a href="/">Home</a>
+                        </div>
+
+                        <div className="text">
+                            <a href="/aboutus">About us</a>
+                        </div>
+
+                        <div className="text">
+                            <a href="/faq">FAQ</a>
+                        </div>
+
+                        <div className="text">
+                            <a href="/partners">Partners</a>
+                        </div>
+
+                        <div className="text">
+                            <a href="/support">Support Huddl</a>
+                        </div>
+                    </div>
+
+                    <div style={contentContainer}>
+                    <hr></hr>
+                    <div className="text"><h3><b>Contact</b></h3></div>
                         <div className="text">
                             <a href="mailto:hellohuddl@gmail.com">hellohuddl@gmail.com</a>
                         </div>
                     </div>
                 </div>
+                <br></br><br></br><br></br><br></br><br></br><br></br>
                 <div style={mastheadContainer} className="text">
                     Copyright Ⓒ 2020 Huddl - Los Angeles, CA
                 </div>

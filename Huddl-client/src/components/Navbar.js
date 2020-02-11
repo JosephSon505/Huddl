@@ -13,7 +13,6 @@ const styles = {
   // This group of buttons will be aligned to the right
   rightToolbar: {
     marginLeft: 'auto',
-    marginRight: '2.5%',
     display: 'flex',
     flexDirection: 'row',
     justifyCointent: 'center',
@@ -23,6 +22,7 @@ const styles = {
     marginLeft: '2%',
   },
   leftToolBar: {
+    marginLeft: '7VW',
     paddingLeft: '1.5VW',
     paddingRight: '1.5VW',
     display: 'flex',
@@ -32,10 +32,11 @@ const styles = {
   },
   button: {
     margin: '3%',
-    width: '10VW'
+    paddingLeft: '2VW',
+    paddingRight: '2VW',
+    width: '11VW'
   },
   mainBar: {
-    width: '100VW',
     display: 'flex',
     flexDirection: 'row',
   },
@@ -59,17 +60,16 @@ class Navbar extends Component {
 
           <section className={classes.leftToolBar}>
             <Button className={classes.button} color="inherit" component={Link} to="/aboutus" >
-              ABOUT
-            </Button>
-
-            <Button className={classes.button} color="inherit" component={Link} to="/faq" >
-              FAQ
+            <b>About</b>
             </Button>
             <Button className={classes.button} color="inherit" component={Link} to="/faq" >
-              Support
+            <b>FAQ</b>
             </Button>
             <Button className={classes.button} color="inherit" component={Link} to="/faq" >
-              Partners
+            <b>Support</b>
+            </Button>
+            <Button className={classes.button} color="inherit" component={Link} to="/faq" >
+            <b>Partners</b>
             </Button>
           </section>
 

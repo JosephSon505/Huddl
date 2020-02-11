@@ -10,7 +10,6 @@ import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 
 // Styles
@@ -37,8 +36,8 @@ const styles = {
 }
 
 
-export class LoginBox extends Component {
 
+export class LoginBox extends Component {
     constructor() {
         super();
     }
@@ -53,7 +52,7 @@ export class LoginBox extends Component {
               <div className={classes.paper}>
               <br></br><br></br><br></br><br></br><br></br>
                 <Typography component="h1" variant="h4">
-                  <b>Join the huddl</b>
+                  <b>Join the Huddl</b>
                 </Typography>
                 <br></br>
                 <form className={classes.form} noValidate>
@@ -104,6 +103,8 @@ export class LoginBox extends Component {
                         autoComplete="current-password"
                       />
                     </Grid>
+
+
                         <Grid item xs={12}>
                         <FormControlLabel
                             control={<Checkbox value="allowExtraEmails" color="primary" />}
@@ -124,7 +125,7 @@ export class LoginBox extends Component {
                   <br></br><br></br>
                   <Grid container justify="flex-end">
                     <Grid item>
-                      <Link href="#" variant="body2">
+                      <Link href="/login" variant="body2">
                         Already have an account? Log in
                       </Link>
                     </Grid>
