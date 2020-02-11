@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import withStyles from '@material-ui/styles/withStyles';
 
+import '../css/footer.css';
+
 //Styles
 
 const styles = {
