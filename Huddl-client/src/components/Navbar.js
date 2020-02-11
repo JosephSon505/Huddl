@@ -55,7 +55,7 @@ class Navbar extends Component {
       <AppBar color='secondary' position="static" elevation = {0}>
         <Toolbar className={classes.mainBar}>
           <Typography variant='h4' color='inherit' className={classes.title}>
-            <div style={{ fontWeight: 'bold', fontSize: 40 }}>huddl</div>
+            <div style={{ fontWeight: 'bold', fontSize: 40 }}><a href="/">huddl</a></div>
           </Typography>
 
           <section className={classes.leftToolBar}>
