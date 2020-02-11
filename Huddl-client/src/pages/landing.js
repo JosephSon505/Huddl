@@ -1,5 +1,18 @@
 import React, { Component } from 'react';
 import Navbar from '../components/Navbar';
+import InfoPanels from '../components/InfoPanels'
+import SiteMap from '../components/SiteMap'
+import WelcomePanel from '../components/WelcomePanel'
+
+
+// Style definitions
+
+var container = {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center'
+
+}
 
 class landing extends Component {
 
@@ -9,14 +22,16 @@ class landing extends Component {
         this.testSignupPage = this.testSignupPage.bind(this);
     }
 
+
+
+
     render() {
         return (
-            <div>
+            <div style={container}>
                 <Navbar />
-
-                <div className="container">
-                    <h1>Landing Page</h1>
-                </div>
+                <WelcomePanel />
+                <InfoPanels />
+                <SiteMap />
             </div>
         )
     }

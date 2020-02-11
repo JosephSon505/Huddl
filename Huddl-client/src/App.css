@@ -1,3 +1,9 @@
+*, ul{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 @import url('https://fonts.googleapis.com/css?family=Hind&display=swap');
 
 html, body {
@@ -6,3 +12,29 @@ html, body {
     sans-serif;
 }
 
+.text{
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.subHeader {
+  font-size: 25px;
+  margin-bottom: 3%;
+  padding-bottom: 3.5;
+}
+
+.siteMapLine {
+  border-bottom: 1px solid white;
+}
+
+.addLine {
+  border-right: 2px solid black;
+}
+
+.header {
+  font-size: 55px;
+}
+
+mark {
+  background-color: #ceffc9;
+}
