@@ -43,23 +43,21 @@ export class InfoPanels extends Component {
             infoPanels: [{
                 heading: "1 ➞ 100",
                 subHeading: 'With alarming rates of anxiety, PTSD, burnout and other mental health disorders,',
-                text: 'volunteers need help in order to perform at their highest potential and currently, there are not enough efforts to care for them. Not only does this negatively impact the quality of care for the refugees but also causes high turnover rates, which consequently is a greater cost on NGOs.'
-            },
-            {
-                heading: "Our partners",
-                subHeading: 'NGOs from around the world',
-                text: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis,'
-            },
-            {
+                text: 'volunteers need help in order to perform at their highest potential. There currently aren\'t enough efforts to care for them, which negatively impacts the quality of care for the refugees and  causes high turnover rates.'
+            }, {
                 heading: "Are you a mental health provider?",
                 subHeading: 'Join the Huddl.',
-                text: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis,'
+                    text: 'We hope to provide volunteers with 1-hour video coaching sessions with a mental health provider every other week. This is a great opportunity to directly aid the refugee crisis with the knowledge you’ve acquired in your career. Contact us at hellohuddl@gmail.com to get involved.'
             },
             {
                 heading: "Are you a volunteer?",
-                subHeading: 'consectetuer adipiscing elit.',
-                text: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis,'
-            },]
+                subHeading: 'Talk to a mental health professional this week.',
+                text: 'In a recent study, 72.8% of rescue workers on Lesvos reported low levels of well-being, with over showing symptoms of burnout syndrome. Telecounseling has been proven to help alleviate the stress and . Help us enable you to become the most effective volunteer you can be.'
+                }, {
+                    heading: "Our partners",
+                    subHeading: '',
+                    text: ''
+                },]
         }
     }
 

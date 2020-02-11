@@ -18,9 +18,28 @@ var siteMapContainer = {
     height: '20%',
     backgroundColor: 'black',
     display: 'flex',
-    flexDirection: 'row',
+    flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center'
+}
+
+var contentWrapper = {
+    display: 'flex',
+    fledDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flex: 3
+}
+
+var mastheadContainer = {
+    flex: 1,
+    marginBottom: '2.5%',
+    justifyContent: 'center',
+    alignItems: 'flex-start',
+    width: '100%',
+    color: 'white',
+    paddingLeft: '5%'
+
 }
 
 var contentContainer = {
@@ -43,31 +62,36 @@ export class SiteMap extends Component {
 
         return (
             <div style={siteMapContainer}>
-                <div style={contentContainer}>
-                    <div className="subHeader" className="siteMapLine"> Our mission</div>
-                    <div className="text">Something inspiring about Huddl and working with volunteers on the ground at the forefront of the refugee crisis goes here</div>
-                </div>
-                <div style={contentContainer}>
-                    <div className="subHeader" className="siteMapLine">Navigate</div>
-                    <Button className={classes.button} color="inherit" variant="outlined" component={Link} to="/aboutus" >
-                        ABOUT
+                <div style={contentWrapper}>
+                    <div style={contentContainer}>
+                        <div className="subHeader" className="siteMapLine"> Our mission</div>
+                        <div className="text">Huddl seeks to alleviate mental health concerns of humanitarian aid workers in order to improve the quality of care for the refugees with whom they interact and decrease high turnover rates. Help us help others.</div>
+                    </div>
+                    <div style={contentContainer}>
+                        <div className="subHeader" className="siteMapLine">Navigate</div>
+                        <Button className={classes.button} color="inherit" variant="outlined" component={Link} to="/aboutus" >
+                            ABOUT
             </Button>
 
-                    <Button className={classes.button} color="inherit" variant="outlined" component={Link} to="/faq" >
-                        FAQ
+                        <Button className={classes.button} color="inherit" variant="outlined" component={Link} to="/faq" >
+                            FAQ
             </Button>
-                    <Button className={classes.button} color="inherit" variant="outlined" component={Link} to="/faq" >
-                        Support
+                        <Button className={classes.button} color="inherit" variant="outlined" component={Link} to="/faq" >
+                            Support
             </Button>
-                    <Button className={classes.button} color="inherit" variant="outlined" component={Link} to="/faq" >
-                        Partners
+                        <Button className={classes.button} color="inherit" variant="outlined" component={Link} to="/faq" >
+                            Partners
             </Button>
-                </div>
-                <div style={contentContainer}>
-                    <div className="subHeader" className="siteMapLine">Contact us</div>
-                    <div className="text">
-                        <a href="mailto:hellohuddl@gmail.com">hellohuddl@gmail.com</a>
                     </div>
+                    <div style={contentContainer}>
+                        <div className="subHeader" className="siteMapLine">Contact us</div>
+                        <div className="text">
+                            <a href="mailto:hellohuddl@gmail.com">hellohuddl@gmail.com</a>
+                        </div>
+                    </div>
+                </div>
+                <div style={mastheadContainer} className="text">
+                    Copyright Ⓒ 2020 Huddl - Los Angeles, CA
                 </div>
             </div>
         )
