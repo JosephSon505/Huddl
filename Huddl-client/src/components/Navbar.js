@@ -37,7 +37,7 @@ const styles = {
   mainBar: {
     width: '100VW',
     display: 'flex',
-    flexDirection: 'row'
+    flexDirection: 'row',
   },
 
 };
@@ -51,7 +51,7 @@ class Navbar extends Component {
     const { classes } = this.props;
 
     return (
-      <AppBar color='secondary' position="static">
+      <AppBar color='secondary' position="static" elevation = {0}>
         <Toolbar className={classes.mainBar}>
           <Typography variant='h4' color='inherit' className={classes.title}>
             <div style={{ fontWeight: 'bold', fontSize: 40 }}>huddl</div>
