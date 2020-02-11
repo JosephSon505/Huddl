@@ -1,195 +1,117 @@
-import React from 'react'
-import { Link } from 'react-router-dom';
-
-// Material UI Imports
-import withStyles from '@material-ui/core/styles/withStyles';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-import TextField from '@material-ui/core/TextField';
+import React from 'react';
+import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
-import CircularProgress from '@material-ui/core/CircularProgress';
-import InputAdornment from '@material-ui/core/InputAdornment';
-import EmailIcon from '@material-ui/icons/Email';
-import LockOpenIcon from '@material-ui/icons/LockOpen';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import TextField from '@material-ui/core/TextField';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
+import Link from '@material-ui/core/Link';
+import Grid from '@material-ui/core/Grid';
+import Box from '@material-ui/core/Box';
+import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@material-ui/core/styles';
+import Container from '@material-ui/core/Container';
 
-// Axios Import
-import axios from 'axios';
-
-// CSS imports
-import '../App.css';
-import '../css/login.css';
-
-const styles = {
-  form: {
-    textAlign: 'center'
-  },
-
-  textField: {
-    margin: '20px auto 20px auto'
-  },
-  button: {
-    margin: '40px auto 0px auto',
-    position: 'relative'
-  },
-  cancel: {
-    margin: '20px auto 0px auto',
-    position: 'relative'
-  },
-  customError: {
-    color: 'red',
-    fontSize: '0.8rem',
-    marginTop: '20'
-  },
-  progress: {
-    position: 'absolute',
-  }
-};
-
-class login extends React.Component {
-
-  constructor() {
-    super();
-    this.state = {
-      email: '',
-      password: '',
-      loading: false,
-      errors: {
-        "general": "",
-        "email": "",
-        "password": ""
-      }
-    };
-
-    this.handleSignUp = this.handleSignUp.bind(this);
-  }
-
-
-  render() {
-
-    const { classes } = this.props;
-    const { errors } = this.state;
-
-    return (
-      <div>
-        <div className="rect" />
-
-        <div className="heading loginTitle">
-          <h2 className={classes.pageTitle}>
-            Welcome  to <b>Huddl!</b>
-          </h2>
-        </div>
-
-        <Grid container className={classes.form}>
-          <Grid item sm xs={4}/>
-          <Grid item sm xs={4}>
-
-            <form noValidate onSubmit={this.handleSubmit} >
-
-              <TextField
-                id='email'
-                name='email'
-                type='email'
-                variant='standard'
-                placeholder='Email'
-                helperText={errors.email}
-                error={errors.email ? true : false}
-                className={classes.textField}
-                value={this.state.email}
-                onChange={this.handleChange}
-                fullWidth
-                InputProps={{
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      <EmailIcon />
-                    </InputAdornment>
-                  ),
-                }}
-              />
-              <TextField
-                id='password'
-                name='password'
-                type='password'
-                placeholder='password'
-                variant='standard'
-                helperText={errors.password}
-                error={errors.password ? true : false}
-                className={classes.textField}
-                value={this.state.password}
-                onChange={this.handleChange}
-                fullWidth
-                InputProps={{
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      <LockOpenIcon />
-                    </InputAdornment>
-                  ),
-                }}
-              />
-
-              {errors && errors.general && (
-                <Typography variant='body2' className={classes.customError}>
-                  {errors.general}
-                </Typography>
-              )}
-
-              <Button type='submit' variant='contained' color='primary' className={classes.button} fullWidth disabled={this.state.loading}>
-                Log In {this.state.loading && (<CircularProgress size={26} className={classes.progress} />)}
-              </Button>
-
-
-
-            </form>
-
-            <div className="signup">
-              Don't have an account?
-              <Button className='button' color="primary" component={Link} to="/signup" >
-                Sign Up
-              </Button>
-            </div>
-          </Grid>
-          <Grid item sm xs={4}/>
-        </Grid>
-
-      </div>
-    );
-  }
-
-  handleSubmit = (event) => {
-    event.preventDefault();
-    const userData = {
-      email: this.state.email,
-      password: this.state.password
-    };
-
-    this.setState({
-      loading: true,
-      errors: {
-        "general": "",
-        "email": "",
-        "password": ""
-      }
-    });
-
-    // TODO: AXIOS goes here - Call the routes we created
-    axios.post('/login', userData).then(data => {
-      this.props.history.push('/home' + '?userEmail=' + userData.email);
-    }).catch(err => {
-      this.setState({
-        errors: err.response.data.errors,
-        loading: false
-      });
-    });
-  }
-
-  handleChange = (event) => {
-    this.setState({
-      [event.target.name]: event.target.value
-    });
-  }
-
-  handleSignUp = (event) => {
-    this.props.history.push('/signup');
-  }
+function Copyright() {
+  return (
+    <Typography variant="body2" color="textSecondary" align="center">
+      {'Copyright © '}
+      <Link color="inherit" href="https://material-ui.com/">
+        Huddl
+      </Link>{' '}
+      {new Date().getFullYear()}
+      {'.'}
+    </Typography>
+  );
 }
 
-export default withStyles(styles)(login);
+const useStyles = makeStyles(theme => ({
+  paper: {
+    marginTop: theme.spacing(8),
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+  avatar: {
+    margin: theme.spacing(1),
+    backgroundColor: theme.palette.secondary.main,
+  },
+  form: {
+    width: '100%', // Fix IE 11 issue.
+    marginTop: theme.spacing(1),
+  },
+  submit: {
+    margin: theme.spacing(3, 0, 2),
+  },
+}));
+
+export default function SignIn() {
+  const classes = useStyles();
+
+  return (
+    <Container component="main" maxWidth="xs">
+      <CssBaseline />
+      <div className={classes.paper}>
+        <Avatar className={classes.avatar}>
+          <LockOutlinedIcon />
+        </Avatar>
+        <Typography component="h1" variant="h4">
+          Welcome back!
+        </Typography>
+        <form className={classes.form} noValidate>
+          <TextField
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            id="email"
+            label="Email Address"
+            name="email"
+            autoComplete="email"
+            autoFocus
+          />
+          <TextField
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            name="password"
+            label="Password"
+            type="password"
+            id="password"
+            autoComplete="current-password"
+          />
+          <FormControlLabel
+            control={<Checkbox value="remember" color="primary" />}
+            label="Remember me"
+          />
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            color="primary"
+            className={classes.submit}
+          >
+            Sign In
+          </Button>
+          <Grid container>
+            <Grid item xs>
+              <Link href="#" variant="body2">
+                Forgot password?
+              </Link>
+            </Grid>
+            <Grid item>
+              <Link href="#" variant="body2">
+                {"Don't have an account? Sign Up"}
+              </Link>
+            </Grid>
+          </Grid>
+        </form>
+      </div>
+      <Box mt={8}>
+        <Copyright />
+      </Box>
+    </Container>
+  );
+}
