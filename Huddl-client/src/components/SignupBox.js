@@ -40,6 +40,29 @@ const styles = {
 export class LoginBox extends Component {
     constructor() {
         super();
+        this.state = {
+          firstName: '',
+          lastName: '',
+          email: '',
+          password: ''
+        }
+    }
+
+    handleChange = (event) => {
+      this.setState({
+        [event.target.name]: event.target.value
+      });  
+    }
+
+    handleSubmit = () => {
+      console.log("Handle Submit");
+      const userData = {
+          email: this.state.email, 
+          password: this.state.password,
+          firstName: this.state.firstName,
+          lastName: this.state.lastName,
+      }
+      this.props.callbackFromSignUp(userData);
     }
 
     render() {
@@ -62,6 +85,7 @@ export class LoginBox extends Component {
                         autoComplete="fname"
                         name="firstName"
                         variant="outlined"
+                        onChange={this.handleChange}
                         required
                         fullWidth
                         id="firstName"
@@ -76,6 +100,7 @@ export class LoginBox extends Component {
                         fullWidth
                         id="lastName"
                         label="Last Name"
+                        onChange={this.handleChange}
                         name="lastName"
                         autoComplete="lname"
                       />
@@ -86,6 +111,7 @@ export class LoginBox extends Component {
                         required
                         fullWidth
                         id="email"
+                        onChange={this.handleChange}
                         label="Email Address"
                         name="email"
                         autoComplete="email"
@@ -98,6 +124,7 @@ export class LoginBox extends Component {
                         fullWidth
                         name="password"
                         label="Password"
+                        onChange={this.handleChange}
                         type="password"
                         id="password"
                         autoComplete="current-password"
@@ -115,6 +142,7 @@ export class LoginBox extends Component {
                     <br></br>
                   <Button
                     type="submit"
+                    onClick={this.handleSubmit}
                     fullWidth
                     variant="contained"
                     color="primary"

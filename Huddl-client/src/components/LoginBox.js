@@ -41,6 +41,24 @@ export class LoginBox extends Component {
 
     constructor() {
         super();
+        this.state = {
+            email: '',
+            password: ''
+        }
+    }
+
+    handleChange = (event) => {
+        this.setState({
+          [event.target.name]: event.target.value
+        });  
+    }
+    
+    handleSubmit = () => {
+        const userData = {
+            email: this.state.email, 
+            password: this.state.password
+        }
+        this.props.callBackFromLogin(userData);
     }
 
     render() {
@@ -62,6 +80,7 @@ export class LoginBox extends Component {
                         required
                         fullWidth
                         id="email"
+                        onChange={this.handleChange}
                         label="Email Address"
                         name="email"
                         autoComplete="email"
@@ -72,6 +91,7 @@ export class LoginBox extends Component {
                         margin="normal"
                         required
                         fullWidth
+                        onChange={this.handleChange}
                         name="password"
                         label="Password"
                         type="password"
@@ -88,6 +108,7 @@ export class LoginBox extends Component {
                         variant="contained"
                         color="primary"
                         align="left"
+                        onClick={this.handleSubmit}
                         className={classes.submit}
                     >
                         <b>Log in</b>
@@ -114,5 +135,7 @@ export class LoginBox extends Component {
             );
     }
 }
+
+
 
 export default withStyles(styles)(LoginBox)
