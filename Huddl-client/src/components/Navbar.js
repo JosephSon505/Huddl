@@ -54,7 +54,7 @@ class Navbar extends Component {
     const { classes } = this.props;
 
     return (
-      <AppBar color='secondary' position="static" elevation = {0}>
+      <AppBar color='secondary' position="static" elevation={0}>
         <Toolbar className={classes.mainBar}>
           <Typography variant='h4' color='inherit' className={classes.title}>
             <div style={{ fontWeight: 'bold', fontSize: 40 }}><a href="/">huddl</a></div>
@@ -62,16 +62,16 @@ class Navbar extends Component {
 
           <section className={classes.leftToolBar}>
             <Button className={classes.button} color="inherit" component={Link} to="/aboutus" >
-            <b>About</b>
+              <b>About</b>
             </Button>
             <Button className={classes.button} color="inherit" component={Link} to="/faq" >
-            <b>FAQ</b>
+              <b>FAQ</b>
             </Button>
-            <Button className={classes.button} color="inherit" component={Link} to="/faq" >
-            <b>Support</b>
+            <Button className={classes.button} color="inherit" component={Link} to="/support" >
+              <b>Support</b>
             </Button>
-            <Button className={classes.button} color="inherit" component={Link} to="/faq" >
-            <b>Partners</b>
+            <Button className={classes.button} color="inherit" component={Link} to="/partners" >
+              <b>Partners</b>
             </Button>
           </section>
 
