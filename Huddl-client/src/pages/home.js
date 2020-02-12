@@ -10,9 +10,6 @@ import Chatscreen from '../components/Chatscreen';
 
 //const instanceLocator = '<v1:us1:9a9699f8-9213-45c5-aa54-bf106dd7ead9>';
 
-const urlParams = new URLSearchParams(window.location.search);
-const userId = urlParams.get('userEmail');
-console.log(userId); 
 
 const styles = {
   borderRight: {
@@ -74,7 +71,7 @@ class home extends Component {
 
 
         </Grid>
-        <Chatscreen currentUsername={userId} ></Chatscreen>
+        {/* <Chatscreen currentUsername={userId} ></Chatscreen> */}
 
       </div>
     );
