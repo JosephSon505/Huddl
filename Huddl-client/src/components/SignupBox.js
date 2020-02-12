@@ -78,7 +78,6 @@ export class LoginBox extends Component {
                   <b>Join the Huddl</b>
                 </Typography>
                 <br></br>
-                <form className={classes.form} noValidate>
                   <Grid container spacing={2}>
                     <Grid item xs={12} sm={6}>
                       <TextField
@@ -158,7 +157,6 @@ export class LoginBox extends Component {
                       </Link>
                     </Grid>
                   </Grid>
-                </form>
               </div>
               <Box mt={28}>
               </Box>

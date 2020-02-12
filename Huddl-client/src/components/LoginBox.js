@@ -73,7 +73,6 @@ export class LoginBox extends Component {
                     <Typography component="h1" variant="h4">
                     <b>Welcome back</b>
                     </Typography>
-                    <form className={classes.form} noValidate>
                     <TextField
                         variant="outlined"
                         margin="normal"
@@ -126,7 +125,6 @@ export class LoginBox extends Component {
                         </Link>
                         </Grid>
                     </Grid>
-                    </form>
                 </div>
                 <Box mt={28}>
                 </Box>

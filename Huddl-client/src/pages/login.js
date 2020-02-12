@@ -29,8 +29,6 @@ class login extends Component {
               "password": ""
             }
         }
-        // this.testLoginPage = this.testLoginPage.bind(this);
-        // this.testSignupPage = this.testSignupPage.bind(this);
     }
 
     handleLogin = (userData) => {
@@ -60,14 +58,6 @@ class login extends Component {
             </div>
         )
     }
-
-    // testLoginPage() {
-    //     this.props.history.push('/login');
-    // }
-
-    // testSignupPage() {
-    //     this.props.history.push('/signup');
-    // }
 
 }
 
