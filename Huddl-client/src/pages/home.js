@@ -32,8 +32,15 @@ const styles = {
 
 
 class home extends Component {
+
+  constructor() {
+    super();
+    this.setState()
+  }
+
   render() {
     const { classes } = this.props;
+    console.log(this.props.location);
 
     return (
       <div className={ classes.container }>

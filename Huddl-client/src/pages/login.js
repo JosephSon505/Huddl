@@ -43,7 +43,10 @@ class login extends Component {
         });
 
         axios.post('/login', userData).then(data => {
-            this.props.history.push('/home')
+            this.props.history.push({
+                pathname: '/home',
+                userData: userData
+            })
         }).catch(err => {
             console.log('Error');
         })
