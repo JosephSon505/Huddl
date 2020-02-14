@@ -2,8 +2,11 @@
 import withStyles from '@material-ui/core/styles/withStyles';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
+import PropTypes from 'prop-types';
+import UserList from '../components/UserList';
 
-import React, { Component } from 'react';
+
+import React, { Component, View, Button } from 'react';
 //import { ChatkitProvider, TokenProvider } from '@pusher/chatkit-client-react';
 
 import Chatscreen from '../components/Chatscreen';
@@ -38,32 +41,102 @@ const styles = {
 //   url: '<https://us1.pusherplatform.io/services/chatkit_token_provider/v1/9a9699f8-9213-45c5-aa54-bf106dd7ead9/token>',
 // });
 
-
+function buttonList(props) {
+  const users = props.users;
+  
+  if(users) {
+    return (
+      <Grid item sm={8} xs={12}>
+            {users.map(function(object) {
+              return (
+                <Button title="this is a Button"/>
+              );
+            })}
+      </Grid>
+    );
+  } else {
+    return (
+      <Grid item sm={8} xs={12}>
+        <div>Hello</div>
+      </Grid>
+    );
+  }
+}
 
 class home extends Component {
 
   constructor() {
     super();
-    this.setState = {
+    this.state = ({
       currentUser: '',
-      otherUser: [],
-    }
+      users: [],
+      rooms: [],
+    })
+    console.log("State: ", this.state);
+    this.update();
+    console.log("State: ndw ", this.state);
   }
 
-  render() {
-    const { classes } = this.props;
-    console.log(this.props.location);
+  setUsers = (users) => {
+    console.log("Users tag: ", users);
+    this.setState((state) => ({   //Note to self when updating state
+        users: users,
+  
+    }));
+    // this.state = ({
+    //   currentUser: this.state.currentUser,
+    //   users: users,
+    //   rooms: this.state.rooms,
+    // })
+  }
+  
+  setRooms = (rooms) => {
+    this.setState( (state) => {   //Note to self when updating state
+      return {
+        rooms: rooms,
+      }
+    });
+    // this.state = ({
+    //   currentUser: this.state.currentUser,
+    //   users: this.state.users,
+    //   rooms: rooms,
+    // })
 
+  }
+
+  update = () => {
     chatkit.getUsers()
       .then((res) => {
         console.log(res);
       }).catch((err) => {
         console.log(err);
       });
-
+        .then((res) => {
+          console.log(res);
+          this.setUsers(res);
+        }).catch((err) => {
+          console.log(err);
+        });
     chatkit.getRooms({})
-      .then(rooms => console.log('got rooms', rooms))
-      .catch(err => console.error(err))
+      .then(rooms => {
+          console.log('got rooms', rooms);
+          this.setRooms(rooms);
+      }).catch(err => {
+        console.error(err)
+      })
+  }
+
+  // componentWillMount() {
+  //   this.update();
+  // }
+
+  // componentDidMount() {
+  //   this.update();
+  // }
+
+  render() {
+    const { classes } = this.props;
+    console.log(this.props.location);
 
     return (
       <div className={classes.container}>
@@ -101,8 +174,11 @@ class home extends Component {
 
           <Grid item sm={12} xs={12}>
             <p>Messaging platform</p>
+            <UserList users={this.state.users} />
           </Grid>
 
+          {/* <buttonList users={null} /> */}
+          
 
         </Grid>
         {/* <Chatscreen currentUsername={userId} ></Chatscreen> */}
