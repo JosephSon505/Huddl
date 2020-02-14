@@ -111,12 +111,6 @@ class home extends Component {
       }).catch((err) => {
         console.log(err);
       });
-        .then((res) => {
-          console.log(res);
-          this.setUsers(res);
-        }).catch((err) => {
-          console.log(err);
-        });
     chatkit.getRooms({})
       .then(rooms => {
           console.log('got rooms', rooms);
