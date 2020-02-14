@@ -3,7 +3,15 @@ import Navbar from '../components/Navbar';
 import SiteMap from '../components/SiteMap'
 import SignupBox from '../components/SignupBox'
 import axios from 'axios';
+// import Chatkit from '@pusher/chatkit-server';
 
+const Chatkit = require('@pusher/chatkit-server');
+
+
+const chatkit = new Chatkit.default({
+    instanceLocator: 'v1:us1:3366eda2-e4d8-45c1-9f80-00f24eb6f202',
+    key: '1f7ad742-25f6-4c95-ab73-740747059cb3:yD1HqPGZMZg1yZrWAK36oQvEiBckt54dNrmoJahyoLc=',
+})
 
 // Style definitions
 
@@ -32,6 +40,16 @@ class signup extends Component {
             handle: userData.firstName + userData.lastName, 
             userGroup: 'Volunteer',
         };
+
+        chatkit.createUser({
+            id: userData.email,
+            name: userData.firstName + " " + userData.lastName,
+          })
+            .then(() => {
+              console.log('User created successfully');
+            }).catch((err) => {
+              console.log(err);
+            });
 
         // TODO: AXIOS goes here - call the signup route
         axios.post('/signup', newUserData).then(data => {

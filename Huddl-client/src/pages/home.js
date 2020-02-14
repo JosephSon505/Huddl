@@ -7,8 +7,16 @@ import React, { Component } from 'react';
 //import { ChatkitProvider, TokenProvider } from '@pusher/chatkit-client-react';
 
 import Chatscreen from '../components/Chatscreen';
+const Chatkit = require('@pusher/chatkit-server');
 
-//const instanceLocator = '<v1:us1:9a9699f8-9213-45c5-aa54-bf106dd7ead9>';
+
+const instanceLocator = 'v1:us1:3366eda2-e4d8-45c1-9f80-00f24eb6f202';
+const key = '1f7ad742-25f6-4c95-ab73-740747059cb3:yD1HqPGZMZg1yZrWAK36oQvEiBckt54dNrmoJahyoLc=';
+
+const chatkit = new Chatkit.default({
+  instanceLocator: instanceLocator,
+  key: key,
+})
 
 
 const styles = {
@@ -35,12 +43,26 @@ class home extends Component {
 
   constructor() {
     super();
-    this.setState()
+    this.setState = {
+      currentUser: '',
+      otherUser: [],
+    }
   }
 
   render() {
     const { classes } = this.props;
     console.log(this.props.location);
+
+    chatkit.getUsers()
+        .then((res) => {
+          console.log(res);
+        }).catch((err) => {
+          console.log(err);
+        });
+
+    chatkit.getRooms({})
+      .then(rooms => console.log('got rooms', rooms))
+      .catch(err => console.error(err))
 
     return (
       <div className={ classes.container }>
