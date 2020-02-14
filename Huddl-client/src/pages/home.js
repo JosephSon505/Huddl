@@ -2,6 +2,9 @@
 import withStyles from '@material-ui/core/styles/withStyles';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
+import PropTypes from 'prop-types';
+import UserList from '../components/UserList';
+
 
 import React, { Component, View, Button } from 'react';
 //import { ChatkitProvider, TokenProvider } from '@pusher/chatkit-client-react';
@@ -63,20 +66,27 @@ class home extends Component {
 
   constructor() {
     super();
-    this.setState ({
+    this.state = ({
       currentUser: '',
       users: [],
       rooms: [],
     })
+    console.log("State: ", this.state);
     this.update();
+    console.log("State: ndw ", this.state);
   }
 
   setUsers = (users) => {
-    this.setState( (state) => {   //Note to self when updating state
-      return {
+    console.log("Users tag: ", users);
+    this.setState((state) => ({   //Note to self when updating state
         users: users,
-      }
-    });
+  
+    }));
+    // this.state = ({
+    //   currentUser: this.state.currentUser,
+    //   users: users,
+    //   rooms: this.state.rooms,
+    // })
   }
   
   setRooms = (rooms) => {
@@ -85,6 +95,11 @@ class home extends Component {
         rooms: rooms,
       }
     });
+    // this.state = ({
+    //   currentUser: this.state.currentUser,
+    //   users: this.state.users,
+    //   rooms: rooms,
+    // })
 
   }
 
@@ -150,9 +165,11 @@ class home extends Component {
           
           <Grid item sm={8} xs={12}>
             <p>Messaging platform</p>
+            <UserList users={this.state.users} />
           </Grid>
-          
+
           {/* <buttonList users={null} /> */}
+          
 
         </Grid>
         {/* <Chatscreen currentUsername={userId} ></Chatscreen> */}
