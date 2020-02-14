@@ -7,6 +7,7 @@ import React, { Component } from 'react';
 //import { ChatkitProvider, TokenProvider } from '@pusher/chatkit-client-react';
 
 import Chatscreen from '../components/Chatscreen';
+import Sidebar from "../components/Sidebar";
 const Chatkit = require('@pusher/chatkit-server');
 
 
@@ -24,7 +25,7 @@ const styles = {
     borderRight: '1px solid black',
     backgroundColor: '#1EA37D',
     height: '100%'
-  }, 
+  },
   card: {
     backgroundColor: '#1EA37D',
   },
@@ -54,25 +55,29 @@ class home extends Component {
     console.log(this.props.location);
 
     chatkit.getUsers()
-        .then((res) => {
-          console.log(res);
-        }).catch((err) => {
-          console.log(err);
-        });
+      .then((res) => {
+        console.log(res);
+      }).catch((err) => {
+        console.log(err);
+      });
 
     chatkit.getRooms({})
       .then(rooms => console.log('got rooms', rooms))
       .catch(err => console.error(err))
 
     return (
-      <div className={ classes.container }>
-          {/* <ChatkitProvider
+      <div className={classes.container}>
+        {/* <ChatkitProvider
               instanceLocator={instanceLocator}
               tokenProvider={tokenProvider}
               userId='jltanner@usc.edu'
             >
             </ChatkitProvider> */}
-          <Grid container spacing={10}>
+        <Grid container spacing={10}>
+
+          <Grid item sm={4} xs={12}>
+            <Sidebar />
+          </Grid>
 
           <Grid item sm={4} xs={12} className={classes.borderRight}>
             <Typography variant='h4'>
@@ -91,10 +96,10 @@ class home extends Component {
             <Typography variant='h4'>
               Telepsychiatry
             </Typography>
-            
+
           </Grid>
-          
-          <Grid item sm={8} xs={12}>
+
+          <Grid item sm={12} xs={12}>
             <p>Messaging platform</p>
           </Grid>
 
