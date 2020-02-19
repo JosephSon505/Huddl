@@ -19,6 +19,7 @@
     "react-mt-svg-lines": "^0.9.1",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.3.0",
+    "redux-form": "^8.3.0",
     "styled-components": "^5.0.1"
   },
   "scripts": {

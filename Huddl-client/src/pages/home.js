@@ -43,15 +43,15 @@ const styles = {
 
 function buttonList(props) {
   const users = props.users;
-  
-  if(users) {
+
+  if (users) {
     return (
       <Grid item sm={8} xs={12}>
-            {users.map(function(object) {
-              return (
-                <Button title="this is a Button"/>
-              );
-            })}
+        {users.map(function (object) {
+          return (
+            <Button title="this is a Button" />
+          );
+        })}
       </Grid>
     );
   } else {
@@ -80,8 +80,8 @@ class home extends Component {
   setUsers = (users) => {
     console.log("Users tag: ", users);
     this.setState((state) => ({   //Note to self when updating state
-        users: users,
-  
+      users: users,
+
     }));
     // this.state = ({
     //   currentUser: this.state.currentUser,
@@ -89,9 +89,9 @@ class home extends Component {
     //   rooms: this.state.rooms,
     // })
   }
-  
+
   setRooms = (rooms) => {
-    this.setState( (state) => {   //Note to self when updating state
+    this.setState((state) => {   //Note to self when updating state
       return {
         rooms: rooms,
       }
@@ -105,22 +105,16 @@ class home extends Component {
   }
 
   update = () => {
-    chatkit.getUsers()
-      .then((res) => {
-        console.log(res);
-      }).catch((err) => {
-        console.log(err);
-      });
-        .then((res) => {
-          console.log(res);
-          this.setUsers(res);
-        }).catch((err) => {
-          console.log(err);
-        });
+    chatkit.getUsers().then((res) => {
+      console.log(res);
+      this.setUsers(res);
+    }).catch((err) => {
+      console.log(err);
+    });
     chatkit.getRooms({})
       .then(rooms => {
-          console.log('got rooms', rooms);
-          this.setRooms(rooms);
+        console.log('got rooms', rooms);
+        this.setRooms(rooms);
       }).catch(err => {
         console.error(err)
       })
@@ -178,7 +172,7 @@ class home extends Component {
           </Grid>
 
           {/* <buttonList users={null} /> */}
-          
+
 
         </Grid>
         {/* <Chatscreen currentUsername={userId} ></Chatscreen> */}

@@ -7,7 +7,7 @@ import SideNav, { Toggle, Nav, NavItem, NavIcon, NavText } from '@trendmicro/rea
 import '../css/react-sidenav.css';
 
 // Bootstrap Icon Imports
-import { ChatFill, BarChartFill, PeopleFill, CalendarFill, ToggleOn } from 'react-bootstrap-icons';
+import { ChatFill, BarChartFill, PeopleFill } from 'react-bootstrap-icons';
 
 const Separator = styled.div`
     clear: both;
@@ -55,7 +55,7 @@ class Sidebar extends Component {
             <Link to="/chat"><ChatFill /> </Link>
           </NavIcon>
           <NavText title="CHAT">
-            Chat
+            <Link to="/chat">Chat</Link>
           </NavText>
         </NavItem>
         <NavItem eventKey="forums">

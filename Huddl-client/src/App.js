@@ -16,6 +16,8 @@ import aboutus from './pages/aboutus';
 import faq from './pages/faq';
 import support from './pages/support';
 import partners from './pages/partners';
+import providerSurvey from './pages/providerSurvey';
+import patientSurvey from './pages/patientSurvey';
 
 // theme
 const theme = createMuiTheme({
@@ -50,6 +52,8 @@ class App extends Component {
               <Route exact path="/faq" component={faq} />
               <Route exact path="/support" component={support} />
               <Route exact path="/partners" component={partners} />
+              <Route exact path="/providersurvey" component={providerSurvey} />
+              <Route exact path="/patientsurvey" component={patientSurvey} />
             </Switch>
           </Router>
         </div>
