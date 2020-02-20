@@ -1,31 +1,75 @@
 import React, { Component } from 'react';
+import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
-// Material-UI Imports
-import Button from '@material-ui/core/Button';
-import Container from '@material-ui/core/Container';
+// Side Navigator Component Imports
+import SideNav, { Toggle, Nav, NavItem, NavIcon, NavText } from '@trendmicro/react-sidenav';
+import '../css/react-sidenav.css';
 
-import List from '@material-ui/core/List'
-import ListItem from '@material-ui/core/ListItem'
-import ListItemText from '@material-ui/core/ListItemText'
+// Bootstrap Icon Imports
+import { ChatFill, BarChartFill, PeopleFill, CalendarFill, ToggleOn } from 'react-bootstrap-icons';
 
-const users = [
-  { name: 'jltanner@usc.edu', label: 'jltanner' },
-  { name: 'practiceuser0', label: 'user2' },
-  { name: 'practiceuser1', label: 'user3' },
-];
+const Separator = styled.div`
+    clear: both;
+    position: relative;
+    margin: .8rem 0;
+    background-color: #ddd;
+    height: 1px;
+`;
 
-function Sidebar() {
-    return (
-      <List disablePadding dense>
-        {users.map(({ label, name, ...rest }) => (
-        <ListItem key={name} button {...rest}>
-          <ListItemText>{label}</ListItemText>
+class Sidebar extends Component {
+  state = {
+    selected: 'home',
+    expanded: false
+  };
 
-        </ListItem>
-      ))}
-      </List>
-    )
+  onSelect = (selected) => {
+    this.setState({ selected: selected });
+  };
+  onToggle = (expanded) => {
+    this.setState({ expanded: expanded });
+  };
+
+  constructor() {
+    super();
   }
-  
-  export default Sidebar
+
+  render() {
+    return <SideNav style={{ borderRight: '1px solid gray' }}
+      onSelect={(selected) => {
+        // Add your code here
+      }}
+    >
+      <SideNav.Toggle />
+      <SideNav.Nav defaultSelected="portal" >
+        <NavItem eventKey="portal">
+          <NavIcon>
+            <Link to="/portal"><BarChartFill /> </Link>
+          </NavIcon>
+          <NavText title="PORTAL">
+            <Link to="/portal"> Portal </Link>
+          </NavText>
+        </NavItem>
+        <NavItem eventKey="messages">
+          <NavIcon>
+            <Link to="/chat"><ChatFill /> </Link>
+          </NavIcon>
+          <NavText title="CHAT">
+            Chat
+          </NavText>
+        </NavItem>
+        <NavItem eventKey="forums">
+          <NavIcon>
+            <Link to="/forums"><PeopleFill /></Link>
+          </NavIcon>
+          <NavText title="FORUMS">
+            <Link to="/forums">Forums</Link>
+          </NavText>
+        </NavItem>
+      </SideNav.Nav>
+
+    </SideNav>
+  }
+}
+
+export default Sidebar
