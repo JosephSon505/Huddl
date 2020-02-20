@@ -104,3 +104,15 @@ exports.login = (req, res) => {
         }
     });
 };
+
+// get the current user's details (logged in account)
+exports.getUser = (req, res) => {
+    let userData = {};
+    db.doc(`/Users/${req.user.handle}`).get().then(doc => {
+        if(doc.exists) userData.credentials = doc.data();
+        return res.json(userData);
+    }).catch(err => {
+        console.error(err);
+        return res.status(500).json({ error: err.code });
+    });
+}
