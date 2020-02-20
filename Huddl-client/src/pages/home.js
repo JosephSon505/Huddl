@@ -4,6 +4,7 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import PropTypes from 'prop-types';
 import UserList from '../components/UserList';
+import Dashboard from '../components/Dashboard';
 
 
 import React, { Component, View, Button } from 'react';
@@ -33,7 +34,21 @@ const styles = {
     backgroundColor: '#1EA37D',
   },
   container: {
-    height: '100%'
+    height: '100VH',
+    width: '100VW',
+  },
+  dashboardDiv: {
+    width: '50%',
+    height: '100VH',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  gridContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems:'center',
+    justifyContent: 'center'
   }
 };
 
@@ -140,36 +155,23 @@ class home extends Component {
               userId='jltanner@usc.edu'
             >
             </ChatkitProvider> */}
-        <Grid container spacing={10}>
-
-          <Grid item sm={4} xs={12}>
+        <Grid container spacing={0}
+        direction={"row"}
+        >
+          <Grid item xs={1}>
             <Sidebar />
-          </Grid>
-
-          <Grid item sm={4} xs={12} className={classes.borderRight}>
-            <Typography variant='h4'>
-              Profile Section
-            </Typography>
-
-            <Typography variant='h4'>
-              Forums
-            </Typography>
-
-            <Typography variant='h4'>
-              Direct Messages
-            </Typography>
-
-
-            <Typography variant='h4'>
-              Telepsychiatry
-            </Typography>
-
-          </Grid>
-
-          <Grid item sm={12} xs={12}>
+            </Grid>
+          
+            <Grid item xs = {11}
+            className={classes.dashboardDiv}>
+              <Dashboard />
+            </Grid>
+          <Grid item xs={1}>
             <p>Messaging platform</p>
             <UserList users={this.state.users} />
           </Grid>
+            
+          
 
           {/* <buttonList users={null} /> */}
           

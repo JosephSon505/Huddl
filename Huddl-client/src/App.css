@@ -35,6 +35,10 @@ html, body {
   font-size: 55px;
 }
 
+.hindFont {
+  font-family: 'Hind', sans-serif;
+}
+
 mark {
   background-color: #ceffc9;
 }
