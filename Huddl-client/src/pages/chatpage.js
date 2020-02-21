@@ -101,7 +101,8 @@ class chatpage extends Component {
     super();
     
     this.update = this.update.bind(this)
-
+    //this.setRoomId = this.setRoomId.bind(this);
+    
     this.state = ({
       currentUser: '',
       users: [],
@@ -117,6 +118,7 @@ class chatpage extends Component {
   setRoomId = (event) => {
     this.rid = String(event.target.attributes.roomid.value);
     console.log("Rid: ", this.rid);
+
     this.setState((state) => ({   //Note to self when updating state
         currentroomid: this.rid,
     }));
