@@ -8,6 +8,9 @@ import Dashboard from '../components/Dashboard';
 
 
 import React, { Component, View, Button } from 'react';
+import { Link } from 'react-router-dom';
+import { ChatFill} from 'react-bootstrap-icons';
+
 //import { ChatkitProvider, TokenProvider } from '@pusher/chatkit-client-react';
 
 import Chatscreen from '../components/Chatscreen';
@@ -221,9 +224,8 @@ class home extends Component {
             <p>Messaging platform</p>
             {/* <UserList users={thereapistIds} /> */}
                 <ul>
-                        {/* {this.props.users != [] ? this.props.users.map(user => (<li key={user.id}><button>{user.id}</button></li>)) : <p>PlaceHolder</p>} */}
-                        {this.state.rooms.map(user => (<li key={user.id}><button onClick={this.setRoomId} roomid={user.roomid}>{user.id}</button></li>))}
-
+                        {this.state.rooms.map((room) => (<li key={room.name}> <Link to={`/chatpage/${room.id}`}>{room.name}<ChatFill /> </Link> </li>))}
+                        {/* {this.state.rooms.map((room) => (<li key={room.name}><button onClick={this.setRoomId} roomid={room.id}>{room.name}</button></li>))} */}
                 </ul>
           </Grid>
             

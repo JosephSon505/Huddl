@@ -56,44 +56,45 @@ class ChatScreen2 extends Component {
       console.log("State Room: ", this.state.currentRoom);
       console.log("props id: ", String(this.props.currentRoomId));
     
-      if(this.state.currentRoom.length !== 0 && this.state.currentUser.roomSubscriptions.length !== 0 && this.state.currentRoom.id !== this.props.currentRoomId ) {
-        console.log("unsubscribing");
-        this.state.currentUser.roomSubscriptions[this.state.currentRoom.id].cancel();
+    //   if(this.state.currentRoom.length !== 0 && this.state.currentUser.roomSubscriptions.length !== 0 && this.state.currentRoom.id !== this.props.currentRoomId ) {
+    //     console.log("unsubscribing");
+    //     this.state.currentUser.roomSubscriptions[this.state.currentRoom.id].cancel();
 
-        this.state.chatManager
-            .connect()
-            .then(currentUser => {
-            this.setState({ currentUser })
-            return currentUser.subscribeToRoom({
-                roomId: this.props.currentRoomId, //"4e92e294-0274-4d0a-928a-7fbb2b2b0e04"
-                messageLimit: 100,
-                hooks: {
-                onMessage: message => {
-                    this.setState({
-                    messages: [...this.state.messages, message],
-                    })
-                },
-                onUserStartedTyping: user => {
-                    this.setState({
-                    usersWhoAreTyping: [...this.state.usersWhoAreTyping, user.name],
-                })
-                },
-                onUserStoppedTyping: user => {
-                    this.setState({
-                    usersWhoAreTyping: this.state.usersWhoAreTyping.filter(
-                        username => username !== user.name
-                    ),
-                    })
-                },
-                onPresenceChange: () => this.forceUpdate(),
-                },
-            })
-            })
-            .then(currentRoom => {
-            this.setState({ currentRoom })
-            })
-            .catch(error => console.error('error', error))
-        }
+    //     this.state.chatManager
+    //         .connect()
+    //         .then(currentUser => {
+    //         this.setState({ currentUser })
+    //         return currentUser.subscribeToRoom({
+    //             roomId: this.props.currentRoomId, //"4e92e294-0274-4d0a-928a-7fbb2b2b0e04"
+    //             messageLimit: 100,
+    //             hooks: {
+    //             onMessage: message => {
+    //                 this.setState({
+    //                 messages: [...this.state.messages, message],
+    //                 })
+    //             },
+    //             onUserStartedTyping: user => {
+    //                 this.setState({
+    //                 usersWhoAreTyping: [...this.state.usersWhoAreTyping, user.name],
+    //             })
+    //             },
+    //             onUserStoppedTyping: user => {
+    //                 this.setState({
+    //                 usersWhoAreTyping: this.state.usersWhoAreTyping.filter(
+    //                     username => username !== user.name
+    //                 ),
+    //                 })
+    //             },
+    //             onPresenceChange: () => this.forceUpdate(),
+    //             },
+    //         })
+    //         })
+    //         .then(currentRoom => {
+    //         console.log("Setting current room");
+    //         this.setState({ currentRoom })
+    //         })
+    //         .catch(error => console.error('error', error))
+    //     }
 }
 
 // // componentWillReceiveProps(props) {
@@ -149,6 +150,7 @@ class ChatScreen2 extends Component {
         })
       })
       .then(currentRoom => {
+        console.log("setting current room");
         this.setState({ currentRoom })
        })
       .catch(error => console.error('error', error))

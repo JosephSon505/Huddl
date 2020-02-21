@@ -52,8 +52,8 @@ class Sidebar extends Component {
         </NavItem>
         <NavItem eventKey="messages">
           <NavIcon>
-            <Link to="/chatpage"><ChatFill /> </Link>
-            {/* <a href='/chatpage'>Chats</a> */}
+            {/* <Link to="/chatpage"><ChatFill /> </Link> */}
+            {/* <a href='/chat'>Chats</a> */}
           </NavIcon>
           <NavText title="CHAT">
             Chat

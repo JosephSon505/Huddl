@@ -75,6 +75,7 @@ class App extends Component {
                 <Route exact path="/support" component={support} />
                 <Route exact path="/partners" component={partners} />
                 <Route exact path="/chatpage" component={chatpage} />
+                <Route exact path="/chatpage/:id" component={chatpage} />
 
               </Switch>
             </Router>
