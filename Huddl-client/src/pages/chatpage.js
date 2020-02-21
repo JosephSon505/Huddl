@@ -101,11 +101,13 @@ class chatpage extends Component {
     super();
     
     this.update = this.update.bind(this)
-
+    //this.setRoomId = this.setRoomId.bind(this);
+    
     this.state = ({
       currentUser: '',
       users: [],
       rooms: [],
+      roomComponents: [],
       currentroomid: '',
     })
 
@@ -117,6 +119,7 @@ class chatpage extends Component {
   setRoomId = (event) => {
     this.rid = String(event.target.attributes.roomid.value);
     console.log("Rid: ", this.rid);
+
     this.setState((state) => ({   //Note to self when updating state
         currentroomid: this.rid,
     }));
@@ -131,8 +134,14 @@ class chatpage extends Component {
   }
 
   setRooms = (rooms) => {
+    let arr = [];
+    for(let i = 0; i < rooms.length; i++) {
+        arr.push({key: rooms[i].id, value: <Chatscreen2 currentRoomId={rooms[i].id}></Chatscreen2>});
+    }
+    console.log("Chatkits: ",arr);
     this.setState( (state, props) => ({   //Note to self when updating state
         rooms: rooms,
+        roomComponents: arr,
         currentUser: store.getState().user.credentials.email,
     }));
 
@@ -157,41 +166,43 @@ class chatpage extends Component {
   }
 
   componentDidMount() {
-    this.update();
+    // this.update();
    
   }
 
   render() {
     const { classes } = this.props;
+    const { id } = this.props.match.params;
+    console.log("Id from URL: ", id);
 
-    console.log("Store: ", store.getState());
+    // console.log("Store: ", store.getState());
 
     //console.log("Rendering with state: ", this.state);
     //chats.push(<Chatscreen2 currentusername={this.props.location.userData.email} currentroomid={this.state.currentroomid}></Chatscreen2>);
     // console.log(chats);
-    if(this.state.currentroomid === '') {
-        return (
-            <div className={classes.container}>
-              <Grid container spacing={0} direction={"row"} >
-                <Grid item xs={1}>
-                  <Sidebar />
-                  </Grid>
+    // if(this.state.currentroomid === '') {
+    //     return (
+    //         <div className={classes.container}>
+    //           <Grid container spacing={0} direction={"row"} >
+    //             <Grid item xs={1}>
+    //               <Sidebar />
+    //               </Grid>
                 
-                  <Grid item xs = {11}
-                  className={classes.dashboardDiv}>
-                      <ul>
-                          {this.state.rooms.map((room) => (<li key={room.name}><button onClick={this.setRoomId} roomid={room.id}>{room.name}</button></li>))}
-                      </ul>
-                  </Grid>
-              </Grid>
+    //               <Grid item xs = {11}
+    //               className={classes.dashboardDiv}>
+    //                   <ul>
+    //                       {this.state.rooms.map((room) => (<li key={room.name}><button onClick={this.setRoomId} roomid={room.id}>{room.name}</button></li>))}
+    //                   </ul>
+    //               </Grid>
+    //           </Grid>
                             
-            </div>
-          );
-    }
-    else {
-        console.log("here");
-        console.log(this.state.currentroomid);
-        console.log(typeof(this.state.currentroomid));
+    //         </div>
+    //       );
+    // }
+    // else {
+        // console.log("here");
+        // console.log(this.state.currentroomid);
+        // console.log(typeof(this.state.currentroomid));
         return (
             <div className={classes.container}>
               <Grid container spacing={0} direction={"row"} >
@@ -201,10 +212,10 @@ class chatpage extends Component {
                 
                   <Grid item xs = {11}
                   className={classes.dashboardDiv}>
-                      <ul>
+                      {/* <ul>
                           {this.state.rooms.map((room) => (<li key={room.name}><button onClick={this.setRoomId} roomid={room.id}>{room.name}</button></li>))}
-                      </ul>
-                      <Chatscreen2 currentRoomId={String(this.state.currentroomid)}  ></Chatscreen2>
+                      </ul> */}
+                      <Chatscreen2 currentRoomId={id} ></Chatscreen2>
 
                   </Grid>
 
@@ -214,7 +225,7 @@ class chatpage extends Component {
               
             </div>
         );
-    }
+    //}
   }
 }
 

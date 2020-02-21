@@ -40,65 +40,85 @@ class ChatScreen2 extends Component {
    })
   }
 
-//   componentDidUpdate () {
-//     const chatManager = new Chatkit.ChatManager({
-//         instanceLocator: 'v1:us1:3366eda2-e4d8-45c1-9f80-00f24eb6f202',
-//         userId: this.props.currentusername,
-//         tokenProvider: new Chatkit.TokenProvider({
-//           url: 'https://us1.pusherplatform.io/services/chatkit_token_provider/v1/3366eda2-e4d8-45c1-9f80-00f24eb6f202/token',
-//         }),
-//       })
-  
-//       chatManager
-//         .connect()
-//         .then(currentUser => {
-//           this.setState({ currentUser })
-//           return currentUser.subscribeToRoom({
-//             roomId: this.props.currentroomid, //"4e92e294-0274-4d0a-928a-7fbb2b2b0e04"
-//             messageLimit: 100,
-//             hooks: {
-//               onMessage: message => {
-//                 this.setState({
-//                   messages: [...this.state.messages, message],
-//                 })
-//               },
-//               onUserStartedTyping: user => {
-//                 this.setState({
-//                   usersWhoAreTyping: [...this.state.usersWhoAreTyping, user.name],
-//                })
-//               },
-//               onUserStoppedTyping: user => {
-//                 this.setState({
-//                   usersWhoAreTyping: this.state.usersWhoAreTyping.filter(
-//                     username => username !== user.name
-//                   ),
-//                 })
-//               },
-//               onPresenceChange: () => this.forceUpdate(),
-//             },
-//           })
-//         })
-//         .then(currentRoom => {
-//           this.setState({ currentRoom })
-//          })
-//         .catch(error => console.error('error', error))
-//   }
+  componentWillUnmount() {
+      console.log("Unmounting now bro");
+  }
 
-componentWillReceiveProps(props) {
-    const roomnum = this.props.currentroomid;
-    if(roomnum !== props.currentroomid) {
-    this.render();
-    }
+    componentDidUpdate () {
+    // const chatManager = new Chatkit.ChatManager({
+    //     instanceLocator: 'v1:us1:3366eda2-e4d8-45c1-9f80-00f24eb6f202',
+    //     userId: ,
+    //     tokenProvider: new Chatkit.TokenProvider({
+    //       url: 'https://us1.pusherplatform.io/services/chatkit_token_provider/v1/3366eda2-e4d8-45c1-9f80-00f24eb6f202/token',
+    //     }),
+    //   })
+      console.log("Updating in Chatscreen2");
+      console.log("State Room: ", this.state.currentRoom);
+      console.log("props id: ", String(this.props.currentRoomId));
+    
+    //   if(this.state.currentRoom.length !== 0 && this.state.currentUser.roomSubscriptions.length !== 0 && this.state.currentRoom.id !== this.props.currentRoomId ) {
+    //     console.log("unsubscribing");
+    //     this.state.currentUser.roomSubscriptions[this.state.currentRoom.id].cancel();
+
+    //     this.state.chatManager
+    //         .connect()
+    //         .then(currentUser => {
+    //         this.setState({ currentUser })
+    //         return currentUser.subscribeToRoom({
+    //             roomId: this.props.currentRoomId, //"4e92e294-0274-4d0a-928a-7fbb2b2b0e04"
+    //             messageLimit: 100,
+    //             hooks: {
+    //             onMessage: message => {
+    //                 this.setState({
+    //                 messages: [...this.state.messages, message],
+    //                 })
+    //             },
+    //             onUserStartedTyping: user => {
+    //                 this.setState({
+    //                 usersWhoAreTyping: [...this.state.usersWhoAreTyping, user.name],
+    //             })
+    //             },
+    //             onUserStoppedTyping: user => {
+    //                 this.setState({
+    //                 usersWhoAreTyping: this.state.usersWhoAreTyping.filter(
+    //                     username => username !== user.name
+    //                 ),
+    //                 })
+    //             },
+    //             onPresenceChange: () => this.forceUpdate(),
+    //             },
+    //         })
+    //         })
+    //         .then(currentRoom => {
+    //         console.log("Setting current room");
+    //         this.setState({ currentRoom })
+    //         })
+    //         .catch(error => console.error('error', error))
+    //     }
 }
 
-componentDidMount () {
-    // const chatManager = new Chatkit.ChatManager({
-    //   instanceLocator: 'v1:us1:3366eda2-e4d8-45c1-9f80-00f24eb6f202',
-    //   userId: this.props.currentusername,
-    //   tokenProvider: new Chatkit.TokenProvider({
-    //     url: 'https://us1.pusherplatform.io/services/chatkit_token_provider/v1/3366eda2-e4d8-45c1-9f80-00f24eb6f202/token',
-    //   }),
-    // })
+// // componentWillReceiveProps(props) {
+// //     // const roomnum = this.props.currentroomid;
+// //     // if(roomnum !== props.currentroomid) {
+// //     // this.render();
+// //     // }
+// // }
+
+    componentDidMount () {
+        
+//     // const chatManager = new Chatkit.ChatManager({
+//     //   instanceLocator: 'v1:us1:3366eda2-e4d8-45c1-9f80-00f24eb6f202',
+//     //   userId: this.props.currentusername,
+//     //   tokenProvider: new Chatkit.TokenProvider({
+//     //     url: 'https://us1.pusherplatform.io/services/chatkit_token_provider/v1/3366eda2-e4d8-45c1-9f80-00f24eb6f202/token',
+//     //   }),
+//     // })
+
+    // if(this.state.currentRoom !== {} && this.state.currentRoom.id != this.props.currentRoomId) {
+    //     console.log("Problem hereeeee boiii");
+    // }
+
+    console.log("Mounting now");
 
     this.state.chatManager
       .connect()
@@ -130,10 +150,11 @@ componentDidMount () {
         })
       })
       .then(currentRoom => {
+        console.log("setting current room");
         this.setState({ currentRoom })
        })
       .catch(error => console.error('error', error))
-  }
+    }
 
   render() {
     const styles = {
