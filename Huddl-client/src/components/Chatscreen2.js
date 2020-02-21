@@ -5,6 +5,8 @@ import SendMessageForm from '../pages/SendMessageForm'
 import TypingIndicator from '../pages/TypingIndicator'
 import WhosOnlineList from '../pages/WhosOnlineList'
 
+import store from '../redux/store';
+
 class ChatScreen2 extends Component {
   constructor(props) {
     super(props)
@@ -15,7 +17,7 @@ class ChatScreen2 extends Component {
      usersWhoAreTyping: [],
      chatManager: new Chatkit.ChatManager({
         instanceLocator: 'v1:us1:3366eda2-e4d8-45c1-9f80-00f24eb6f202',
-        userId: this.props.currentusername,
+        userId: store.getState().user.credentials.email,
         tokenProvider: new Chatkit.TokenProvider({
           url: 'https://us1.pusherplatform.io/services/chatkit_token_provider/v1/3366eda2-e4d8-45c1-9f80-00f24eb6f202/token',
         }),
@@ -103,7 +105,7 @@ componentDidMount () {
       .then(currentUser => {
         this.setState({ currentUser })
         return currentUser.subscribeToRoom({
-          roomId: this.props.currentroomid, //"4e92e294-0274-4d0a-928a-7fbb2b2b0e04"
+          roomId: this.props.currentRoomId, //"4e92e294-0274-4d0a-928a-7fbb2b2b0e04"
           messageLimit: 100,
           hooks: {
             onMessage: message => {

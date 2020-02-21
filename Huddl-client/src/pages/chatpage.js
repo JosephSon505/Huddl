@@ -94,151 +94,128 @@ function buttonList(props) {
   }
 }
 
-class home extends Component {
+
+class chatpage extends Component {
 
   constructor() {
     super();
+    
+    this.update = this.update.bind(this)
 
     this.state = ({
       currentUser: '',
       users: [],
       rooms: [],
-      currentroomid: thereapistIds[0].roomid,
+      currentroomid: '',
     })
-    // console.log("props", this.props);
-    // console.log("State: ", this.state);
-    // //this.update();
-    // console.log("State: ndw ", this.state);
+
+    this.rid = '';
+
   }
 
+
   setRoomId = (event) => {
-    //console.log(event.target.value)
-    const roomid = event.target.attributes.roomid;
-    //console.log("roomid", roomid)
+    this.rid = String(event.target.attributes.roomid.value);
+    console.log("Rid: ", this.rid);
     this.setState((state) => ({   //Note to self when updating state
-        currentroomid: roomid.value,
+        currentroomid: this.rid,
     }));
-    console.log("CurrentRoomId set to: ", this.state.currentroomid);
+    console.log("CurrentRoomId set to: ", this.rid);
   }
 
   setUsers = (users) => {
-    //console.log("Users tag: ", users);
     this.setState((state) => ({   //Note to self when updating state
         users: users,
-  
     }));
-    // this.state = ({
-    //   currentUser: this.state.currentUser,
-    //   users: users,
-    //   rooms: this.state.rooms,
-    // })
-    console.log("Users in state: ", this.state.users);
 
   }
 
-  
   setRooms = (rooms) => {
-    //const r = rooms.map((room.) => )
-    console.log(rooms);
     this.setState( (state, props) => ({   //Note to self when updating state
         rooms: rooms,
         currentUser: store.getState().user.credentials.email,
     }));
-    // this.state = ({
-    //   currentUser: this.state.currentUser,
-    //   users: this.state.users,
-    //   rooms: rooms,
-    // })
 
   }
 
-  update = () => {
-    chatkit.getUsers()
-        .then((res) => {
-          //console.log(res);
-          this.setUsers(res);
-        }).catch((err) => {
-          console.log(err);
-        });
-        //console.log("Email used: ",this.props.location.userData.email);
-        // this.setState( (state) => ({   //Note to self when updating state
-        //     currentUser: this.props.location.userData.email,
-        // }))
-    // chatkit.getRooms({})
+  async update() {
     
-    //console.log("User ID: ", this.state.currentUser);
-    chatkit.getUserRooms({
-      userId: store.getState().user.credentials.email,
-    })
-      .then(rooms => {
-        console.log('got rooms', rooms);
-        this.setRooms(rooms);
+    chatkit.getUserRooms({ userId: store.getState().user.credentials.email })
+    .then((res) => {
+        this.setRooms(res);
     }).catch(err => {
-      console.error(err)
+        console.error(err)
     })
+
+    chatkit.getUsers()
+    .then((res) => {
+        this.setUsers(res);
+    }).catch((err) => {
+        console.log(err);
+    });
 
   }
-
-  // componentWillMount() {
-  //   this.update();
-  // }
 
   componentDidMount() {
     this.update();
+   
   }
 
   render() {
     const { classes } = this.props;
 
-    const chats = [];
-    
     console.log("Store: ", store.getState());
 
     //console.log("Rendering with state: ", this.state);
     //chats.push(<Chatscreen2 currentusername={this.props.location.userData.email} currentroomid={this.state.currentroomid}></Chatscreen2>);
-    console.log(chats);
+    // console.log(chats);
+    if(this.state.currentroomid === '') {
+        return (
+            <div className={classes.container}>
+              <Grid container spacing={0} direction={"row"} >
+                <Grid item xs={1}>
+                  <Sidebar />
+                  </Grid>
+                
+                  <Grid item xs = {11}
+                  className={classes.dashboardDiv}>
+                      <ul>
+                          {this.state.rooms.map((room) => (<li key={room.name}><button onClick={this.setRoomId} roomid={room.id}>{room.name}</button></li>))}
+                      </ul>
+                  </Grid>
+              </Grid>
+                            
+            </div>
+          );
+    }
+    else {
+        console.log("here");
+        console.log(this.state.currentroomid);
+        console.log(typeof(this.state.currentroomid));
+        return (
+            <div className={classes.container}>
+              <Grid container spacing={0} direction={"row"} >
+                <Grid item xs={1}>
+                  <Sidebar />
+                  </Grid>
+                
+                  <Grid item xs = {11}
+                  className={classes.dashboardDiv}>
+                      <ul>
+                          {this.state.rooms.map((room) => (<li key={room.name}><button onClick={this.setRoomId} roomid={room.id}>{room.name}</button></li>))}
+                      </ul>
+                      <Chatscreen2 currentRoomId={String(this.state.currentroomid)}  ></Chatscreen2>
 
-    return (
-      <div className={classes.container}>
-        {/* <ChatkitProvider
-              instanceLocator={instanceLocator}
-              tokenProvider={tokenProvider}
-              userId='jltanner@usc.edu'
-            >
-            </ChatkitProvider> */}
-        <Grid container spacing={0}
-        direction={"row"}
-        >
-          <Grid item xs={1}>
-            <Sidebar />
-            </Grid>
-          
-            <Grid item xs = {11}
-            className={classes.dashboardDiv}>
-              <Dashboard />
-            </Grid>
-          <Grid item xs={1}>
-            <p>Messaging platform</p>
-            {/* <UserList users={thereapistIds} /> */}
-                <ul>
-                        {/* {this.props.users != [] ? this.props.users.map(user => (<li key={user.id}><button>{user.id}</button></li>)) : <p>PlaceHolder</p>} */}
-                        {this.state.rooms.map(user => (<li key={user.id}><button onClick={this.setRoomId} roomid={user.roomid}>{user.id}</button></li>))}
+                  </Grid>
 
-                </ul>
-          </Grid>
-            
-          
-
-          {/* <buttonList users={null} /> */}
-          
-
-        </Grid>
-        {chats}
-        {/*    <Chatscreen currentUsername={this.props.location.userData.email} currentRoomId={this.state.currentRoomId}  ></Chatscreen> */}
-        
-      </div>
-    );
+              </Grid>
+              
+              {/* {chats} */}
+              
+            </div>
+        );
+    }
   }
 }
 
-export default withStyles(styles)(home);
+export default withStyles(styles)(chatpage);

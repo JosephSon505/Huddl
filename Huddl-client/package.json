@@ -48,5 +48,8 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "https://us-central1-letshuddl.cloudfunctions.net/api"
+  "proxy": "https://us-central1-letshuddl.cloudfunctions.net/api",
+  "devDependencies": {
+    "redux-devtools": "^3.5.0"
+  }
 }

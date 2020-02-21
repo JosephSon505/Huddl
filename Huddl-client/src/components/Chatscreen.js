@@ -14,10 +14,17 @@ class ChatScreen extends Component {
      messages: [],
      usersWhoAreTyping: [],
     }
-    this.sendMessage = this.sendMessage.bind(this)
-    this.sendTypingEvent = this.sendTypingEvent.bind(this)
+    
+    console.log("State:", this.state);
+    console.log("CurentUser: ", this.currentUser);
+
+    //if(this.props.currentRoomId != '') {
+      this.sendMessage = this.sendMessage.bind(this)
+      this.sendTypingEvent = this.sendTypingEvent.bind(this)
+    //}
   }
   sendTypingEvent() {
+    console.log(this.state.currentUser);
    this.state.currentUser
      .isTypingIn({ roomId: this.state.currentRoom.id })
      .catch(error => console.error('error', error))
@@ -31,6 +38,11 @@ class ChatScreen extends Component {
   }
 
   componentDidMount () {
+
+    // if(this.props.currentRoomId === '') {
+    //   return;
+    // }
+    console.log("In chat: user = ", this.props.currentUsername);
     const chatManager = new Chatkit.ChatManager({
       instanceLocator: 'v1:us1:3366eda2-e4d8-45c1-9f80-00f24eb6f202',
       userId: this.props.currentUsername,
@@ -43,8 +55,12 @@ class ChatScreen extends Component {
       .connect()
       .then(currentUser => {
         this.setState({ currentUser })
+        // this.setState((state) => ({   //Note to self when updating state
+        //   currentUser: currentUser,
+        // }));
+        console.log("In chatroom - user in state: ", this.state.currentUser);
         return currentUser.subscribeToRoom({
-          roomId: "a2508eb9-cc40-4a20-ad1c-b39e77d5e6c7",
+          roomId: this.props.currentRoomId,
           messageLimit: 100,
           hooks: {
             onMessage: message => {
@@ -70,60 +86,72 @@ class ChatScreen extends Component {
       })
       .then(currentRoom => {
         this.setState({ currentRoom })
-        console.log(currentRoom);
+        // this.setState((state) => ({   //Note to self when updating state
+        //   currentRoom: currentRoom,
+        // }));
+        console.log(this.state.currentRoom);
        })
       .catch(error => console.error('error', error))
   }
 
   render() {
-    const styles = {
-       container: {
-         overflowY: 'scroll',
-         flex: 1,
-         postion: 'absolute',
-         top: '50%',
-         left: '50%',
-         margin: '70px',
-         border: 'solid',
-         width: '20%',
-         fontSize: 15
-       },
-       ul: {
-         listStyle: 'none',
-       },
-       li: {
-         marginTop: 13,
-         marginBottom: 13,
-         fontSize: 5
-       },
-       senderUsername: {
-         fontWeight: 'bold',
-       },
-       message: { fontSize: 100 },
-     }
-    return (
-      <div style={styles.container}>
-        <div style={styles.chatContainer}>
-          <aside style={styles.whosOnlineListContainer}>
-            <WhosOnlineList
-                currentUser={this.state.currentUser.name}
-                users={this.state.currentRoom.users}
-            />
-          </aside>
-          <section style={styles.chatListContainer}>
-            <MessageList
-              messages={this.state.messages}
-              style={styles.chatList}
-            />
-            <TypingIndicator usersWhoAreTyping={this.state.usersWhoAreTyping} />
-            <SendMessageForm 
-              onSubmit={this.sendMessage} 
-              onChange={this.sendTypingEvent}
-            />
-          </section>
+    console.log("State 2: ", this.state);
+
+    if(this.props.currentRoomId === '') {
+      return (
+        <div>Hello</div>
+      );
+    }
+    else {
+      const styles = {
+        container: {
+          overflowY: 'scroll',
+          flex: 1,
+          postion: 'absolute',
+          top: '50%',
+          left: '50%',
+          margin: '70px',
+          border: 'solid',
+          width: '20%',
+          fontSize: 15
+        },
+        ul: {
+          listStyle: 'none',
+        },
+        li: {
+          marginTop: 13,
+          marginBottom: 13,
+          fontSize: 5
+        },
+        senderUsername: {
+          fontWeight: 'bold',
+        },
+        message: { fontSize: 100 },
+      }
+      return (
+        <div style={styles.container}>
+          <div style={styles.chatContainer}>
+            <aside style={styles.whosOnlineListContainer}>
+              <WhosOnlineList
+                  currentUser={this.state.currentUser.name}
+                  users={this.state.currentRoom.users}
+              />
+            </aside>
+            <section style={styles.chatListContainer}>
+              <MessageList
+                messages={this.state.messages}
+                style={styles.chatList}
+              />
+              <TypingIndicator usersWhoAreTyping={this.state.usersWhoAreTyping} />
+              <SendMessageForm 
+                onSubmit={this.sendMessage} 
+                onChange={this.sendTypingEvent}
+              />
+            </section>
+          </div>
         </div>
-      </div>
-    )
+      )
+    }
   }
 }
 

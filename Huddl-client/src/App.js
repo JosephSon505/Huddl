@@ -25,6 +25,7 @@ import aboutus from './pages/aboutus';
 import faq from './pages/faq';
 import support from './pages/support';
 import partners from './pages/partners';
+import chatpage from './pages/chatpage';
 
 // theme
 const theme = createMuiTheme({
@@ -73,6 +74,8 @@ class App extends Component {
                 <Route exact path="/faq" component={faq} />
                 <Route exact path="/support" component={support} />
                 <Route exact path="/partners" component={partners} />
+                <Route exact path="/chatpage" component={chatpage} />
+
               </Switch>
             </Router>
           </div>

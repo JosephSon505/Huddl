@@ -5,6 +5,9 @@ import Typography from '@material-ui/core/Typography';
 import PropTypes from 'prop-types';
 import Calendar from 'react-calendar';
 
+import store from '../redux/store';
+
+
 //Styles
 
 const styles = {
@@ -95,7 +98,7 @@ export class Dashboard extends Component {
     constructor(){
         super();
         this.state = {
-          currentUserName: "James",
+          currentUserName: store.getState().user.credentials.handle,
           currentTimeLocal: 0,
           currentTimeGreece: 7,
           calendarDate: new Date(),
