@@ -58,7 +58,7 @@ export class LoginBox extends Component {
             email: this.state.email, 
             password: this.state.password
         }
-        this.props.callBackFromLogin(userData);
+        this.props.callBackFromLogin(userData, this.props.history);
     }
 
     render() {
@@ -136,4 +136,4 @@ export class LoginBox extends Component {
 
 
 
-export default withStyles(styles)(LoginBox)
+export default withStyles(styles)(LoginBox);

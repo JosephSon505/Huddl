@@ -20,7 +20,9 @@ class UserList extends Component {
         return (
             <Grid>
                 <ul>
-                        {this.props.users != [] ? this.props.users.map(user => (<li key={user.id}><button>{user.id}</button></li>)) : <p>PlaceHolder</p>}
+                        {/* {this.props.users != [] ? this.props.users.map(user => (<li key={user.id}><button>{user.id}</button></li>)) : <p>PlaceHolder</p>} */}
+                        {this.props.users != [] ? this.props.users.map(user => (<li key={user}><button>{user}</button></li>)) : <p>PlaceHolder</p>}
+
                 </ul>
             </Grid>
             

@@ -5,6 +5,9 @@ import LoginBox from '../components/LoginBox'
 import axios from 'axios'
 import { Link } from 'react-router-dom';
 
+// redux
+import { connect } from 'react-redux';
+import { loginUser } from '../redux/actions/userActions';
 
 
 // Style definitions
@@ -23,7 +26,6 @@ class login extends Component {
         this.state = {
             email: '',
             password: '',
-            loading: false,
             errors: {
               "general": "",
               "email": "",
@@ -35,7 +37,6 @@ class login extends Component {
     handleLogin = (userData) => {
 
         this.setState({
-            loading: true,
             errors: {
               "general": "",
               "email": "",
@@ -43,21 +44,14 @@ class login extends Component {
             }
         });
 
-        axios.post('/login', userData).then(data => {
-            this.props.history.push({
-                pathname: '/home',
-                userData: userData
-            })
-        }).catch(err => {
-            console.log('Error');
-        })
+
     }
 
     render() {
         return (
             <div style={container}>
                 <Navbar />
-                <LoginBox callBackFromLogin={this.handleLogin}/>
+                <LoginBox callBackFromLogin={this.props.loginUser} history={this.props.history}/>
                 <SiteMap />
             </div>
         )
@@ -65,4 +59,13 @@ class login extends Component {
 
 }
 
-export default login;
+const mapStateToProps = (state) => ({
+    user: state.user,
+    UI: state.UI
+});
+
+const mapActionsToProps = {
+    loginUser
+}
+
+export default connect(mapStateToProps, mapActionsToProps)(login);

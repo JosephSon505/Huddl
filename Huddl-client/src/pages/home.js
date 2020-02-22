@@ -4,15 +4,23 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import PropTypes from 'prop-types';
 import UserList from '../components/UserList';
+import Dashboard from '../components/Dashboard';
 
 
 import React, { Component, View, Button } from 'react';
+import { Link } from 'react-router-dom';
+import { ChatFill} from 'react-bootstrap-icons';
+
 //import { ChatkitProvider, TokenProvider } from '@pusher/chatkit-client-react';
 
 import Chatscreen from '../components/Chatscreen';
 import Sidebar from "../components/Sidebar";
-const Chatkit = require('@pusher/chatkit-server');
 
+import Chatscreen2 from '../components/Chatscreen2';
+
+import store from '../redux/store';
+
+const Chatkit = require('@pusher/chatkit-server');
 
 const instanceLocator = 'v1:us1:3366eda2-e4d8-45c1-9f80-00f24eb6f202';
 const key = '1f7ad742-25f6-4c95-ab73-740747059cb3:yD1HqPGZMZg1yZrWAK36oQvEiBckt54dNrmoJahyoLc=';
@@ -21,6 +29,18 @@ const chatkit = new Chatkit.default({
   instanceLocator: instanceLocator,
   key: key,
 })
+
+const thereapistIds = [
+  {id: 'therapist1@usc.edu', roomid: 'efdd87cf-122f-4099-92cf-834180f3bff1'},
+  {id: 'therapist2@usc.edu', roomid: 'edbaf2c9-8e43-4847-8498-3c07c969cfa2'},
+  {id: 'therapist3@usc.edu', roomid: '4e92e294-0274-4d0a-928a-7fbb2b2b0e04'},
+]
+
+// 'therapist2@usc.edu',
+//   'therapist3@usc.edu',
+//   'therapist4@usc.edu',
+//   'therapist5@usc.edu',
+//   'therapist6@usc.edu'
 
 
 const styles = {
@@ -33,7 +53,21 @@ const styles = {
     backgroundColor: '#1EA37D',
   },
   container: {
-    height: '100%'
+    height: '100VH',
+    width: '100VW',
+  },
+  dashboardDiv: {
+    width: '50%',
+    height: '100VH',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  gridContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems:'center',
+    justifyContent: 'center'
   }
 };
 
@@ -67,18 +101,31 @@ class home extends Component {
 
   constructor() {
     super();
+
     this.state = ({
       currentUser: '',
       users: [],
       rooms: [],
+      currentroomid: thereapistIds[0].roomid,
     })
-    console.log("State: ", this.state);
-    this.update();
-    console.log("State: ndw ", this.state);
+    // console.log("props", this.props);
+    // console.log("State: ", this.state);
+    // //this.update();
+    // console.log("State: ndw ", this.state);
+  }
+
+  setRoomId = (event) => {
+    //console.log(event.target.value)
+    const roomid = event.target.attributes.roomid;
+    //console.log("roomid", roomid)
+    this.setState((state) => ({   //Note to self when updating state
+        currentroomid: roomid.value,
+    }));
+    console.log("CurrentRoomId set to: ", this.state.currentroomid);
   }
 
   setUsers = (users) => {
-    console.log("Users tag: ", users);
+    //console.log("Users tag: ", users);
     this.setState((state) => ({   //Note to self when updating state
       users: users,
 
@@ -88,14 +135,17 @@ class home extends Component {
     //   users: users,
     //   rooms: this.state.rooms,
     // })
+    console.log("Users in state: ", this.state.users);
+
   }
 
   setRooms = (rooms) => {
-    this.setState((state) => {   //Note to self when updating state
-      return {
+    //const r = rooms.map((room.) => )
+    console.log(rooms);
+    this.setState( (state, props) => ({   //Note to self when updating state
         rooms: rooms,
-      }
-    });
+        currentUser: store.getState().user.credentials.email,
+    }));
     // this.state = ({
     //   currentUser: this.state.currentUser,
     //   users: this.state.users,
@@ -105,32 +155,49 @@ class home extends Component {
   }
 
   update = () => {
-    chatkit.getUsers().then((res) => {
-      console.log(res);
-      this.setUsers(res);
-    }).catch((err) => {
-      console.log(err);
-    });
-    chatkit.getRooms({})
+    chatkit.getUsers()
+        .then((res) => {
+          //console.log(res);
+          this.setUsers(res);
+        }).catch((err) => {
+          console.log(err);
+        });
+        //console.log("Email used: ",this.props.location.userData.email);
+        // this.setState( (state) => ({   //Note to self when updating state
+        //     currentUser: this.props.location.userData.email,
+        // }))
+    // chatkit.getRooms({})
+    
+    //console.log("User ID: ", this.state.currentUser);
+    chatkit.getUserRooms({
+      userId: store.getState().user.credentials.email,
+    })
       .then(rooms => {
         console.log('got rooms', rooms);
         this.setRooms(rooms);
-      }).catch(err => {
-        console.error(err)
-      })
+    }).catch(err => {
+      console.error(err)
+    })
   }
 
   // componentWillMount() {
   //   this.update();
   // }
 
-  // componentDidMount() {
-  //   this.update();
-  // }
+  componentDidMount() {
+    this.update();
+  }
 
   render() {
     const { classes } = this.props;
-    console.log(this.props.location);
+
+    const chats = [];
+    
+    console.log("Store: ", store.getState());
+
+    //console.log("Rendering with state: ", this.state);
+    //chats.push(<Chatscreen2 currentusername={this.props.location.userData.email} currentroomid={this.state.currentroomid}></Chatscreen2>);
+    console.log(chats);
 
     return (
       <div className={classes.container}>
@@ -140,43 +207,35 @@ class home extends Component {
               userId='jltanner@usc.edu'
             >
             </ChatkitProvider> */}
-        <Grid container spacing={10}>
-
-          <Grid item sm={4} xs={12}>
+        <Grid container spacing={0}
+        direction={"row"}
+        >
+          <Grid item xs={1}>
             <Sidebar />
-          </Grid>
-
-          <Grid item sm={4} xs={12} className={classes.borderRight}>
-            <Typography variant='h4'>
-              Profile Section
-            </Typography>
-
-            <Typography variant='h4'>
-              Forums
-            </Typography>
-
-            <Typography variant='h4'>
-              Direct Messages
-            </Typography>
-
-
-            <Typography variant='h4'>
-              Telepsychiatry
-            </Typography>
-
-          </Grid>
-
-          <Grid item sm={12} xs={12}>
+            </Grid>
+          
+            <Grid item xs = {11}
+            className={classes.dashboardDiv}>
+              <Dashboard />
+            </Grid>
+          <Grid item xs={1}>
             <p>Messaging platform</p>
-            <UserList users={this.state.users} />
+            {/* <UserList users={thereapistIds} /> */}
+                <ul>
+                        {this.state.rooms.map((room) => (<li key={room.name}> <Link to={`/chatpage/${room.id}`}>{room.name}<ChatFill /> </Link> </li>))}
+                        {/* {this.state.rooms.map((room) => (<li key={room.name}><button onClick={this.setRoomId} roomid={room.id}>{room.name}</button></li>))} */}
+                </ul>
           </Grid>
+            
+          
 
           {/* <buttonList users={null} /> */}
 
 
         </Grid>
-        {/* <Chatscreen currentUsername={userId} ></Chatscreen> */}
-
+        {chats}
+        {/*    <Chatscreen currentUsername={this.props.location.userData.email} currentRoomId={this.state.currentRoomId}  ></Chatscreen> */}
+        
       </div>
     );
   }
