@@ -127,13 +127,27 @@ class home extends Component {
 
   }
 
+
+
   
   setRooms = (rooms) => {
     //const r = rooms.map((room.) => )
     // console.log(rooms);
+    const email = store.getState().user.credentials.email;
+    // console.log(rooms);
+    if(email === 'therapist1@usc.edu' || email === 'therapist2@usc.edu' || email === 'therapist3@usc.edu' || email === 'therapist4@usc.edu' || email === 'therapist5@usc.edu' || email === 'therapist6@usc.edu') {
+        for (let i = 0; i < rooms.length; i++) {
+          // console.log(rooms[i].last_message_at);
+          if(!rooms[i].last_message_at) {
+              // console.log("removing: ", rooms[i]);
+              rooms.splice(i,1);
+              i--;
+            }
+        }
+    }
     this.setState( (state, props) => ({   //Note to self when updating state
         rooms: rooms,
-        currentUser: store.getState().user.credentials.email,
+        currentUser: email,
     }));
     // this.state = ({
     //   currentUser: this.state.currentUser,
