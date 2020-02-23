@@ -5,6 +5,10 @@ import SignupBox from '../components/SignupBox'
 import axios from 'axios';
 // import Chatkit from '@pusher/chatkit-server';
 
+// redux
+import { connect } from 'react-redux';
+import { signupUser } from '../redux/actions/userActions';
+
 const Chatkit = require('@pusher/chatkit-server');
 
 
@@ -29,37 +33,27 @@ class signup extends Component {
     }
 
     handleSignUp = (userData) => {
-        console.log("Made it to Sign Up");
-        console.log(userData.email);
         const newUserData = {
             firstName: userData.firstName,
-            lastName: userData.lastName, 
+            lastName: userData.lastName,
             email: userData.email,
-            password: userData.password, 
+            password: userData.password,
             confirmPassword: userData.password,
-            handle: userData.firstName + userData.lastName, 
+            handle: userData.firstName + userData.lastName,
             userGroup: 'Volunteer',
         };
 
         chatkit.createUser({
             id: userData.email,
             name: userData.firstName + " " + userData.lastName,
-          })
+        })
             .then(() => {
-              console.log('User created successfully');
+                console.log('User created successfully');
             }).catch((err) => {
-              console.log(err);
+                console.log(err);
             });
 
-        // TODO: AXIOS goes here - call the signup route
-        axios.post('/signup', newUserData).then(data => {
-            this.props.history.push({
-                pathname: '/home',
-                userData: newUserData
-            });
-        }).catch(err => {
-            console.log('HUGE ERROR');
-        });
+        this.props.signupUser(newUserData, this.props.history);
     }
 
 
@@ -67,7 +61,7 @@ class signup extends Component {
         return (
             <div style={container}>
                 <Navbar />
-                <SignupBox callbackFromSignUp={this.handleSignUp}/>
+                <SignupBox callbackFromSignUp={this.handleSignUp} />
                 <SiteMap />
             </div>
         )
@@ -75,4 +69,13 @@ class signup extends Component {
 
 }
 
-export default signup;
+const mapStateToProps = (state) => ({
+    user: state.user,
+    UI: state.UI
+});
+
+const mapActionsToProps = {
+    signupUser
+}
+
+export default connect(mapStateToProps, mapActionsToProps)(signup);
