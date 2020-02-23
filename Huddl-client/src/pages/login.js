@@ -9,9 +9,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { loginUser } from '../redux/actions/userActions';
 
-
 // Style definitions
-
 var container = {
     display: 'flex',
     flexDirection: 'column',
