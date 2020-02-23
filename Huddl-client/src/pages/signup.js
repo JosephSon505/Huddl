@@ -41,15 +41,82 @@ class signup extends Component {
             userGroup: 'Volunteer',
         };
 
+        //automatically create chatkit user and
+        //automatically add new users into rooms with therapist 1, 2, 3, 4, 5, and 6
+        
         chatkit.createUser({
             id: userData.email,
             name: userData.firstName + " " + userData.lastName,
           })
-            .then(() => {
-              console.log('User created successfully');
+            .then((res) => {
+              console.log('User created successfully', res);
             }).catch((err) => {
               console.log(err);
-            });
+            }).then(() => {
+                chatkit.createRoom({
+                    creatorId: userData.email,
+                    name: 'Therapist 1',
+                    userIds: ['therapist1@usc.edu']
+                }).then((res) => {
+                    console.log('Room created successfully', res);
+                }).catch((err) => {
+                    console.log(err);
+                });
+                
+                chatkit.createRoom({
+                    creatorId: userData.email,
+                    name: 'Therapist 2',
+                    userIds: ['therapist2@usc.edu']
+                    }).then((res) => {
+                        console.log('Room created successfully', res);
+                    }).catch((err) => {
+                        console.log(err);
+                    });
+                
+                chatkit.createRoom({
+                    creatorId: userData.email,
+                    name: 'Therapist 3',
+                    userIds: ['therapist3@usc.edu']
+                }).then((res) => {
+                    console.log('Room created successfully', res);
+                }).catch((err) => {
+                    console.log(err);
+                });
+                
+                chatkit.createRoom({
+                    creatorId: userData.email,
+                    name: 'Therapist 4',
+                    userIds: ['therapist4@usc.edu']
+                }).then((res) => {
+                    console.log('Room created successfully', res);
+                }).catch((err) => {
+                    console.log(err);
+                });
+        
+                chatkit.createRoom({
+                    creatorId: userData.email,
+                    name: 'Therapist 5',
+                    userIds: ['therapist5@usc.edu']
+                }).then((res) => {
+                    console.log('Room created successfully', res);
+                }).catch((err) => {
+                    console.log(err);
+                });
+                
+                chatkit.createRoom({
+                    creatorId: userData.email,
+                    name: 'Therapist 6',
+                    userIds: ['therapist6@usc.edu']
+                }).then((res) => {
+                    console.log('Room created successfully', res);
+                }).catch((err) => {
+                    console.log(err);
+                });
+
+            })
+
+        
+       
 
         // TODO: AXIOS goes here - call the signup route
         axios.post('/signup', newUserData).then(data => {

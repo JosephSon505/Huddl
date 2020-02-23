@@ -30,18 +30,11 @@ const chatkit = new Chatkit.default({
   key: key,
 })
 
-const thereapistIds = [
-  {id: 'therapist1@usc.edu', roomid: 'efdd87cf-122f-4099-92cf-834180f3bff1'},
-  {id: 'therapist2@usc.edu', roomid: 'edbaf2c9-8e43-4847-8498-3c07c969cfa2'},
-  {id: 'therapist3@usc.edu', roomid: '4e92e294-0274-4d0a-928a-7fbb2b2b0e04'},
-]
-
-// 'therapist2@usc.edu',
-//   'therapist3@usc.edu',
-//   'therapist4@usc.edu',
-//   'therapist5@usc.edu',
-//   'therapist6@usc.edu'
-
+// const thereapistIds = [
+//   {id: 'therapist1@usc.edu', roomid: 'efdd87cf-122f-4099-92cf-834180f3bff1'},
+//   {id: 'therapist2@usc.edu', roomid: 'edbaf2c9-8e43-4847-8498-3c07c969cfa2'},
+//   {id: 'therapist3@usc.edu', roomid: '4e92e294-0274-4d0a-928a-7fbb2b2b0e04'},
+// ]
 
 const styles = {
   borderRight: {
@@ -106,7 +99,7 @@ class home extends Component {
       currentUser: '',
       users: [],
       rooms: [],
-      currentroomid: thereapistIds[0].roomid,
+      currentroomid: '',
     })
     // console.log("props", this.props);
     // console.log("State: ", this.state);
@@ -121,7 +114,7 @@ class home extends Component {
     this.setState((state) => ({   //Note to self when updating state
         currentroomid: roomid.value,
     }));
-    console.log("CurrentRoomId set to: ", this.state.currentroomid);
+    // console.log("CurrentRoomId set to: ", this.state.currentroomid);
   }
 
   setUsers = (users) => {
@@ -130,19 +123,14 @@ class home extends Component {
         users: users,
   
     }));
-    // this.state = ({
-    //   currentUser: this.state.currentUser,
-    //   users: users,
-    //   rooms: this.state.rooms,
-    // })
-    console.log("Users in state: ", this.state.users);
+    // console.log("Users in state: ", this.state.users);
 
   }
 
   
   setRooms = (rooms) => {
     //const r = rooms.map((room.) => )
-    console.log(rooms);
+    // console.log(rooms);
     this.setState( (state, props) => ({   //Note to self when updating state
         rooms: rooms,
         currentUser: store.getState().user.credentials.email,
@@ -174,7 +162,7 @@ class home extends Component {
       userId: store.getState().user.credentials.email,
     })
       .then(rooms => {
-        console.log('got rooms', rooms);
+        // console.log('got rooms', rooms);
         this.setRooms(rooms);
     }).catch(err => {
       console.error(err)
@@ -192,14 +180,12 @@ class home extends Component {
 
   render() {
     const { classes } = this.props;
-
-    const chats = [];
     
-    console.log("Store: ", store.getState());
+    // console.log("Store: ", store.getState());
 
     //console.log("Rendering with state: ", this.state);
     //chats.push(<Chatscreen2 currentusername={this.props.location.userData.email} currentroomid={this.state.currentroomid}></Chatscreen2>);
-    console.log(chats);
+    // console.log(chats);
 
     return (
       <div className={classes.container}>
@@ -235,7 +221,6 @@ class home extends Component {
           
 
         </Grid>
-        {chats}
         {/*    <Chatscreen currentUsername={this.props.location.userData.email} currentRoomId={this.state.currentRoomId}  ></Chatscreen> */}
         
       </div>
