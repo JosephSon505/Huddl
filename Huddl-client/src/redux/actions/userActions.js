@@ -3,7 +3,7 @@ import axios from 'axios';
 
 axios.defaults.baseURL = 'https://us-central1-letshuddl.cloudfunctions.net/api';
 
-export const loginUser = async (userData, history) => (dispatch) => {
+export const loginUser = (userData, history) => (dispatch) => {
     dispatch({ type: LOADING_UI });
     axios.post('/login', userData).then(data => {
         localStorage.setItem('FBIdToken', `Bearer ${data.data}`);
