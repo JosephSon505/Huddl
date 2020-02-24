@@ -9,8 +9,9 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 import { signupUser } from '../redux/actions/userActions';
 
-const Chatkit = require('@pusher/chatkit-server');
+axios.defaults.baseURL = 'https://us-central1-letshuddl.cloudfunctions.net/api';
 
+const Chatkit = require('@pusher/chatkit-server');
 
 const chatkit = new Chatkit.default({
     instanceLocator: 'v1:us1:3366eda2-e4d8-45c1-9f80-00f24eb6f202',

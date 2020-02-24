@@ -1,6 +1,8 @@
 import { SET_USER, SET_ERRORS, CLEAR_ERRORS, LOADING_UI, SET_UNAUTHENTICATED } from '../types';
 import axios from 'axios';
 
+axios.defaults.baseURL = 'https://us-central1-letshuddl.cloudfunctions.net/api';
+
 export const loginUser = (userData, history) => (dispatch) => {
     dispatch({ type: LOADING_UI });
     axios.post('/login', userData).then(data => {

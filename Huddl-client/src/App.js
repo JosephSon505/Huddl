@@ -27,6 +27,9 @@ import support from './pages/support';
 import partners from './pages/partners';
 import chatpage from './pages/chatpage';
 
+
+axios.defaults.baseURL = 'https://us-central1-letshuddl.cloudfunctions.net/api';
+
 // theme
 const theme = createMuiTheme({
   palette: {
