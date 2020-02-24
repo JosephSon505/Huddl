@@ -3,14 +3,13 @@ import axios from 'axios';
 
 axios.defaults.baseURL = 'https://us-central1-letshuddl.cloudfunctions.net/api';
 
-export const loginUser = (userData, history) => (dispatch) => {
+export const loginUser = async (userData, history) => (dispatch) => {
     dispatch({ type: LOADING_UI });
     axios.post('/login', userData).then(data => {
         localStorage.setItem('FBIdToken', `Bearer ${data.data}`);
         axios.defaults.headers.common['Authorization'] = `Bearer ${data.data}`;
-        dispatch(getUserData());
+        dispatch(getUserData(history));
         dispatch({ type: CLEAR_ERRORS });
-        history.push('/home');
     }).catch(err => {
         dispatch({
             type: SET_ERRORS,
@@ -25,9 +24,10 @@ export const signupUser = (newUserData, history) => (dispatch) => {
     axios.post('/signup', newUserData).then(data => {
         console.log(data);
 
-        localStorage.setItem('FBIdToken', `Bearer ${data.data.token}`);
-        axios.defaults.headers.common['Authorization'] = `Bearer ${data.data.token}`;
+        // localStorage.setItem('FBIdToken', `Bearer ${data.data.token}`);
+        // axios.defaults.headers.common['Authorization'] = `Bearer ${data.data.token}`;
         // dispatch(getUserData());
+
         dispatch({ type: CLEAR_ERRORS });        
         history.push('/login');
     }).catch(err => {
@@ -42,12 +42,13 @@ export const logoutUser = () => (dispatch) => {
   };
   
 
-export const getUserData = () => (dispatch) => {
+export const getUserData = (history) => (dispatch) => {
     axios.get('/user').then(res => {
         dispatch({
             type: SET_USER,
             payload: res.data
-        })
+        });
+        history.push('/home');
     }).catch(err => {
         console.log('Error in getting user data');
     });

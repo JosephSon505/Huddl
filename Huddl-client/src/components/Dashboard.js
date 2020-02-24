@@ -99,8 +99,9 @@ var containerDiv = {
 export class Dashboard extends Component {
     constructor(){
         super();
+
         this.state = {
-          currentUserName: store.getState().user.credentials.handle,
+          currentUserName: 'Username',
           currentTimeLocal: 0,
           currentTimeGreece: 7,
           calendarDate: new Date(),
@@ -148,6 +149,13 @@ export class Dashboard extends Component {
 
     componentDidMount(){
        this.setTimes();
+
+       const user = store.getState();
+       console.log(user.user);
+       console.log("after");
+       this.setState({
+         currentUserName: user.user.credentials.firstName 
+       })
     }
  
     setTimes = () => {
