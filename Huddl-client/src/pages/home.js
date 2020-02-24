@@ -218,15 +218,15 @@ class home extends Component {
           
             <Grid item xs = {11}
             className={classes.dashboardDiv}>
-              <Dashboard />
+              <Dashboard userrooms={this.state.rooms}/>
             </Grid>
           <Grid item xs={1}>
-            <p>Messaging platform</p>
+            {/* <p>Messaging platform</p> */}
             {/* <UserList users={thereapistIds} /> */}
-                <ul>
-                        {this.state.rooms.map((room) => (<li key={room.name}> <Link to={`/chatpage/${room.id}`}>{room.name}<ChatFill /> </Link> </li>))}
+                {/* <ul> */}
+                        {/* {this.state.rooms.map((room) => (<li key={room.name}> <Link to={`/chatpage/${room.id}`}>{room.name}<ChatFill /> </Link> </li>))} */}
                         {/* {this.state.rooms.map((room) => (<li key={room.name}><button onClick={this.setRoomId} roomid={room.id}>{room.name}</button></li>))} */}
-                </ul>
+                {/* </ul> */}
           </Grid>
             
           

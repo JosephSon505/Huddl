@@ -4,6 +4,8 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import PropTypes from 'prop-types';
 import Calendar from 'react-calendar';
+import { Link } from 'react-router-dom';
+import { ChatFill} from 'react-bootstrap-icons';
 
 import store from '../redux/store';
 
@@ -355,7 +357,8 @@ export class Dashboard extends Component {
                       className="subHeader"
                       style={forumHeader}
                     >
-                      <p>Recent posts</p>
+                      <p>Direct Messages</p>
+
                     </Grid>
                     <Grid
                       container
@@ -365,7 +368,9 @@ export class Dashboard extends Component {
                       style={recentPosts}
                       className="subHeader"
                     >
-                      <p>Coming soon!</p>
+                      {this.props.userrooms.map((room) => (<span><li key={room.name}> <Link to={`/chatpage/${room.id}`}>{room.name}</Link></li><br /></span>))}
+
+                      {/* <p>Coming soon!</p> */}
                     </Grid>
                   </Grid>
                 </Grid>
