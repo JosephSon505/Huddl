@@ -25,9 +25,9 @@ export const signupUser = (newUserData, history) => (dispatch) => {
 
         localStorage.setItem('FBIdToken', `Bearer ${data.data.token}`);
         axios.defaults.headers.common['Authorization'] = `Bearer ${data.data.token}`;
-        dispatch(getUserData());
+        // dispatch(getUserData());
         dispatch({ type: CLEAR_ERRORS });        
-        history.push('/home');
+        history.push('/login');
     }).catch(err => {
         console.log('HUGE ERROR');
     });
