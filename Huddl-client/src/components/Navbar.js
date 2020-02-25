@@ -7,6 +7,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
 import withStyles from '@material-ui/styles/withStyles';
 import Typography from '@material-ui/core/Typography';
+import logo from '../image/logo.png';
 
 // import '../css/header.css';
 
@@ -41,6 +42,8 @@ const styles = {
   mainBar: {
     display: 'flex',
     flexDirection: 'row',
+    paddingTop: '1VW',
+    height: '3VW'
   },
 
 };
@@ -57,7 +60,8 @@ class Navbar extends Component {
       <AppBar color='secondary' position="static" elevation={0}>
         <Toolbar className={classes.mainBar}>
           <Typography variant='h4' color='inherit' className={classes.title}>
-            <div style={{ fontWeight: 'bold', fontSize: 40 }}><a href="/">huddl</a></div>
+            {/* <div style={{ fontWeight: 'bold', fontSize: 40 }}><a href="/">huddl</a></div> */}
+            <a href="/"><img src='https://i.ibb.co/7KTWVJ0/logo.png' height={30}/></a>
           </Typography>
 
           <section className={classes.leftToolBar}>
@@ -76,11 +80,11 @@ class Navbar extends Component {
           </section>
 
           <section className={classes.rightToolbar}>
-            <Button className={classes.button} variant='outlined' color='inherit' component={Link} to="/signup" >
+            <Button className={classes.button} variant='outlined' color='inherit' disableElevation component={Link} to="/signup" >
               Sign up
             </Button>
 
-            <Button className={classes.button} variant='outlined' color='inherit' component={Link} to="/login" >
+            <Button className={classes.button} variant='outlined' color='inherit' disableElevation component={Link} to="/login" >
               Log In
             </Button>
           </section>

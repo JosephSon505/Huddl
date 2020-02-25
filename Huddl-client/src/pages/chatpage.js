@@ -205,6 +205,9 @@ class chatpage extends Component {
         // console.log(typeof(this.state.currentroomid));
         return (
             <div className={classes.container}>
+              <div style={{paddingTop: 100, paddingLeft: 100}}>
+                        <h1>Schedule an appointment</h1>
+                        </div>
               <Grid container spacing={0} direction={"row"} >
                 <Grid item xs={1}>
                   <Sidebar />

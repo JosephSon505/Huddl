@@ -19,9 +19,9 @@ var panelContainer = {
     alignItems: 'center',
     marginTop: '1%',
     marginBottom: '1%',
-    backgroundColor: '#f2f2f2',
+    // backgroundColor: '#f2f2f2',
     opacity: '1.0',
-    borderRadius: '20px'
+    // borderRadius: '20px'
 }
 
 var sides = {
@@ -53,11 +53,7 @@ export class InfoPanels extends Component {
                 heading: "Are you a volunteer?",
                 subHeading: 'Talk to a mental health professional this week.',
                 text: 'In a recent study, 72.8% of rescue workers on Lesvos reported low levels of well-being, with over showing symptoms of burnout syndrome. Telecounseling has been proven to help alleviate the stress and . Help us enable you to become the most effective volunteer you can be.'
-                }, {
-                    heading: "Our partners",
-                    subHeading: '',
-                    text: ''
-                },]
+                }]
         }
     }
 
