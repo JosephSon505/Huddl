@@ -52,7 +52,7 @@ export class InfoPanels extends Component {
             {
                 heading: "Are you a volunteer?",
                 subHeading: 'Talk to a mental health professional this week.',
-                text: 'In a recent study, 72.8% of rescue workers on Lesvos reported low levels of well-being, with over showing symptoms of burnout syndrome. Telecounseling has been proven to help alleviate the stress and . Help us enable you to become the most effective volunteer you can be.'
+                text: 'In a recent study, 72.8% of rescue workers on Lesvos reported low levels of well-being, with over showing symptoms of burnout syndrome. Telecounseling has been proven to help alleviate stress and combat burnout. Help us enable you to become the most effective volunteer you can be.'
                 }]
         }
     }

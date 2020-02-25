@@ -13,7 +13,7 @@ class partners extends Component {
                     <br></br><br></br>
                     We're in the process of launching our beta test in Lesvos, Greece and growing our network.
                     <br></br><br></br>
-                    If you're interested in joining us, please contact us at hellohuddl@gmail.com
+                    If you're interested in joining us, please contact us at <b>hellohuddl@gmail.com</b>
                 </div>
             </div>
         )
