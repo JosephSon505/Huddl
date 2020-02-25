@@ -68,7 +68,7 @@ class Sidebar extends Component {
         </NavItem>
         <NavItem eventKey="Google">
         <NavIcon>
-            <a href="http://hangouts.google.com/start">G+</a>
+            <a href="http://hangouts.google.com/start" target="_blank">G+</a>
         </NavIcon>
         </NavItem>
         
