@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Navbar from '../components/Navbar';
+import SiteMap from '../components/SiteMap'
 
 class faq extends Component {
 
@@ -11,7 +12,7 @@ class faq extends Component {
                 <div className="container" style={{ paddingTop: 64, paddingLeft: 100, paddingRight: 100, paddingBottom: 200 }}>
                     <h1>FAQ</h1>
                     <br></br><br></br>
-                    <b>How can I join?</b>
+                    <b>How can I join? (as a mental health provider)</b>
                     <br></br>
                     Thank you for your interest! You can sign up as a provider through the platform in order to commit the mandated two hours a month to our platform.
                     <br></br>
@@ -43,7 +44,7 @@ class faq extends Component {
 
                     <br></br><br></br><br></br>
 
-                    <b>How can I join?</b>
+                    <b>How can I join? (as a humanitarian aid worker)</b>
                     <br></br>
                     You can sign up as a user to gain access to both the community forum and teleservices through your NGO. Please email hellohuddl@gmail.com in order for us to verify your eligibility and we will help you make an account.
 
@@ -54,6 +55,7 @@ class faq extends Component {
                     Huddl is committed to providing our services for free to long-term aid workers.
 
                 </div>
+                <SiteMap />
             </div>
         )
     }

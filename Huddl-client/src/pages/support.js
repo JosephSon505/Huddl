@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Navbar from '../components/Navbar';
+import SiteMap from '../components/SiteMap'
 
 class support extends Component {
 
@@ -17,6 +18,7 @@ class support extends Component {
                     <br></br><br></br>
                     Help us, help others by donating to Huddl.
                 </div>
+                <SiteMap />
             </div>
         )
     }

@@ -52,7 +52,7 @@ var contentContainer = {
     margin: '2%',
     paddingLeft: '3.5%',
     paddingRight: '3.5%',
-    fontSize: '25px',
+    fontSize: '10px',
     color: 'white',
 }
 

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Navbar from '../components/Navbar';
+import SiteMap from '../components/SiteMap'
 
 class partners extends Component {
 
@@ -15,6 +16,7 @@ class partners extends Component {
                     <br></br><br></br>
                     If you're interested in joining us, please contact us at <b>hellohuddl@gmail.com</b>
                 </div>
+                <SiteMap />
             </div>
         )
     }
