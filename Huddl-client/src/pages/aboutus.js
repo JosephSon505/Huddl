@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Navbar from '../components/Navbar';
+import SiteMap from '../components/SiteMap'
 
 class aboutus extends Component {
 
@@ -13,7 +14,7 @@ class aboutus extends Component {
                     <br></br>
                     By helping one volunteer, you help 100 refugees.
                     <br></br><br></br>
-                    Humanitarian aid workers are routinely exposed to traumatic events linked to the cause of mental health issues including <b>PTSD, depression, burnout and anxiety. </b> But increasingly, work stress including <b>extremely heavy workloads, long hours and limited time for self-care </b>are being highlighted as major causes. Among volunteers, mental health issues can be even higher. Often from affected communities, volunteers experience the same loss and grief as those they are working to support <b>but without the same training,</b> support or structure as professional workers. Not only does this negatively impact the quality of care for the refugees but it also causes <b>high turnover rates</b>, which consequently is a greater cost on NGOs.
+                    Humanitarian aid workers are routinely exposed to traumatic events linked to the cause of mental health issues including <b>PTSD, depression, burnout and anxiety. </b> But increasingly, work stress including <b>extremely heavy workloads, long hours and limited time for self-care </b>are being highlighted as major causes. Among volunteers, mental health issues can be even higher. Often from affected communities, volunteers experience the same loss and grief as those they are working to support <b>but without the same training, support or structure as professional workers. </b>Not only does this negatively impact the quality of care for the refugees but it also causes <b>high turnover rates</b>, which consequently is a greater cost on NGOs.
                     <br></br><br></br>
                     At the global level, there is now increasing recognition of the importance of ensuring the well-being and safety of humanitarian workers and volunteers. However, too often the appropriate support and care systems are <b>not in place, especially for national or local staff. </b>The prevailing culture of silence, feelings of guilt and perceived stigma around mental health, leads many to continue working without seeking treatment. To reduce stress, burnout and to promote the well-being of workers and volunteers, simple and cost-effective initiatives need to be put in place before, during and after deployment.
                     <br></br><br></br>
@@ -25,6 +26,8 @@ class aboutus extends Component {
                     <br></br><br></br>
                     As we say at Huddl, we hope you will <b>help us help others.</b>
                 </div>
+
+                <SiteMap />
             </div>
         )
     }

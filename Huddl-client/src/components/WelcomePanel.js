@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import TextField from '@material-ui/core/TextField';
 import withStyles from '@material-ui/styles/withStyles';
 import Button from '@material-ui/core/Button';
@@ -62,7 +63,7 @@ export class WelcomePanel extends Component {
                             <br></br><br></br>
                             <Button size="large"
                              variant="contained" 
-                             a href="/aboutus"
+                             component={Link} to="/aboutus" 
                              disableElevation
                              color="secondary">Read More
                             </Button> 
