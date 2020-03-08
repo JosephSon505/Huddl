@@ -71,7 +71,7 @@ export class LoginBox extends Component {
                 <div className={classes.paper}>
                     <br></br><br></br><br></br><br></br><br></br>
                     <Typography component="h1" variant="h4">
-                    <b>Welcome back</b>
+                    <b>Welcome Back!</b>
                     </Typography>
                     <TextField
                         variant="outlined"
