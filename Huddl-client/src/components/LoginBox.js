@@ -33,7 +33,7 @@ const styles = {
     submit: {
         boxShadow: 'none'
 
-      }
+    }
 }
 
 
@@ -45,17 +45,20 @@ export class LoginBox extends Component {
             email: '',
             password: ''
         }
+
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     handleChange = (event) => {
         this.setState({
-          [event.target.name]: event.target.value
-        });  
+            [event.target.name]: event.target.value
+        });
     }
-    
-    handleSubmit = () => {
+
+    handleSubmit = (event) => {
+        event.preventDefault();
         const userData = {
-            email: this.state.email, 
+            email: this.state.email,
             password: this.state.password
         }
         this.props.callBackFromLogin(userData, this.props.history);
@@ -71,66 +74,68 @@ export class LoginBox extends Component {
                 <div className={classes.paper}>
                     <br></br><br></br><br></br><br></br><br></br>
                     <Typography component="h1" variant="h4">
-                    <b>Welcome Back!</b>
+                        <b>Welcome Back!</b>
                     </Typography>
-                    <TextField
-                        variant="outlined"
-                        margin="normal"
-                        required
-                        fullWidth
-                        id="email"
-                        onChange={this.handleChange}
-                        label="Email Address"
-                        name="email"
-                        autoComplete="email"
-                        autoFocus
-                    />
-                    <TextField
-                        variant="outlined"
-                        margin="normal"
-                        required
-                        fullWidth
-                        onChange={this.handleChange}
-                        name="password"
-                        label="Password"
-                        type="password"
-                        id="password"
-                        autoComplete="current-password"
-                    />
-                    <FormControlLabel
-                        control={<Checkbox value="remember" color="primary" />}
-                        label="Remember me"
-                    />
-                    <Button
-                        type="submit"
-                        fullWidth
-                        variant="contained"
-                        color="primary"
-                        align="left"
-                        onClick={this.handleSubmit}
-                        className={classes.submit}
-                    >
-                        <b>Log in</b>
-                    </Button>
+
+                    <form noValidate onSubmit={this.handleSubmit} >
+                        <TextField
+                            variant="outlined"
+                            margin="normal"
+                            required
+                            fullWidth
+                            id="email"
+                            onChange={this.handleChange}
+                            label="Email Address"
+                            name="email"
+                            autoComplete="email"
+                            autoFocus
+                        />
+                        <TextField
+                            variant="outlined"
+                            margin="normal"
+                            required
+                            fullWidth
+                            onChange={this.handleChange}
+                            name="password"
+                            label="Password"
+                            type="password"
+                            id="password"
+                            autoComplete="current-password"
+                        />
+                        <FormControlLabel
+                            control={<Checkbox value="remember" color="primary" />}
+                            label="Remember me"
+                        />
+                        <Button
+                            type="submit"
+                            fullWidth
+                            variant="contained"
+                            color="primary"
+                            align="left"
+                            onClick={this.handleSubmit}
+                            className={classes.submit}
+                        >
+                            <b>Log in</b>
+                        </Button>
+                    </form>
                     <br></br><br></br>
                     <Grid container>
                         <Grid item xs>
-                        <Link href="#" variant="body2">
-                            Forgot password?
+                            <Link href="#" variant="body2">
+                                Forgot password?
                         </Link>
                         </Grid>
                         <Grid item>
-                        <Link href="/signup" variant="body2">
-                            {"Don't have an account? Sign Up"}
-                        </Link>
+                            <Link href="/signup" variant="body2">
+                                {"Don't have an account? Sign Up"}
+                            </Link>
                         </Grid>
                     </Grid>
                 </div>
                 <Box mt={28}>
                 </Box>
-                </Container>
-                
-            );
+            </Container>
+        );
     }
 }
 
