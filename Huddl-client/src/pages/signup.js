@@ -5,8 +5,13 @@ import SignupBox from '../components/SignupBox'
 import axios from 'axios';
 // import Chatkit from '@pusher/chatkit-server';
 
-const Chatkit = require('@pusher/chatkit-server');
+// redux
+import { connect } from 'react-redux';
+import { signupUser } from '../redux/actions/userActions';
 
+axios.defaults.baseURL = 'https://us-central1-letshuddl.cloudfunctions.net/api';
+
+const Chatkit = require('@pusher/chatkit-server');
 
 const chatkit = new Chatkit.default({
     instanceLocator: 'v1:us1:3366eda2-e4d8-45c1-9f80-00f24eb6f202',
@@ -29,37 +34,91 @@ class signup extends Component {
     }
 
     handleSignUp = (userData) => {
-        console.log("Made it to Sign Up");
-        console.log(userData.email);
         const newUserData = {
             firstName: userData.firstName,
-            lastName: userData.lastName, 
+            lastName: userData.lastName,
             email: userData.email,
-            password: userData.password, 
+            password: userData.password,
             confirmPassword: userData.password,
-            handle: userData.firstName + userData.lastName, 
+            handle: userData.firstName + userData.lastName,
             userGroup: 'Volunteer',
         };
 
+        //automatically create chatkit user and
+        //automatically add new users into rooms with therapist 1, 2, 3, 4, 5, and 6
+        
         chatkit.createUser({
             id: userData.email,
             name: userData.firstName + " " + userData.lastName,
           })
-            .then(() => {
-              console.log('User created successfully');
+            .then((res) => {
+              console.log('User created successfully', res);
             }).catch((err) => {
               console.log(err);
-            });
+            }).then(() => {
+                chatkit.createRoom({
+                    creatorId: userData.email,
+                    name: 'Therapist 1',
+                    userIds: ['therapist1@usc.edu']
+                }).then((res) => {
+                    console.log('Room created successfully', res);
+                }).catch((err) => {
+                    console.log(err);
+                });
+                
+                chatkit.createRoom({
+                    creatorId: userData.email,
+                    name: 'Therapist 2',
+                    userIds: ['therapist2@usc.edu']
+                    }).then((res) => {
+                        console.log('Room created successfully', res);
+                    }).catch((err) => {
+                        console.log(err);
+                    });
+                
+                chatkit.createRoom({
+                    creatorId: userData.email,
+                    name: 'Therapist 3',
+                    userIds: ['therapist3@usc.edu']
+                }).then((res) => {
+                    console.log('Room created successfully', res);
+                }).catch((err) => {
+                    console.log(err);
+                });
+                
+                chatkit.createRoom({
+                    creatorId: userData.email,
+                    name: 'Therapist 4',
+                    userIds: ['therapist4@usc.edu']
+                }).then((res) => {
+                    console.log('Room created successfully', res);
+                }).catch((err) => {
+                    console.log(err);
+                });
+        
+                chatkit.createRoom({
+                    creatorId: userData.email,
+                    name: 'Therapist 5',
+                    userIds: ['therapist5@usc.edu']
+                }).then((res) => {
+                    console.log('Room created successfully', res);
+                }).catch((err) => {
+                    console.log(err);
+                });
+                
+                chatkit.createRoom({
+                    creatorId: userData.email,
+                    name: 'Therapist 6',
+                    userIds: ['therapist6@usc.edu']
+                }).then((res) => {
+                    console.log('Room created successfully', res);
+                }).catch((err) => {
+                    console.log(err);
+                });
 
-        // TODO: AXIOS goes here - call the signup route
-        axios.post('/signup', newUserData).then(data => {
-            this.props.history.push({
-                pathname: '/home',
-                userData: newUserData
-            });
-        }).catch(err => {
-            console.log('HUGE ERROR');
-        });
+            })
+
+        this.props.signupUser(newUserData, this.props.history);
     }
 
 
@@ -67,7 +126,7 @@ class signup extends Component {
         return (
             <div style={container}>
                 <Navbar />
-                <SignupBox callbackFromSignUp={this.handleSignUp}/>
+                <SignupBox callbackFromSignUp={this.handleSignUp} />
                 <SiteMap />
             </div>
         )
@@ -75,4 +134,13 @@ class signup extends Component {
 
 }
 
-export default signup;
+const mapStateToProps = (state) => ({
+    user: state.user,
+    UI: state.UI
+});
+
+const mapActionsToProps = {
+    signupUser
+}
+
+export default connect(mapStateToProps, mapActionsToProps)(signup);

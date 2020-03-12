@@ -1,9 +1,12 @@
+  
 import React, { Component } from 'react';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import PropTypes from 'prop-types';
 import Calendar from 'react-calendar';
+import { Link } from 'react-router-dom';
+import { ChatFill } from 'react-bootstrap-icons';
 
 import store from '../redux/store';
 
@@ -24,7 +27,8 @@ var forumHeader = {
   borderBottom: 'none',
   backgroundColor: '#F3F3F3',
   flex: 2,
-  borderRadius: '5px 5px 0px 0px'
+  borderRadius: '5px 5px 0px 0px',
+  paddingLeft: '2%'
 }
 
 var recentPosts = {
@@ -32,7 +36,10 @@ var recentPosts = {
   borderTop: 'none',
   borderRadius: '0px 0px 5px 5px',
   justifyContent: 'center',
-  alignItems: 'center'
+  alignItems: 'center',
+  display: 'flex',
+  flexDirection: 'column',
+  padding: '2%',
 }
 
 var columnAlignment = {
@@ -43,337 +50,334 @@ var columnAlignment = {
 };
 
 var titleStyle = {
-    display: 'flex',
-    justifyContent: 'flex-start',
-    alignItems: 'flex-end',
-    fontSize: '55px'
+  display: 'flex',
+  justifyContent: 'flex-start',
+  alignItems: 'flex-end',
+  fontSize: '55px'
 }
 
 var calendarItemStyle = {
-    display: 'flex',
-    borderRadius: '10px',
-    justifyContent:'center',
-    alignItems: 'center',
-    textAlign: 'center',
-    fontSize: '20px',
-    backgroundColor: '#F3F3F3',
-    margin: '.2%',
-    marginTop: "1.25%",
-    marginBottom: '1.25%'
+  display: 'flex',
+  borderRadius: '10px',
+  justifyContent: 'center',
+  alignItems: 'center',
+  textAlign: 'center',
+  fontSize: '20px',
+  backgroundColor: '#F3F3F3',
+  margin: '.2%',
+  marginTop: "1.25%",
+  marginBottom: '1.25%'
 }
 
 var bordered = {
   border: "1px solid black"
 };
 
-var flexStart = {
-  alignItems: 'flex-start'
-}
-
 var maxHeight = {
-    height: '100%'
+  height: '100%'
 }
 
-var maxWidth = {
-  width: '100%'
-}
 
 var calendarContainers = {
   flex: 3,
   paddingRight: '1%'
 };
 
-var lowerContainers = {
-  
-}
-
 
 var containerDiv = {
-    height: '100%',
-    width:'90%',
-    display: 'flex'
+  height: '100%',
+  width: '90%',
+  display: 'flex'
+}
+
+var messageLinkContainer = {
+  flex: 1,
+  width: '100%', display: 'flex', flexDirection: 'column', marginLeft: '1%', marginRight: '1%', overflow: 'scroll'
 }
 
 export class Dashboard extends Component {
-    constructor(){
-        super();
-        this.state = {
-          currentUserName: store.getState().user.credentials.handle,
-          currentTimeLocal: 0,
-          currentTimeGreece: 7,
-          calendarDate: new Date(),
-          calendarRows: [],
-          times: [
-            "12",
-            "1",
-            "2",
-            "3",
-            "4",
-            "5",
-            "6",
-            "7",
-            "8",
-            "9",
-            "10",
-            "11",
-            "12",
-            "1",
-            "2",
-            "3",
-            "4",
-            "5",
-            "6",
-            "7",
-            "8",
-            "9",
-            "10",
-            "11"
-          ],
-          schedulerData: [
-            {
-              startDate: "2018-10-31 10:00",
-              endDate: "2018-10-31 11:00",
-              title: "Meeting"
-            },
-            {
-              startDate: "2020-02-18 18:00",
-              endDate: "2020-02-18 20:00",
-              title: "Go to a gym"
-            }
-          ]
-        };
-    }
+  constructor() {
+    super();
+    this.state = {
+      currentUserName: store.getState().user.credentials.firstName,
+      currentTimeLocal: 0,
+      currentTimeGreece: 7,
+      calendarDate: new Date(),
+      calendarRows: [],
+      times: [
+        "12",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "11"
+      ],
+      schedulerData: [
+        {
+          startDate: "2018-10-31 10:00",
+          endDate: "2018-10-31 11:00",
+          title: "Meeting"
+        },
+        {
+          startDate: "2020-02-18 18:00",
+          endDate: "2020-02-18 20:00",
+          title: "Go to a gym"
+        }
+      ]
+    };
+  }
 
-    componentDidMount(){
-       this.setTimes();
-    }
- 
-    setTimes = () => {
-        var d = new Date();
-        var greeceD = new Date().toLocaleString("en-US", {
-          timeZone: "Europe/Athens"
-        });
-       var convertedDate = new Date(greeceD);
-        this.setState({
-            localHours: d.getHours(),
-            greeceHours: convertedDate.getHours(),
-            localMinutes: d.getMinutes(),
-            greeceMinutes: convertedDate.getMinutes(),
-            localDate: d.getDate(),
-            greeceDate: convertedDate.getDate(),
-            localMonth: d.getMonth(),
-            greeceMonth: convertedDate.getMonth()
-        })
-        
-    }
+  componentDidMount() {
+    this.setTimes();
+  }
 
-    createCalendarLabel = (headerItem, textItem, hours,minutes,date,month) => {
-      var monthArr = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', , 'Oct', 'Nov', 'Dec']
-      var minuteString = minutes;
-      if(minutes < 10){
-        minuteString = "0" + minutes;
-      }
-      var grid = <Grid container item xs={12} spacing={1}>
-        <Grid item xs={6} className="hindFont">
-          <Grid item xs={6} className="subHeader">
-            <p>{headerItem}</p>
-          </Grid>
-          <Grid item xs={6} className="text">
-            <p>{textItem}</p>
-          </Grid>
+  setTimes = () => {
+    var d = new Date();
+    var greeceD = new Date().toLocaleString("en-US", {
+      timeZone: "Europe/Athens"
+    });
+    var convertedDate = new Date(greeceD);
+    this.setState({
+      localHours: d.getHours(),
+      greeceHours: convertedDate.getHours(),
+      localMinutes: d.getMinutes(),
+      greeceMinutes: convertedDate.getMinutes(),
+      localDate: d.getDate(),
+      greeceDate: convertedDate.getDate(),
+      localMonth: d.getMonth(),
+      greeceMonth: convertedDate.getMonth()
+    })
+
+  }
+
+  createCalendarLabel = (headerItem, textItem, hours, minutes, date, month) => {
+    var monthArr = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', , 'Oct', 'Nov', 'Dec']
+    var minuteString = minutes;
+    if (minutes < 10) {
+      minuteString = "0" + minutes;
+    }
+    var grid = <Grid container item xs={12} spacing={1}>
+      <Grid item xs={6} className="hindFont">
+        <Grid item xs={6} className="subHeader">
+          <p>{headerItem}</p>
         </Grid>
-        <Grid item xs={6} className="hindFont">
-          <Grid item xs={6} className="subHeader">
-            <p>{hours + ":" + minuteString}</p>
-          </Grid>
-          <Grid item xs={6} className="text">
-            <p>{monthArr[month]}<b>{date}</b></p>
-          </Grid>
+        <Grid item xs={6} className="text">
+          <p>{textItem}</p>
         </Grid>
       </Grid>
-      return grid
+      <Grid item xs={6} className="hindFont">
+        <Grid item xs={6} className="subHeader">
+          <p>{hours + ":" + minuteString}</p>
+        </Grid>
+        <Grid item xs={6} className="text">
+          <p>{monthArr[month]}<b>{date}</b></p>
+        </Grid>
+      </Grid>
+    </Grid>
+    return grid
+  }
+
+  createTimeCalendar = (arr, timeEntered) => {
+    var rows = [];
+    var timeOfDay = '';
+    for (var i = 0; i < arr.length; i++) {
+      if (i < 12) {
+        timeOfDay = 'am'
+      } else {
+        timeOfDay = 'pm'
+      }
+      var timeString = arr[i];
+      if (i === timeEntered) {
+        rows.push(
+          <Grid item xs style={Object.assign({}, calendarItemStyle, bordered)}>
+            {timeString}<br />
+            {timeOfDay}
+          </Grid>
+        );
+      } else {
+        rows.push(
+          <Grid item xs style={calendarItemStyle} className="hindFont">
+            {timeString}
+            <br />
+            {timeOfDay}
+          </Grid>
+        );
+      }
     }
+    return rows
+  }
 
-    createTimeCalendar = (arr, timeEntered) => {
-        var rows = [];
-        var timeOfDay = '';
-        for(var i=0; i < arr.length;i++){
-            if (i < 12){
-                timeOfDay = 'am'
-            } else {
-                timeOfDay = 'pm'
-            }
-            var timeString = arr[i];
-            if(i === timeEntered){
-                rows.push(
-                  <Grid item xs style={Object.assign({},calendarItemStyle,bordered)}>
-                    {timeString}<br />
-                    {timeOfDay}
-                  </Grid>
-                );
-            } else {
-                rows.push(
-                  <Grid item xs style={calendarItemStyle} className="hindFont">
-                    {timeString}
-                    <br />
-                    {timeOfDay}
-                  </Grid>
-                );
-            }
-        }
-      return rows
-    }
-
-    render() {
-        const { classes } = this.props;
-        return (
-          <div style={Object.assign({}, containerDiv, columnAlignment)}>
-            <Grid container style={{ flex: 4 }}>
-              <Grid container item xs={12} spacing={1}>
-                <Grid item xs={12} style={titleStyle} className="hindFont">
-                  <p>
-                    Welcome, <b>{"\n" + this.state.currentUserName}!</b>
-                  </p>
-                </Grid>
-              </Grid>
+  render() {
+    const { classes } = this.props;
+    return (
+      <div style={Object.assign({}, containerDiv, columnAlignment)}>
+        <Grid container style={{ flex: 4 }}>
+          <Grid container item xs={12} spacing={1}>
+            <Grid item xs={12} style={titleStyle} className="hindFont">
+              <p>
+                Welcome, <b>{"\n" + this.state.currentUserName}!</b>
+              </p>
             </Grid>
+          </Grid>
+        </Grid>
 
-            <Grid container style={Object.assign({}, calendarContainers)}>
+        <Grid container style={Object.assign({}, calendarContainers)}>
+          <Grid
+            container
+            item
+            xs={12}
+            spacing={0.5}
+            justify="center"
+            alignItems="center"
+          >
+            <Grid item xs={2}>
+              {this.createCalendarLabel(
+                "Athens",
+                "Greece",
+                this.state.greeceHours,
+                this.state.greeceMinutes,
+                this.state.greeceDate,
+                this.state.greeceMonth
+              )}
+            </Grid>
+            <Grid container item xs={10} style={maxHeight}>
+              {this.createTimeCalendar(
+                this.state.times,
+                this.state.greeceHours
+              )}
+            </Grid>
+          </Grid>
+        </Grid>
+
+        <Grid container style={Object.assign({}, calendarContainers)}>
+          <Grid
+            container
+            item
+            xs={12}
+            spacing={0.5}
+            justify="center"
+            alignItems="center"
+          >
+            <Grid item xs={2}>
+              {this.createCalendarLabel(
+                "Local",
+                "Time",
+                this.state.localHours,
+                this.state.localMinutes,
+                this.state.localDate,
+                this.state.localMonth
+              )}
+            </Grid>
+            <Grid container item xs={10} style={maxHeight}>
+              {this.createTimeCalendar(
+                this.state.times,
+                this.state.localHours
+              )}
+            </Grid>
+          </Grid>
+        </Grid>
+
+        <Grid container style={{ flex: 10 }}>
+          <Grid
+            container
+            item
+            xs={12}
+            spacing={0.5}
+            justify="center"
+            alignItems="center"
+          >
+            <Grid container item xs={6}
+              spacing={0.5}
+              style={Object.assign({}, maxHeight)}
+              justify="center"
+              alignItems="center"
+            >
               <Grid
-                container
                 item
                 xs={12}
-                spacing={0.5}
-                justify="center"
-                alignItems="center"
+                className="hindFont"
+                style={Object.assign({}, maxHeight, forumContainer)}
               >
-                <Grid item xs={2}>
-                  {this.createCalendarLabel(
-                    "Athens",
-                    "Greece",
-                    this.state.greeceHours,
-                    this.state.greeceMinutes,
-                    this.state.greeceDate,
-                    this.state.greeceMonth
-                  )}
-                </Grid>
-                <Grid container item xs={10} style={maxHeight}>
-                  {this.createTimeCalendar(
-                    this.state.times,
-                    this.state.greeceHours
-                  )}
-                </Grid>
-              </Grid>
-            </Grid>
-
-            <Grid container style={Object.assign({}, calendarContainers)}>
-              <Grid
-                container
-                item
-                xs={12}
-                spacing={0.5}
-                justify="center"
-                alignItems="center"
-              >
-                <Grid item xs={2}>
-                  {this.createCalendarLabel(
-                    "Local",
-                    "Time",
-                    this.state.localHours,
-                    this.state.localMinutes,
-                    this.state.localDate,
-                    this.state.localMonth
-                  )}
-                </Grid>
-                <Grid container item xs={10} style={maxHeight}>
-                  {this.createTimeCalendar(
-                    this.state.times,
-                    this.state.localHours
-                  )}
-                </Grid>
-              </Grid>
-            </Grid>
-
-            <Grid container style={{ flex: 10 }}>
-              <Grid
-                container
-                item
-                xs={12}
-                spacing={0.5}
-                justify="center"
-                alignItems="center"
-              >
-                <Grid container item xs={6}
-                  spacing={0.5}
-                  style={Object.assign({}, maxHeight)}
-                  justify="center"
-                  alignItems="center"
+                <Grid
+                  item
+                  xs={12}
+                  className="subHeader"
+                  style={forumHeader}
                 >
-                  <Grid
-                    item
-                    xs={12}
-                    className="hindFont"
-                    style={Object.assign({}, maxHeight, forumContainer)}
-                  >
-                    <Grid
-                      item
-                      xs={12}
-                      className="subHeader"
-                      style={forumHeader}
-                    >
-                      <p>Calendar</p>
-                    </Grid>
-                    <Grid
-                      container
-                      item
-                      xs={12}
-                      className="text"
-                      style={recentPosts}
-                    >
-                      <Calendar />
-                    </Grid>
-                  </Grid>
+                  <p>Calendar</p>
                 </Grid>
                 <Grid
                   container
                   item
-                  xs={6}
-                  spacing={0.5}
-                  style={Object.assign({}, maxHeight)}
-                  justify="center"
-                  alignItems="center"
+                  xs={12}
+                  className="text"
+                  style={recentPosts}
                 >
-                  <Grid
-                    item
-                    xs={12}
-                    className="hindFont"
-                    style={Object.assign({}, maxHeight, forumContainer)}
-                  >
-                    <Grid
-                      item
-                      xs={12}
-                      className="subHeader"
-                      style={forumHeader}
-                    >
-                      <p>Recent posts</p>
-                    </Grid>
-                    <Grid
-                      container
-                      item
-                      xs={12}
-                      className="text"
-                      style={recentPosts}
-                      className="subHeader"
-                    >
-                      <p>Coming soon!</p>
-                    </Grid>
-                  </Grid>
+                  <Calendar />
                 </Grid>
               </Grid>
             </Grid>
-          </div>
-        );
-    }
+            <Grid
+              container
+              item
+              xs={6}
+              spacing={0.5}
+              style={Object.assign({}, maxHeight)}
+              justify="center"
+              alignItems="center"
+            >
+              <Grid
+                item
+                xs={12}
+                className="hindFont"
+                style={Object.assign({}, maxHeight, forumContainer)}
+              >
+                <Grid
+                  item
+                  xs={12}
+                  className="subHeader"
+                  style={forumHeader}
+                >
+                  <p>Direct Messages</p>
+
+                </Grid>
+                <Grid
+                  container
+                  item
+                  xs={12}
+                  className="text"
+                  style={recentPosts}
+                >
+                  <div style={messageLinkContainer}>
+                    {this.props.userrooms.map((room) => (<span><li key={room.name}><Link style={{ textDecoration: "none" }} to={`/chatpage/${room.id}`}><div className="messagesDash" >{room.name}</div> </Link></li></span>))}
+                  </div>
+                  {/* <p>Coming soon!</p> */}
+                </Grid>
+              </Grid>
+            </Grid>
+          </Grid>
+        </Grid>
+      </div>
+    );
+  }
 }
 
 /*

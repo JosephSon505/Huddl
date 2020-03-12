@@ -7,7 +7,7 @@ import createMuiTheme from '@material-ui/core/styles/createMuiTheme';
 
 import axios from 'axios';
 import jwtDecode from 'jwt-decode';
-import { getUserData } from './redux/actions/userActions';
+import { getUserData, logoutUser } from './redux/actions/userActions';
 import { SET_AUTHENTICATED } from './redux/types';
 
 import './App.css';
@@ -29,6 +29,9 @@ import providerSurvey from './pages/providerSurvey';
 import patientSurvey from './pages/patientSurvey';
 import chatpage from './pages/chatpage';
 
+
+axios.defaults.baseURL = 'https://us-central1-letshuddl.cloudfunctions.net/api';
+
 // theme
 const theme = createMuiTheme({
   palette: {
@@ -49,15 +52,18 @@ const theme = createMuiTheme({
 
 const token = localStorage.FBIdToken;
 if (token) {
-  const decodedToken = jwtDecode(token);
-  if (decodedToken.exp * 1000 < Date.now()) {
-    // store.dispatch(logoutUser());
+  // const decodedToken = jwtDecode(token);
+  // if (decodedToken.exp * 1000 < Date.now()) {
+  //   store.dispatch(logoutUser());
+  //   window.location.href = '/login';
+  // } else {
+  //   store.dispatch({ type: SET_AUTHENTICATED });
+  //   axios.defaults.headers.common['Authorization'] = token;
+  //   store.dispatch(getUserData());
+  // }
+
+    store.dispatch(logoutUser());
     window.location.href = '/login';
-  } else {
-    store.dispatch({ type: SET_AUTHENTICATED });
-    axios.defaults.headers.common['Authorization'] = token;
-    store.dispatch(getUserData());
-  }
 }
 
 class App extends Component {

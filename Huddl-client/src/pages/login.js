@@ -10,8 +10,9 @@ import { connect } from 'react-redux';
 import { loginUser } from '../redux/actions/userActions';
 
 
-// Style definitions
+axios.defaults.baseURL = 'https://us-central1-letshuddl.cloudfunctions.net/api';
 
+// Style definitions
 var container = {
     display: 'flex',
     flexDirection: 'column',

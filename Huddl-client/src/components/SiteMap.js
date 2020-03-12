@@ -52,7 +52,7 @@ var contentContainer = {
     margin: '2%',
     paddingLeft: '3.5%',
     paddingRight: '3.5%',
-    fontSize: '25px',
+    fontSize: '10px',
     color: 'white',
 }
 
@@ -69,8 +69,7 @@ export class SiteMap extends Component {
                     <div style={contentContainer}>
                         <hr></hr>
                         <div className="text"><h3><b>Our Mission</b></h3></div>
-                        <div className="text">Huddl seeks to break the silence on humanitarian aid worker
-                        mental health and provide them with sustained psychological support. Help us help others.
+                        <div className="text">Leveraging the power of technology to improve the mental health of aid workers and humanitarian volunteers throughout the world 
                         </div>
                     </div>
 

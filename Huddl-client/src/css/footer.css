@@ -3,20 +3,21 @@ a {
 }
 
 a:link {
-  color: #2a2a2b;
+  color: #666668;
 }
 
 /* visited link */
 a:visited {
-  color: #2a2a2b;
+  color: #666668;
 }
 
 /* mouse over link */
 a:hover {
-  color: #499DFF;
+  color: #1EA37D;
 }
 
 /* selected link */
 a:active {
   color: #FFFFFF;
 }
+

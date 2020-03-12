@@ -42,3 +42,19 @@ html, body {
 mark {
   background-color: #ceffc9;
 }
+
+li {
+  list-style-type: none;
+}
+
+.messagesDash {
+display: flex;
+align-items: center;
+padding: 1%;
+margin-right: 2%;
+margin-top: 2%;
+border: 2px solid #c9c9c9;
+border-radius: 10px;
+font-family: 'Hind', sans-serif;
+font-size: 13px;
+}

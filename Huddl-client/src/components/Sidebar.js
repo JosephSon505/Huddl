@@ -7,7 +7,11 @@ import SideNav, { Toggle, Nav, NavItem, NavIcon, NavText } from '@trendmicro/rea
 import '../css/react-sidenav.css';
 
 // Bootstrap Icon Imports
+<<<<<<< HEAD
 import { ChatFill, BarChartFill, PeopleFill } from 'react-bootstrap-icons';
+=======
+import { ChatFill, BarChartFill, PeopleFill, CalendarFill, ToggleOn, HouseFill } from 'react-bootstrap-icons';
+>>>>>>> 670f5875ec4d1c9eb3fc21d66743d27a332f5ec1
 
 const Separator = styled.div`
     clear: both;
@@ -42,31 +46,41 @@ class Sidebar extends Component {
     >
       <SideNav.Toggle />
       <SideNav.Nav defaultSelected="portal" >
-        <NavItem eventKey="portal">
+        <NavItem eventKey="home">
           <NavIcon>
-            <Link to="/portal"><BarChartFill /> </Link>
+            <Link to="/home"><HouseFill /> </Link>
           </NavIcon>
-          <NavText title="PORTAL">
-            <Link to="/portal"> Portal </Link>
+          <NavText title="Home">
+            <Link to="/home"> Home </Link>
           </NavText>
         </NavItem>
-        <NavItem eventKey="messages">
+        <NavItem eventKey="portal">
           <NavIcon>
-            {/* <Link to="/chatpage"><ChatFill /> </Link> */}
-            {/* <a href='/chat'>Chats</a> */}
+            <Link to="/home"><BarChartFill /> </Link>
           </NavIcon>
+<<<<<<< HEAD
           <NavText title="CHAT">
             <Link to="/chat">Chat</Link>
+=======
+          <NavText title="PORTAL">
+            <Link to="/home"> Portal </Link>
+>>>>>>> 670f5875ec4d1c9eb3fc21d66743d27a332f5ec1
           </NavText>
         </NavItem>
         <NavItem eventKey="forums">
           <NavIcon>
-            <Link to="/forums"><PeopleFill /></Link>
+            <Link to="/home"><PeopleFill /></Link>
           </NavIcon>
           <NavText title="FORUMS">
-            <Link to="/forums">Forums</Link>
+            <Link to="/home">Forums</Link>
           </NavText>
         </NavItem>
+        <NavItem eventKey="Google">
+        <NavIcon>
+            <a href="http://hangouts.google.com/start" target="_blank">G+</a>
+        </NavIcon>
+        </NavItem>
+        
       </SideNav.Nav>
 
     </SideNav>
