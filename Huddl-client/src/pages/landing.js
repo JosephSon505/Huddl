@@ -4,7 +4,6 @@ import InfoPanels from '../components/InfoPanels'
 import SiteMap from '../components/SiteMap'
 import WelcomePanel from '../components/WelcomePanel'
 
-
 // Style definitions
 
 var container = {

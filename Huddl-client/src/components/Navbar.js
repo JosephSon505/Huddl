@@ -7,7 +7,6 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
 import withStyles from '@material-ui/styles/withStyles';
 import Typography from '@material-ui/core/Typography';
-import logo from '../image/logo.png';
 
 // import '../css/header.css';
 
@@ -61,7 +60,7 @@ class Navbar extends Component {
         <Toolbar className={classes.mainBar}>
           <Typography variant='h4' color='inherit' className={classes.title}>
             {/* <div style={{ fontWeight: 'bold', fontSize: 40 }}><a href="/">huddl</a></div> */}
-            <a href="/"><img src='https://i.ibb.co/7KTWVJ0/logo.png' height={30}/></a>
+            <a href="/"><img src="https://i.ibb.co/fMFqv5L/logo-White.png" height={30} /></a>
           </Typography>
 
           <section className={classes.leftToolBar}>

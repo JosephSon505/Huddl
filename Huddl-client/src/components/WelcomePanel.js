@@ -45,32 +45,35 @@ export class WelcomePanel extends Component {
         const { classes } = this.props;
 
         return (
-            <div style ={welcomePanelContainer}>
-            <div style={{paddingTop: 150, paddingLeft: 100, paddingRight: 100, paddingBottom: 150, 
-                backgroundImage:`url(${hero})`, backgroundRepeat  : 'no-repeat', backgroundSize: 'cover',}}>
-                
-                <div style={interiorFlexRight}>
-                    <div style={interiorFlexRight}>
-                        <div className="header">
-                            <br></br>
-                            <font color="white">Connecting <b>mental health providers</b> with{" "}
-                            <b>humanitarian aid workers</b> on the ground.</font> 
-                        </div>
+            <div style={welcomePanelContainer}>
+                <div style={{
+                    paddingTop: 150, paddingLeft: 100, paddingRight: 100, paddingBottom: 150,
+                    backgroundImage: `url(${hero})`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover',
+                }}>
 
-                        <div className="subHeader">
-                            <br></br><br></br>
-                            <font color="white">Want to learn more about how you can help?</font>
-                            <br></br><br></br>
-                            <Button size="large"
-                             variant="contained" 
-                             component={Link} to="/aboutus" 
-                             disableElevation
-                             color="secondary">Read More
-                            </Button> 
+                    <div style={interiorFlexRight}>
+                        <div style={interiorFlexRight}>
+                            <div className="header">
+                                <br></br>
+                                <font color="white">Connecting <b>mental health providers</b> with{" "}
+                                    <b>humanitarian aid workers</b> on the ground.</font>
+                            </div>
+
+                            <div className="subHeader">
+                                <br></br><br></br>
+                                <font color="white">Want to learn more about how you can help?</font>
+                                <br></br><br></br>
+                                <Link to="/aboutus" style={{ textDecoration: 'none' }}>
+                                    <Button size="large"
+                                        variant="contained"
+                                        disableElevation
+                                        color="secondary">Read More
+                                    </Button>
+                                </Link>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
             </div>
         );
     }

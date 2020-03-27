@@ -67,11 +67,11 @@ class Sidebar extends Component {
           </NavText>
         </NavItem>
         <NavItem eventKey="Google">
-        <NavIcon>
+          <NavIcon>
             <a href="http://hangouts.google.com/start" target="_blank">G+</a>
-        </NavIcon>
+          </NavIcon>
         </NavItem>
-        
+
       </SideNav.Nav>
 
     </SideNav>

@@ -1,5 +1,9 @@
 import React, { Component } from 'react'
 
+// Material UI Imports
+import { createMuiTheme, responsiveFontSizes, ThemeProvider } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
+
 // Styles
 
 var panelViewContainer = {
@@ -31,9 +35,38 @@ var sides = {
     alignItems: 'center',
     flex: 1,
     height: '100%',
+    width: 0,
     padding: '5%'
 }
 
+let theme = createMuiTheme({
+    typography: {
+        fontFamily: [
+            '-apple-system',
+            'BlinkMacSystemFont',
+            'Segoe UI',
+            'Roboto',
+            'Oxygen',
+            'Ubuntu',
+            'Cantarell',
+            'Fira Sans',
+            'Droid Sans',
+            'Helvetica Neue',
+            'sans-serif',
+        ].join(','),
+
+        h1: {
+            fontSize: 5.5,
+        },
+        h2: {
+            fontSize: 2.5,
+        },
+        h3: {
+            fontSize: 1.5,
+        },
+    },
+});
+theme = responsiveFontSizes(theme);
 
 export class InfoPanels extends Component {
     constructor() {
@@ -47,13 +80,13 @@ export class InfoPanels extends Component {
             }, {
                 heading: "Are you a mental health provider?",
                 subHeading: 'Join the Huddl.',
-                    text: 'We hope to provide volunteers with 1-hour video coaching sessions with a mental health provider every other week. This is a great opportunity to directly aid the refugee crisis with the knowledge you’ve acquired in your career. Contact us at hellohuddl@gmail.com to get involved.'
+                text: 'We hope to provide volunteers with 1-hour video coaching sessions with a mental health provider every other week. This is a great opportunity to directly aid the refugee crisis with the knowledge you’ve acquired in your career. Contact us at hellohuddl@gmail.com to get involved.'
             },
             {
                 heading: "Are you a volunteer?",
                 subHeading: 'Talk to a mental health professional this week.',
                 text: 'In a recent study, 72.8% of rescue workers on Lesvos reported low levels of well-being, with over showing symptoms of burnout syndrome. Telecounseling has been proven to help alleviate stress and combat burnout. Help us enable you to become the most effective volunteer you can be.'
-                }]
+            }]
         }
     }
 
@@ -68,42 +101,46 @@ export class InfoPanels extends Component {
             var text = object.text
             if (counter % 2 === 1) {
                 rows.push(
-                    <div style={panelContainer}>
-                        <div style={sides}
-                            className="addLine">
-                            <div className="header">
-                                {heading}
+                    <ThemeProvider theme={theme}>
+                        <div style={panelContainer}>
+                            <div style={sides}
+                                className="addLine">
+                                <Typography variant='h1'>
+                                    {heading}
+                                </Typography>
+                            </div>
+                            <div style={sides}>
+                                <Typography variant='h2'>
+                                    {subHeading}
+                                </Typography>
+                                <Typography variant='h3'>
+                                    {text}
+                                </Typography>
                             </div>
                         </div>
-                        <div style={sides}>
-                            <div className="subHeader">
-                                {subHeading}
-                            </div>
-                            <div className="text">
-                                {text}
-                            </div>
-                        </div>
-                    </div>
+                    </ThemeProvider>
                 )
                 counter++;
             } else {
                 rows.push(
-                    <div style={panelContainer}>
-                        <div style={sides}
-                            className="addLine">
-                            <div className="subHeader">
-                                {subHeading}
+                    <ThemeProvider theme={theme}>
+                        <div style={panelContainer}>
+                            <div style={sides}
+                                className="addLine">
+                                <Typography variant='h2'>
+                                    {subHeading}
+                                </Typography>
+                                <Typography variant='h3'>
+                                    {text}
+                                </Typography>
                             </div>
-                            <div className="text">
-                                {text}
+                            <div style={sides}>
+                                <Typography variant='h1'>
+                                    {heading}
+                                </Typography>
                             </div>
                         </div>
-                        <div style={sides}>
-                            <div className="header">
-                                {heading}
-                            </div>
-                        </div>
-                    </div>
+                    </ThemeProvider>
                 )
                 counter++;
             }

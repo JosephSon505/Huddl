@@ -25,6 +25,8 @@ import aboutus from './pages/aboutus';
 import faq from './pages/faq';
 import support from './pages/support';
 import partners from './pages/partners';
+import providerSurvey from './pages/providerSurvey';
+import patientSurvey from './pages/patientSurvey';
 import chatpage from './pages/chatpage';
 
 
@@ -82,7 +84,8 @@ class App extends Component {
                 <Route exact path="/partners" component={partners} />
                 <Route exact path="/chatpage" component={chatpage} />
                 <Route exact path="/chatpage/:id" component={chatpage} />
-
+                <Route exact path="/providersurvey" component={providerSurvey} />
+                <Route exact path="/patientsurvey" component={patientSurvey} />
               </Switch>
             </Router>
           </div>
