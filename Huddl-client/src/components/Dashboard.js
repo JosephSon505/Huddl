@@ -1,4 +1,3 @@
-  
 import React, { Component } from 'react';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Grid from '@material-ui/core/Grid';
@@ -287,10 +286,7 @@ export class Dashboard extends Component {
               )}
             </Grid>
             <Grid container item xs={10} style={maxHeight}>
-              {this.createTimeCalendar(
-                this.state.times,
-                this.state.localHours
-              )}
+              {this.createTimeCalendar(this.state.times, this.state.localHours)}
             </Grid>
           </Grid>
         </Grid>
@@ -304,25 +300,24 @@ export class Dashboard extends Component {
             justify="center"
             alignItems="center"
           >
-            <Grid container item xs={6}
+            <Grid
+              container
+              item
+              xs={6}
               spacing={0.5}
               style={Object.assign({}, maxHeight)}
               justify="center"
               alignItems="center"
             >
+              {" "}
               <Grid
                 item
                 xs={12}
                 className="hindFont"
                 style={Object.assign({}, maxHeight, forumContainer)}
               >
-                <Grid
-                  item
-                  xs={12}
-                  className="subHeader"
-                  style={forumHeader}
-                >
-                  <p>Calendar</p>
+                <Grid item xs={12} className="subHeader" style={forumHeader}>
+                  <p>Messages</p>
                 </Grid>
                 <Grid
                   container
@@ -331,7 +326,21 @@ export class Dashboard extends Component {
                   className="text"
                   style={recentPosts}
                 >
-                  <Calendar />
+                  <div style={messageLinkContainer}>
+                    {this.props.userrooms.map(room => (
+                      <span>
+                        <li key={room.name}>
+                          <Link
+                            style={{ textDecoration: "none" }}
+                            to={`/chatpage/${room.id}`}
+                          >
+                            <div className="messagesDash">{room.name}</div>{" "}
+                          </Link>
+                        </li>
+                      </span>
+                    ))}
+                  </div>
+                  {/* <p>Coming soon!</p> */}
                 </Grid>
               </Grid>
             </Grid>
@@ -350,14 +359,8 @@ export class Dashboard extends Component {
                 className="hindFont"
                 style={Object.assign({}, maxHeight, forumContainer)}
               >
-                <Grid
-                  item
-                  xs={12}
-                  className="subHeader"
-                  style={forumHeader}
-                >
-                  <p>Direct Messages</p>
-
+                <Grid item xs={12} className="subHeader" style={forumHeader}>
+                  <p>Calendar</p>
                 </Grid>
                 <Grid
                   container
@@ -366,10 +369,7 @@ export class Dashboard extends Component {
                   className="text"
                   style={recentPosts}
                 >
-                  <div style={messageLinkContainer}>
-                    {this.props.userrooms.map((room) => (<span><li key={room.name}><Link style={{ textDecoration: "none" }} to={`/chatpage/${room.id}`}><div className="messagesDash" >{room.name}</div> </Link></li></span>))}
-                  </div>
-                  {/* <p>Coming soon!</p> */}
+                  <Calendar />
                 </Grid>
               </Grid>
             </Grid>

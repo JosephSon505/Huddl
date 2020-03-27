@@ -26,6 +26,7 @@ import faq from './pages/faq';
 import support from './pages/support';
 import partners from './pages/partners';
 import chatpage from './pages/chatpage';
+import calendar from './pages/calendar';
 
 
 axios.defaults.baseURL = 'https://us-central1-letshuddl.cloudfunctions.net/api';
@@ -80,6 +81,7 @@ class App extends Component {
                 <Route exact path="/faq" component={faq} />
                 <Route exact path="/support" component={support} />
                 <Route exact path="/partners" component={partners} />
+                <Route exact path="/calendar" component={calendar} />
                 <Route exact path="/chatpage" component={chatpage} />
                 <Route exact path="/chatpage/:id" component={chatpage} />
 

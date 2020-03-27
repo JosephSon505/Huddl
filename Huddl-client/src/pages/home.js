@@ -38,29 +38,31 @@ const chatkit = new Chatkit.default({
 
 const styles = {
   borderRight: {
-    borderRight: '1px solid black',
-    backgroundColor: '#1EA37D',
-    height: '100%'
+    borderRight: "1px solid black",
+    backgroundColor: "#1EA37D",
+    height: "100%"
   },
   card: {
-    backgroundColor: '#1EA37D',
+    backgroundColor: "#1EA37D"
   },
   container: {
-    height: '100VH',
-    width: '100VW',
+    height: "100VH",
+    width: "100VW",
+    background:
+      "linear-gradient(135deg, rgba(255,255,255,1) 0%, rgba(245,245,245,1) 68%);"
   },
   dashboardDiv: {
-    width: '50%',
-    height: '100VH',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center'
+    width: "50%",
+    height: "100VH",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center"
   },
   gridContainer: {
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems:'center',
-    justifyContent: 'center'
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center"
   }
 };
 

@@ -52,26 +52,26 @@ class Sidebar extends Component {
         </NavItem>
         <NavItem eventKey="portal">
           <NavIcon>
-            <Link to="/home"><BarChartFill /> </Link>
+            <Link to="/portal"><BarChartFill /> </Link>
           </NavIcon>
           <NavText title="PORTAL">
-            <Link to="/home"> Portal </Link>
+            <Link to="/portal"> Portal </Link>
           </NavText>
         </NavItem>
         <NavItem eventKey="forums">
           <NavIcon>
-            <Link to="/home"><PeopleFill /></Link>
+            <Link to="/forums"><PeopleFill /></Link>
           </NavIcon>
           <NavText title="FORUMS">
-            <Link to="/home">Forums</Link>
+            <Link to="/forums">Forums</Link>
           </NavText>
         </NavItem>
         <NavItem eventKey="Google">
-        <NavIcon>
-            <a href="http://hangouts.google.com/start" target="_blank">G+</a>
-        </NavIcon>
+          <NavIcon>
+            <a href="http://hangouts.google.com/start">G+</a>
+          </NavIcon>
         </NavItem>
-        
+
       </SideNav.Nav>
 
     </SideNav>
