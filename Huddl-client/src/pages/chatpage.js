@@ -1,44 +1,8 @@
 // Material-UI Imports
 import withStyles from '@material-ui/core/styles/withStyles';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-import PropTypes from 'prop-types';
-import UserList from '../components/UserList';
-import Dashboard from '../components/Dashboard';
-
-
 import React, { Component, View, Button } from 'react';
-//import { ChatkitProvider, TokenProvider } from '@pusher/chatkit-client-react';
-
-import Chatscreen from '../components/Chatscreen';
-import Sidebar from "../components/Sidebar";
-
-import Chatscreen2 from '../components/Chatscreen2';
-
-import store from '../redux/store';
-
-const Chatkit = require('@pusher/chatkit-server');
-
-const instanceLocator = 'v1:us1:3366eda2-e4d8-45c1-9f80-00f24eb6f202';
-const key = '1f7ad742-25f6-4c95-ab73-740747059cb3:yD1HqPGZMZg1yZrWAK36oQvEiBckt54dNrmoJahyoLc=';
-
-const chatkit = new Chatkit.default({
-  instanceLocator: instanceLocator,
-  key: key,
-})
-
-const thereapistIds = [
-  {id: 'therapist1@usc.edu', roomid: 'efdd87cf-122f-4099-92cf-834180f3bff1'},
-  {id: 'therapist2@usc.edu', roomid: 'edbaf2c9-8e43-4847-8498-3c07c969cfa2'},
-  {id: 'therapist3@usc.edu', roomid: '4e92e294-0274-4d0a-928a-7fbb2b2b0e04'},
-]
-
-// 'therapist2@usc.edu',
-//   'therapist3@usc.edu',
-//   'therapist4@usc.edu',
-//   'therapist5@usc.edu',
-//   'therapist6@usc.edu'
-
+import Talk from "talkjs";
+import store from '../redux/store'
 
 const styles = {
   borderRight: {
@@ -65,44 +29,21 @@ const styles = {
     flexDirection: 'row',
     alignItems:'center',
     justifyContent: 'center'
+  },
+  chatboxContainer: {
+    height: 400,
   }
 };
 
-// const tokenProvider = new TokenProvider({
-//   url: '<https://us1.pusherplatform.io/services/chatkit_token_provider/v1/9a9699f8-9213-45c5-aa54-bf106dd7ead9/token>',
-// });
 
-function buttonList(props) {
-  const users = props.users;
-  
-  if(users) {
-    return (
-      <Grid item sm={8} xs={12}>
-            {users.map(function(object) {
-              return (
-                <Button title="this is a Button"/>
-              );
-            })}
-      </Grid>
-    );
-  } else {
-    return (
-      <Grid item sm={8} xs={12}>
-        <div>Hello</div>
-      </Grid>
-    );
-  }
-}
+
 
 
 class chatpage extends Component {
 
   constructor() {
     super();
-    
-    this.update = this.update.bind(this)
-    //this.setRoomId = this.setRoomId.bind(this);
-    
+    this.inbox = undefined;   
     this.state = ({
       currentUser: '',
       users: [],
@@ -115,120 +56,60 @@ class chatpage extends Component {
 
   }
 
-
-  setRoomId = (event) => {
-    this.rid = String(event.target.attributes.roomid.value);
-    console.log("Rid: ", this.rid);
-
-    this.setState((state) => ({   //Note to self when updating state
-        currentroomid: this.rid,
-    }));
-    console.log("CurrentRoomId set to: ", this.rid);
-  }
-
-  setUsers = (users) => {
-    this.setState((state) => ({   //Note to self when updating state
-        users: users,
-    }));
-
-  }
-
-  setRooms = (rooms) => {
-    let arr = [];
-    for(let i = 0; i < rooms.length; i++) {
-        arr.push({key: rooms[i].id, value: <Chatscreen2 currentRoomId={rooms[i].id}></Chatscreen2>});
-    }
-    console.log("Chatkits: ",arr);
-    this.setState( (state, props) => ({   //Note to self when updating state
-        rooms: rooms,
-        roomComponents: arr,
-        currentUser: store.getState().user.credentials.email,
-    }));
-
-  }
-
-  async update() {
-    
-    chatkit.getUserRooms({ userId: store.getState().user.credentials.email })
-    .then((res) => {
-        this.setRooms(res);
-    }).catch(err => {
-        console.error(err)
-    })
-
-    chatkit.getUsers()
-    .then((res) => {
-        this.setUsers(res);
-    }).catch((err) => {
-        console.log(err);
-    });
-
-  }
-
   componentDidMount() {
-    // this.update();
-   
+    console.log("Hi I have been called");
+    const userCreds = store.getState().user.credentials;
+    Talk.ready.then(() => {
+        const me = new Talk.User({
+            id: userCreds.userID,
+            name: userCreds.firstName + " " + userCreds.lastName,
+            email: userCreds.email,
+            photoUrl: "https://demo.talkjs.com/img/marco.jpg",
+            welcomeMessage: "Hey there! How are you? :-)"
+        });
+
+        if (!window.talkSession) {
+          window.talkSession = new Talk.Session({
+              appId: "tVMpFCbr",
+              me: me
+          });
+        }
+    
+        const other = new Talk.User({
+          id: "654321",
+          name: "Sebastian",
+          email: "Sebastian@example.com",
+          photoUrl: "https://demo.talkjs.com/img/sebastian.jpg",
+          welcomeMessage: "Hey, how can I help?"
+        });
+
+        // You control the ID of a conversation. oneOnOneId is a helper method that generates
+        // a unique conversation ID for a given pair of users. 
+        const conversationId = Talk.oneOnOneId(me, other);
+
+        const conversation = window.talkSession.getOrCreateConversation(conversationId);
+        conversation.setParticipant(me);
+        conversation.setParticipant(other);
+    
+        this.inbox = window.talkSession.createInbox({
+            selected: conversation
+        });
+        this.inbox.mount(this.container);
+
+
+    }).catch(e => console.error(e));
+  }
+
+  componentWillUnmount() {
+    if (this.inbox) {
+        this.inbox.destroy();
+    }
   }
 
   render() {
-    const { classes } = this.props;
-    const { id } = this.props.match.params;
-    console.log("Id from URL: ", id);
-
-    // console.log("Store: ", store.getState());
-
-    //console.log("Rendering with state: ", this.state);
-    //chats.push(<Chatscreen2 currentusername={this.props.location.userData.email} currentroomid={this.state.currentroomid}></Chatscreen2>);
-    // console.log(chats);
-    // if(this.state.currentroomid === '') {
-    //     return (
-    //         <div className={classes.container}>
-    //           <Grid container spacing={0} direction={"row"} >
-    //             <Grid item xs={1}>
-    //               <Sidebar />
-    //               </Grid>
-                
-    //               <Grid item xs = {11}
-    //               className={classes.dashboardDiv}>
-    //                   <ul>
-    //                       {this.state.rooms.map((room) => (<li key={room.name}><button onClick={this.setRoomId} roomid={room.id}>{room.name}</button></li>))}
-    //                   </ul>
-    //               </Grid>
-    //           </Grid>
-                            
-    //         </div>
-    //       );
-    // }
-    // else {
-        // console.log("here");
-        // console.log(this.state.currentroomid);
-        // console.log(typeof(this.state.currentroomid));
-        return (
-            <div className={classes.container}>
-              <div style={{paddingTop: 100, paddingLeft: 100}}>
-                        <h1>Schedule an appointment</h1>
-                        </div>
-              <Grid container spacing={0} direction={"row"} >
-                <Grid item xs={1}>
-                  <Sidebar />
-                  </Grid>
-                
-                  <Grid item xs = {11}
-                  className={classes.dashboardDiv}>
-                      {/* <ul>
-                          {this.state.rooms.map((room) => (<li key={room.name}><button onClick={this.setRoomId} roomid={room.id}>{room.name}</button></li>))}
-                      </ul> */}
-                      <Chatscreen2 currentRoomId={id} ></Chatscreen2>
-
-                  </Grid>
-
-              </Grid>
-              
-              {/* {chats} */}
-              
-            </div>
-        );
-    //}
+    return (<span>
+      <div style={{height: '500px'}} ref={c => this.container = c}>Loading...</div>
+    </span>);
   }
 }
 
