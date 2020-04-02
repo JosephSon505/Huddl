@@ -56,6 +56,10 @@ class chatpage extends Component {
 
   }
 
+  grabAllUsers() {
+    
+  }
+
   componentDidMount() {
     console.log("Hi I have been called");
     const userCreds = store.getState().user.credentials;
