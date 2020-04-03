@@ -11,21 +11,21 @@ import React, { Component, View, Button } from 'react';
 class UserList extends Component {
     constructor() {
         super();
-        
     }
 
-    
+    handleClick(user){
+        this.props.callbackClick(user);
+    }
 
     render() {
         return (
             <Grid>
                 <ul>
-                        {/* {this.props.users != [] ? this.props.users.map(user => (<li key={user.id}><button>{user.id}</button></li>)) : <p>PlaceHolder</p>} */}
-                        {this.props.users != [] ? this.props.users.map(user => (<li key={user}><button>{user}</button></li>)) : <p>PlaceHolder</p>}
-
+                    {this.props.users !== [] 
+                    ? this.props.users.map(user => (<li key={user.name}><button onClick={() => this.handleClick(user)}>{user.name} {user.email} {user.id}</button></li>)) 
+                    : <p>PlaceHolder</p>} 
                 </ul>
-            </Grid>
-            
+            </Grid>  
         );
     }
 }

@@ -1,6 +1,7 @@
 // Material-UI Imports
 import withStyles from '@material-ui/core/styles/withStyles';
 import React, { Component, View, Button } from 'react';
+import UserList from '../components/UserList';
 import Talk from "talkjs";
 import store from '../redux/store'
 
@@ -36,7 +37,9 @@ const styles = {
 };
 
 
-
+const users = [{'id': '123456', 'name': 'John', 'email': 'jltanner@gmail.com'}, 
+                {'id': '654321', 'name': 'Johnny', 'email': 'jl@gmail.com'},
+                {'id': '321654', 'name': 'Joe', 'email': 'tanner@gmail.com'}] 
 
 
 class chatpage extends Component {
@@ -45,7 +48,8 @@ class chatpage extends Component {
     super();
     this.inbox = undefined;   
     this.state = ({
-      currentUser: '',
+      currentUser: {},
+      userSelected: {}, 
       users: [],
       rooms: [],
       roomComponents: [],
@@ -53,15 +57,39 @@ class chatpage extends Component {
     })
 
     this.rid = '';
-
-  }
-
-  grabAllUsers() {
     
   }
 
+  handleButtonClick = (user) => {
+    if (!window.talkSession) {
+      window.talkSession = new Talk.Session({
+          appId: "tVMpFCbr",
+          me: this.state.currentUser
+      });
+    }
+
+    const other = new Talk.User({
+      id: user.id,
+      name: user.name,
+      email: user.email,
+    });
+
+    this.setState({userSelected: other});
+
+    const conversationId = Talk.oneOnOneId(this.state.currentUser, other);
+    const conversation = window.talkSession.getOrCreateConversation(conversationId);
+    conversation.setParticipant(this.state.currentUser);
+    conversation.setParticipant(other);
+
+    this.inbox = window.talkSession.createInbox({
+      selected: conversation
+    });
+    this.inbox.mount(this.container);
+
+
+  }
+
   componentDidMount() {
-    console.log("Hi I have been called");
     const userCreds = store.getState().user.credentials;
     Talk.ready.then(() => {
         const me = new Talk.User({
@@ -72,13 +100,16 @@ class chatpage extends Component {
             welcomeMessage: "Hey there! How are you? :-)"
         });
 
+        this.setState({currentUser: me});
+
+        //Create talk session for first time if haven't yet
         if (!window.talkSession) {
           window.talkSession = new Talk.Session({
               appId: "tVMpFCbr",
               me: me
           });
         }
-    
+        
         const other = new Talk.User({
           id: "654321",
           name: "Sebastian",
@@ -87,16 +118,27 @@ class chatpage extends Component {
           welcomeMessage: "Hey, how can I help?"
         });
 
+        const other2 = new Talk.User({
+          id: "1234",
+          name: "Joe", 
+          email: "joe@gmail.com", 
+          welcomeMessage: "Hi this is joe!"
+        });
+
+        //For now we set the userSelected to other but this will be dynamic eventually
+        this.setState({userSelected: other2})
+
         // You control the ID of a conversation. oneOnOneId is a helper method that generates
         // a unique conversation ID for a given pair of users. 
-        const conversationId = Talk.oneOnOneId(me, other);
 
-        const conversation = window.talkSession.getOrCreateConversation(conversationId);
-        conversation.setParticipant(me);
-        conversation.setParticipant(other);
+        const conversationId2 = Talk.oneOnOneId(me, other2);
+        const conversation2 = window.talkSession.getOrCreateConversation(conversationId2);
+        conversation2.setParticipant(me);
+        conversation2.setParticipant(other2);
+        
     
         this.inbox = window.talkSession.createInbox({
-            selected: conversation
+            selected: conversation2
         });
         this.inbox.mount(this.container);
 
@@ -111,9 +153,14 @@ class chatpage extends Component {
   }
 
   render() {
-    return (<span>
-      <div style={{height: '500px'}} ref={c => this.container = c}>Loading...</div>
-    </span>);
+    return (
+      <div>
+        <span>
+          <div style={{height: '500px'}} ref={c => this.container = c}>Loading...</div>
+        </span>
+        <UserList callbackClick={this.handleButtonClick} users={users}>Hey There</UserList>
+      </div>
+    );
   }
 }
 
