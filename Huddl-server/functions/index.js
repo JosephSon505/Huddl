@@ -4,7 +4,7 @@ const cors = require('cors');
 const FirebaseAuth = require('./util/fbAuth');
 
 // import handlers
-const { helloWorld, signup, login, getUser } = require('./handlers/user');
+const { helloWorld, signup, login, getUser, getAllUsers } = require('./handlers/user');
 
 // used for cross platform errors after deploying
 app.use(cors());
