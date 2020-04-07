@@ -134,5 +134,5 @@ exports.getAllUsers = (req, res) => {
     }).catch(error => {
         res.status(500).json({error: `Error getting all users`});
         console.error("Error: " + error);    
-    })
+    });
 }
