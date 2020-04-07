@@ -14,5 +14,6 @@ app.get('/helloWorld', helloWorld);
 app.post('/signup', signup);
 app.post('/login', login);
 app.get('/user', FirebaseAuth, getUser);
+app.get('/getAllUsers', FirebaseAuth, getAllUsers);
 
 exports.api = functions.https.onRequest(app);

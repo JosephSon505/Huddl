@@ -116,3 +116,13 @@ exports.getUser = (req, res) => {
         return res.status(500).json({ error: err.code });
     });
 }
+
+exports.getAllUsers = (req, res) => {
+    db.doc('/Users').get().then((snapshot) => {
+        snapshot.forEach((doc) => {
+          console.log(doc.id, '=>', doc.data());
+        });
+    }).catch((err) => {
+        console.log('Error getting documents', err);
+    });
+}
