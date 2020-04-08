@@ -3,7 +3,8 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import React, { Component, View, Button } from 'react';
 import UserList from '../components/UserList';
 import Talk from "talkjs";
-import store from '../redux/store'
+import store from '../redux/store';
+import axios from 'axios';
 
 const styles = {
   borderRight: {
@@ -36,6 +37,7 @@ const styles = {
   }
 };
 
+axios.defaults.baseURL = 'https://us-central1-letshuddl.cloudfunctions.net/api';
 
 const users = [{'id': '123456', 'name': 'John', 'email': 'jltanner@gmail.com'}, 
                 {'id': '654321', 'name': 'Johnny', 'email': 'jl@gmail.com'},
@@ -57,7 +59,7 @@ class chatpage extends Component {
     })
 
     this.rid = '';
-    
+    this.getAllUsers = this.getAllUsers.bind(this);
   }
 
   handleButtonClick = (user) => {
@@ -86,7 +88,16 @@ class chatpage extends Component {
     });
     this.inbox.mount(this.container);
 
-
+  }
+  
+  getAllUsers() {
+    const me = store.getState().user.credentials;
+    axios.get('/allUsers').then(userList => {
+      //TODO: Remove self from the list
+      this.setState({
+        users: userList.data
+      })
+    });
   }
 
   componentDidMount() {
@@ -142,6 +153,7 @@ class chatpage extends Component {
         });
         this.inbox.mount(this.container);
 
+        this.getAllUsers();
 
     }).catch(e => console.error(e));
   }
@@ -158,7 +170,7 @@ class chatpage extends Component {
         <span>
           <div style={{height: '500px'}} ref={c => this.container = c}>Loading...</div>
         </span>
-        <UserList callbackClick={this.handleButtonClick} users={users}>Hey There</UserList>
+        <UserList callbackClick={this.handleButtonClick} users={this.state.users}>Hey There</UserList>
       </div>
     );
   }
