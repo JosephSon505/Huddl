@@ -22,16 +22,13 @@ export const signupUser = (newUserData, history) => (dispatch) => {
     dispatch({ type: LOADING_UI });
 
     axios.post('/signup', newUserData).then(data => {
-        console.log(data);
-
-        // localStorage.setItem('FBIdToken', `Bearer ${data.data.token}`);
-        // axios.defaults.headers.common['Authorization'] = `Bearer ${data.data.token}`;
-        // dispatch(getUserData());
-
         dispatch({ type: CLEAR_ERRORS });        
         history.push('/login');
     }).catch(err => {
-        console.log('HUGE ERROR');
+        dispatch({
+            type: SET_ERRORS,
+            payload: err.response.data
+        });
     });
 };
 
@@ -39,7 +36,7 @@ export const logoutUser = () => (dispatch) => {
     localStorage.removeItem('FBIdToken');
     delete axios.defaults.headers.common['Authorization'];
     dispatch({ type: SET_UNAUTHENTICATED });
-  };
+};
   
 
 export const getUserData = (history) => (dispatch) => {
