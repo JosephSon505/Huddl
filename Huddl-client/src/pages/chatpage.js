@@ -71,8 +71,8 @@ class chatpage extends Component {
     }
 
     const other = new Talk.User({
-      id: user.id,
-      name: user.name,
+      id: user.userID,
+      name: user.firstName,
       email: user.email,
     });
 
