@@ -8,7 +8,9 @@ import Button from '@material-ui/core/Button';
 import withStyles from '@material-ui/styles/withStyles';
 import Typography from '@material-ui/core/Typography';
 
-// import '../css/header.css';
+import '../css/header.css';
+
+import { slide as Menu } from 'react-burger-menu';
 
 
 const styles = {
@@ -58,35 +60,68 @@ class Navbar extends Component {
     return (
       <AppBar color='secondary' position="static" elevation={0}>
         <Toolbar className={classes.mainBar}>
-          <Typography variant='h4' color='inherit' className={classes.title}>
-            {/* <div style={{ fontWeight: 'bold', fontSize: 40 }}><a href="/">huddl</a></div> */}
-            <a href="/"><img src="https://i.ibb.co/fMFqv5L/logo-White.png" height={30} /></a>
-          </Typography>
+
+
+          <div className="title-desktop">
+                <Typography variant='h4' color='inherit' className={classes.title}>
+                  {/* <div style={{ fontWeight: 'bold', fontSize: 40 }}><a href="/">huddl</a></div> */}
+                  <a href="/"><img src='https://i.ibb.co/7KTWVJ0/logo.png' height={30} /></a>
+                </Typography>
+              <section className={classes.leftToolBar}>
+                <Button className={classes.button} color="inherit" component={Link} to="/aboutus" >
+                  <b>About</b>
+                </Button>
+                <Button className={classes.button} color="inherit" component={Link} to="/faq" >
+                  <b>FAQ</b>
+                </Button>
+                <Button className={classes.button} color="inherit" component={Link} to="/support" >
+                  <b>Support</b>
+                </Button>
+                <Button className={classes.button} color="inherit" component={Link} to="/partners" >
+                  <b>Partners</b>
+                </Button>
+              </section>
+              <section className={classes.rightToolbar}>
+                <Button className={classes.button} variant='outlined' color='inherit' disableElevation component={Link} to="/signup" >
+                  Sign up
+                </Button>
+                <Button className={classes.button} variant='outlined' color='inherit' disableElevation component={Link} to="/login" >
+                  Log In
+                </Button>
+              </section>
+          </div>
+
+
+
+
+          <div className="title-mobile">
 
           <section className={classes.leftToolBar}>
-            <Button className={classes.button} color="inherit" component={Link} to="/aboutus" >
-              <b>About</b>
-            </Button>
-            <Button className={classes.button} color="inherit" component={Link} to="/faq" >
-              <b>FAQ</b>
-            </Button>
-            <Button className={classes.button} color="inherit" component={Link} to="/support" >
-              <b>Support</b>
-            </Button>
-            <Button className={classes.button} color="inherit" component={Link} to="/partners" >
-              <b>Partners</b>
-            </Button>
+            <Menu>
+            <a id="home" className="menu-item" href="/">Home</a>
+            <a id="about" className="menu-item" href="/aboutus">About</a>
+            <a id="faq" className="menu-item" href="/faq">FAQ</a>
+            <a id="support" className="menu-item" href="/support">Support</a>
+            <a id="partners" className="menu-item" href="/partners">Partners</a>
+            
+            </Menu>
           </section>
 
+              <Typography variant='h4' color='inherit' className={classes.title}>
+                  {/* <div style={{ fontWeight: 'bold', fontSize: 40 }}><a href="/">huddl</a></div> */}
+                  <a href="/"><img src='https://i.ibb.co/7KTWVJ0/logo.png' height={30} /></a>  
+              </Typography>
+
           <section className={classes.rightToolbar}>
-            <Button className={classes.button} variant='outlined' color='inherit' disableElevation component={Link} to="/signup" >
+            <Button className={classes.button} className="mobile-button" variant='outlined' color='inherit' disableElevation component={Link} to="/signup" >
               Sign up
             </Button>
-
-            <Button className={classes.button} variant='outlined' color='inherit' disableElevation component={Link} to="/login" >
+            
+            <Button className={classes.button} className="mobile-button" variant='outlined' color='inherit' disableElevation component={Link} to="/login" >
               Log In
             </Button>
           </section>
+          </div>
         </Toolbar>
       </AppBar>
     );
