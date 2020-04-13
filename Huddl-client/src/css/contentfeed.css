@@ -1,0 +1,90 @@
+h1 {
+    font-size: 350%;
+    position: absolute;
+    margin-left: 15%;
+    margin-top: 2%;
+
+}
+body {
+    font-family: 'Hind', sans-serif;
+}
+ul {
+    list-style-type: none;
+}
+a {
+    text-decoration: none;
+}
+.tags {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    color: #373a47;
+
+    border-radius: 5%;
+    width: 10%;
+    height: 170px;
+    text-align: left;
+    padding:2%;
+
+    position: absolute;
+    margin-left: 15%;
+    margin-top: 20%;
+
+}
+.feed {
+
+    width: 50%;
+    height: 90%;
+    overflow-y: scroll;
+
+    position: absolute;
+    margin-left: 30%;
+    margin-top: 6%;
+
+
+}
+.feed-item {
+    width: 95%;
+    height: 85%;
+    border-radius: 3%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    background-color: #F5F5F5;
+    margin-bottom: 10%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2%;
+}
+.item-img {
+    height: 50%;
+    border-radius: 3%;
+    padding: 3%;
+}
+.img {
+    border-radius: 3%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+.item-text {
+    padding: 5%;
+}
+.item-author {
+    font-size: 120%;
+    color: gray;
+    position: relative;
+    float: left;
+}
+.hrs {
+    font-size: 120%;
+    color: gray;
+    position: relative;
+    float: right;
+}
+.item-header {
+    position: absolute;
+    margin-top: 5%;
+    font-size: 200%;
+}
+.item-desc {
+    position: absolute;
+    margin-top: 20%;
+}
