@@ -1,40 +1,9 @@
 // Material-UI Imports
 import withStyles from '@material-ui/core/styles/withStyles';
 import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-import PropTypes from 'prop-types';
-import UserList from '../components/UserList';
-import Dashboard from '../components/Dashboard';
-
-
 import React, { Component, View, Button } from 'react';
-import { Link } from 'react-router-dom';
-import { ChatFill } from 'react-bootstrap-icons';
-
-//import { ChatkitProvider, TokenProvider } from '@pusher/chatkit-client-react';
-
-import Chatscreen from '../components/Chatscreen';
 import Sidebar from "../components/Sidebar";
-
-import Chatscreen2 from '../components/Chatscreen2';
-
-import store from '../redux/store';
-
-const Chatkit = require('@pusher/chatkit-server');
-
-const instanceLocator = 'v1:us1:3366eda2-e4d8-45c1-9f80-00f24eb6f202';
-const key = '1f7ad742-25f6-4c95-ab73-740747059cb3:yD1HqPGZMZg1yZrWAK36oQvEiBckt54dNrmoJahyoLc=';
-
-const chatkit = new Chatkit.default({
-  instanceLocator: instanceLocator,
-  key: key,
-})
-
-// const thereapistIds = [
-//   {id: 'therapist1@usc.edu', roomid: 'efdd87cf-122f-4099-92cf-834180f3bff1'},
-//   {id: 'therapist2@usc.edu', roomid: 'edbaf2c9-8e43-4847-8498-3c07c969cfa2'},
-//   {id: 'therapist3@usc.edu', roomid: '4e92e294-0274-4d0a-928a-7fbb2b2b0e04'},
-// ]
+import Dashboard from '../components/Dashboard';
 
 const styles = {
   borderRight: {
@@ -63,11 +32,6 @@ const styles = {
     justifyContent: 'center'
   }
 };
-
-// const tokenProvider = new TokenProvider({
-//   url: '<https://us1.pusherplatform.io/services/chatkit_token_provider/v1/9a9699f8-9213-45c5-aa54-bf106dd7ead9/token>',
-// });
-
 function buttonList(props) {
   const users = props.users;
 
@@ -101,113 +65,13 @@ class home extends Component {
       rooms: [],
       currentroomid: '',
     })
-    // console.log("props", this.props);
-    // console.log("State: ", this.state);
-    // //this.update();
-    // console.log("State: ndw ", this.state);
-  }
-
-  setRoomId = (event) => {
-    //console.log(event.target.value)
-    const roomid = event.target.attributes.roomid;
-    //console.log("roomid", roomid)
-    this.setState((state) => ({   //Note to self when updating state
-      currentroomid: roomid.value,
-    }));
-    // console.log("CurrentRoomId set to: ", this.state.currentroomid);
-  }
-
-  setUsers = (users) => {
-    //console.log("Users tag: ", users);
-    this.setState((state) => ({   //Note to self when updating state
-      users: users,
-
-    }));
-    // console.log("Users in state: ", this.state.users);
-
-  }
-
-
-
-
-  setRooms = (rooms) => {
-    //const r = rooms.map((room.) => )
-    // console.log(rooms);
-    const email = store.getState().user.credentials.email;
-    // console.log(rooms);
-    if (email === 'therapist1@usc.edu' || email === 'therapist2@usc.edu' || email === 'therapist3@usc.edu' || email === 'therapist4@usc.edu' || email === 'therapist5@usc.edu' || email === 'therapist6@usc.edu') {
-      for (let i = 0; i < rooms.length; i++) {
-        // console.log(rooms[i].last_message_at);
-        if (!rooms[i].last_message_at) {
-          // console.log("removing: ", rooms[i]);
-          rooms.splice(i, 1);
-          i--;
-        }
-      }
-    }
-    this.setState((state, props) => ({   //Note to self when updating state
-      rooms: rooms,
-      currentUser: email,
-    }));
-    // this.state = ({
-    //   currentUser: this.state.currentUser,
-    //   users: this.state.users,
-    //   rooms: rooms,
-    // })
-
-  }
-
-  update = () => {
-    chatkit.getUsers()
-      .then((res) => {
-        //console.log(res);
-        this.setUsers(res);
-      }).catch((err) => {
-        console.log(err);
-      });
-    //console.log("Email used: ",this.props.location.userData.email);
-    // this.setState( (state) => ({   //Note to self when updating state
-    //     currentUser: this.props.location.userData.email,
-    // }))
-    // chatkit.getRooms({})
-
-    //console.log("User ID: ", this.state.currentUser);
-    chatkit.getUserRooms({
-      userId: store.getState().user.credentials.email,
-    })
-      .then(rooms => {
-        // console.log('got rooms', rooms);
-        this.setRooms(rooms);
-      }).catch(err => {
-        console.error(err)
-      })
-  }
-
-  // componentWillMount() {
-  //   this.update();
-  // }
-
-  componentDidMount() {
-    this.update();
   }
 
   render() {
     const { classes } = this.props;
 
-    // console.log("Store: ", store.getState());
-
-    //console.log("Rendering with state: ", this.state);
-    //chats.push(<Chatscreen2 currentusername={this.props.location.userData.email} currentroomid={this.state.currentroomid}></Chatscreen2>);
-    // console.log(chats);
-
     return (
       <div className={classes.container}>
-        {/* <ChatkitProvider
-              instanceLocator={instanceLocator}
-              tokenProvider={tokenProvider}
-              userId='jltanner@usc.edu'
-            >
-            </ChatkitProvider> */}
         <Grid container spacing={0}
           direction={"row"}
         >
@@ -219,24 +83,10 @@ class home extends Component {
             className={classes.dashboardDiv}>
             <Dashboard userrooms={this.state.rooms} />
           </Grid>
-          <Grid item xs={1}>
-            {/* <p>Messaging platform</p> */}
-            {/* <UserList users={thereapistIds} /> */}
-            {/* <ul> */}
-            {/* {this.state.rooms.map((room) => (<li key={room.name}> <Link to={`/chatpage/${room.id}`}>{room.name}<ChatFill /> </Link> </li>))} */}
-            {/* {this.state.rooms.map((room) => (<li key={room.name}><button onClick={this.setRoomId} roomid={room.id}>{room.name}</button></li>))} */}
-            {/* </ul> */}
-          </Grid>
-
-
-
-          {/* <buttonList users={null} /> */}
-
 
         </Grid>
-        {/*    <Chatscreen currentUsername={this.props.location.userData.email} currentRoomId={this.state.currentRoomId}  ></Chatscreen> */}
-
       </div>
+
     );
   }
 }
