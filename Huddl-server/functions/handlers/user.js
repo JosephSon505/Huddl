@@ -51,6 +51,7 @@ exports.signup = (req, res) => {
             email: newUser.email,
             firstName: newUser.firstName,
             lastName: newUser.lastName,
+            userGroup: newUser.userGroup,
             userID
         };
 
