@@ -5,12 +5,17 @@ import withStyles from '@material-ui/styles/withStyles';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import FormControl from '@material-ui/core/FormControl';
+import FormLabel from '@material-ui/core/FormLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
+import { Select } from '@material-ui/core';
 
 // Styles
 
@@ -44,7 +49,8 @@ export class LoginBox extends Component {
       firstName: '',
       lastName: '',
       email: '',
-      password: ''
+      password: '',
+      radioValue: 'Volunteer',
     }
   }
 
@@ -54,6 +60,11 @@ export class LoginBox extends Component {
     });
   }
 
+  handleRadioChange = event => {
+    this.setState({ radioValue: event.target.value });
+  };
+
+
   handleSubmit = (event) => {
     event.preventDefault();
 
@@ -62,6 +73,7 @@ export class LoginBox extends Component {
       password: this.state.password,
       firstName: this.state.firstName,
       lastName: this.state.lastName,
+      userGroup: this.state.radioValue,
     }
     
     this.props.callbackFromSignUp(userData);
@@ -134,6 +146,19 @@ export class LoginBox extends Component {
                   id="password"
                   autoComplete="current-password"
                 />
+              </Grid>
+              <Grid item container={true} direction="column" alignItems="center" xs={12}>
+                <FormControl component="fieldset" className={classes.formControl}>
+                  <RadioGroup
+                    name="gender1"
+                    className={classes.group}
+                    value={this.state.radioValue}
+                    onChange={this.handleRadioChange}
+                  >
+                    <FormControlLabel value="Volunteer" control={<Radio color="primary"/>} label="Volunteer" />
+                    <FormControlLabel value="Therapist" control={<Radio color="primary"/>} label="Therapist" />
+                  </RadioGroup>
+                </FormControl>
               </Grid>
               <Grid item xs={12}>
                 <FormControlLabel

@@ -31,7 +31,7 @@ class signup extends Component {
             password: userData.password,
             confirmPassword: userData.password,
             handle: userData.firstName + userData.lastName,
-            userGroup: 'Volunteer',
+            userGroup: userData.userGroup,
         };
 
         this.props.signupUser(newUserData, this.props.history);
