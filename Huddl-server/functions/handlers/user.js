@@ -52,11 +52,12 @@ exports.signup = (req, res) => {
             firstName: newUser.firstName,
             lastName: newUser.lastName,
             userGroup: newUser.userGroup,
+            therapistId: "",
             userID
         };
 
         // create user in the database
-        return db.doc(`/Users/${newUser.handle}`).set(userCredentials);
+        return db.doc(`/Users/${newUser.handle}`).set(userCredentials, {merge: true});
     }).then(() => {
         // return success to request
         return res.status(201).json({ token });
