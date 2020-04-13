@@ -21,7 +21,8 @@ exports.signup = (req, res) => {
         confirmPassword: req.body.confirmPassword,
         firstName: req.body.firstName,
         lastName: req.body.lastName,
-        handle: req.body.handle
+        handle: req.body.handle,
+        userGroup: req.body.userGroup
     };
 
     // make sure user fields are valid before proceeding; if not return error
@@ -103,3 +104,35 @@ exports.login = (req, res) => {
         }
     });
 };
+
+// get the current user's details (logged in account)
+exports.getUser = (req, res) => {
+    let userData = {};
+    db.doc(`/Users/${req.user.handle}`).get().then(doc => {
+        if(doc.exists) userData.credentials = doc.data();
+        return res.json(userData);
+    }).catch(err => {
+        console.error(err);
+        return res.status(500).json({ error: err.code });
+    });
+}
+
+// get all users in the database
+exports.getAllUsers = (req, res) => {
+    db.collection('Users').get().then((data) => {
+        let users = [];
+        data.forEach((doc) => {
+            users.push({
+                userID: doc.data().userID,
+                firstName: doc.data().firstName,
+                lastName: doc.data().lastName,
+                email: doc.data().email,
+                handle: doc.data().handle
+            });
+        });
+        return res.json(users);
+    }).catch(error => {
+        res.status(500).json({error: `Error getting all users`});
+        console.error("Error: " + error);    
+    });
+}
