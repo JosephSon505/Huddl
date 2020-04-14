@@ -13,7 +13,7 @@ import { SET_AUTHENTICATED } from './redux/types';
 import './App.css';
 
 // redux
-import {Provider} from 'react-redux';
+import { Provider } from 'react-redux';
 import store from './redux/store';
 
 // import pages
@@ -28,7 +28,7 @@ import partners from './pages/partners';
 import providerSurvey from './pages/providerSurvey';
 import patientSurvey from './pages/patientSurvey';
 import chatpage from './pages/chatpage';
-import contentfeed from './pages/contentfeed';
+import contentfeed from './pages/contentFeed';
 
 
 axios.defaults.baseURL = 'https://us-central1-letshuddl.cloudfunctions.net/api';
@@ -63,8 +63,8 @@ if (token) {
   //   store.dispatch(getUserData());
   // }
 
-    store.dispatch(logoutUser());
-    window.location.href = '/login';
+  store.dispatch(logoutUser());
+  window.location.href = '/login';
 }
 
 class App extends Component {
