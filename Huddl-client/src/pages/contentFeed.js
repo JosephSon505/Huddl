@@ -37,7 +37,7 @@ class contentfeed extends Component {
 
                         <div class="item-text">
                             <div class='item-author'>Asmaa Zantout</div>
-                            <div class='hrs'>7hrs</div>
+                            <div class='hrs'><i class="fa fa-clock-o"></i>7hrs</div>
                             <div class= "item-header">Managing Stress in Crisis Response Professions</div>
 
                             <div class="item-desc">this is the description of the article/the text of the article</div>
