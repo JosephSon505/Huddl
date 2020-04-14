@@ -1,13 +1,9 @@
 // Material-UI Imports
-import withStyles from '@material-ui/core/styles/withStyles';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import Radio from '@material-ui/core/Radio';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
-import FormGroup from '@material-ui/core/FormGroup';
 import Button from '@material-ui/core/Button';
 import React, { Component } from 'react';
 
@@ -24,9 +20,12 @@ class PatientForm extends React.Component {
     }
 
     handleSubmit = () => {
+        
         const surveyData = {
-            gender: this.state.gender,
-            type: this.state.email
+            timeCommit: this.state.timeCommit, 
+            preferredTime: this.state.preferredTime, 
+            providerGender: this.state.providerGender, 
+            preferredAge: this.state.preferredAge 
         }
         this.props.callBackFromSurvey(surveyData);
     }

@@ -4,6 +4,7 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import PatientForm from '../components/PatientForm';
+import store from '../redux/store';
 
 import React, { Component } from 'react';
 import axios from 'axios';
@@ -24,19 +25,13 @@ class patientSurvey extends Component {
     }
 
     handleSurvey = (surveyData) => {
-        this.setState({
-            loading: true,
-            errors: {
-                "gender": "",
-                "type": "",
-            }
-        });
+
+        //Add the user data to the survey
+        const userCreds = store.getState().user.credentials;
+        surveyData.userID = userCreds.userID;
 
         axios.post('/patientSurvey', surveyData).then(data => {
-            this.props.history.push({
-                pathname: '/home',
-                surveyData: surveyData
-            })
+            this.props.history.push({pathname: '/home'})
         }).catch(err => {
             console.log('Error');
         })

@@ -4,7 +4,7 @@ const cors = require('cors');
 const FirebaseAuth = require('./util/fbAuth');
 
 // import handlers
-const { helloWorld, signup, login, getUser, getAllUsers } = require('./handlers/user');
+const { helloWorld, signup, login, getUser, getAllUsers, sendSurvey } = require('./handlers/user');
 
 // used for cross platform errors after deploying
 app.use(cors());
@@ -15,5 +15,6 @@ app.post('/signup', signup);
 app.post('/login', login);
 app.get('/user', FirebaseAuth, getUser);
 app.get('/allUsers', getAllUsers);
+app.post('/patientSurvey', sendSurvey)
 
 exports.api = functions.https.onRequest(app);

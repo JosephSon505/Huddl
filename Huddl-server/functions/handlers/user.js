@@ -138,3 +138,17 @@ exports.getAllUsers = (req, res) => {
         console.error("Error: " + error);    
     });
 }
+
+exports.sendSurvey = (req, res) => {
+    const suveryData = {
+        timeCommit: req.body.timeCommit, 
+        preferredTime: req.body.preferredTime, 
+        providerGender: req.body.providerGender, 
+        preferredAge: req.body.preferredAge
+    };
+
+    return db.doc(`/Users/${req.body.userID}`).update({
+        surveyData: surveyData
+    });
+
+}
