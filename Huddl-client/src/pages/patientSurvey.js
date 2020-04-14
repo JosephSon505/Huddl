@@ -4,6 +4,7 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import PatientForm from '../components/PatientForm';
+import store from '../redux/store';
 
 import React, { Component } from 'react';
 import axios from 'axios';
@@ -19,33 +20,17 @@ class patientSurvey extends Component {
     constructor() {
         super();
         this.state = {
-            email: '',
-            password: '',
-            loading: false,
-            errors: {
-                "gender": "",
-                "type": "",
-            }
+            
         }
     }
 
     handleSurvey = (surveyData) => {
-        this.setState({
-            loading: true,
-            errors: {
-                "gender": "",
-                "type": "",
-            }
-        });
 
-        axios.post('/patientSurvey', surveyData).then(data => {
-            this.props.history.push({
-                pathname: '/home',
-                surveyData: surveyData
-            })
-        }).catch(err => {
-            console.log('Error');
-        })
+        //Add the user data to the survey
+        const userCreds = store.getState().user.credentials;
+        surveyData.handle = userCreds.handle;
+
+        axios.post('/patientSurvey', surveyData);
     }
 
     render() {
@@ -55,8 +40,8 @@ class patientSurvey extends Component {
             <div className={classes.container}>
                 <Grid container spacing={10}>
                     <Grid item xs={4}></Grid>
-                    <Grid item xs={4}>
-                        <Typography variant='h4' style={{ paddingTop: '30%' }}>
+                    <Grid container={true} direction="column" alignItems="center" item xs={4}>
+                        <Typography variant='h4' style={{ paddingVertical: '30%' }}>
                             Welcome Study for Patient
                         </Typography>
                         <PatientForm callBackFromSurvey={this.handleSurvey} />
