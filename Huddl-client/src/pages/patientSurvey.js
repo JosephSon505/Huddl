@@ -19,13 +19,7 @@ class patientSurvey extends Component {
     constructor() {
         super();
         this.state = {
-            email: '',
-            password: '',
-            loading: false,
-            errors: {
-                "gender": "",
-                "type": "",
-            }
+            
         }
     }
 
@@ -55,8 +49,8 @@ class patientSurvey extends Component {
             <div className={classes.container}>
                 <Grid container spacing={10}>
                     <Grid item xs={4}></Grid>
-                    <Grid item xs={4}>
-                        <Typography variant='h4' style={{ paddingTop: '30%' }}>
+                    <Grid container={true} direction="column" alignItems="center" item xs={4}>
+                        <Typography variant='h4' style={{ paddingVertical: '30%' }}>
                             Welcome Study for Patient
                         </Typography>
                         <PatientForm callBackFromSurvey={this.handleSurvey} />
