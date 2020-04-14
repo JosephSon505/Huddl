@@ -28,10 +28,10 @@ class PatientForm extends React.Component {
             preferredAge: this.state.preferredAge 
         }
         this.props.callBackFromSurvey(surveyData);
+
     }
 
     handleChange = (event) => {
-        console.log(event.target.value);
         this.setState({
             [event.target.name]: event.target.value
         });
@@ -39,8 +39,7 @@ class PatientForm extends React.Component {
 
     render() {
         return (
-            <form style={{direction: "column", alignItems: "center"}}onSubmit={this.submit}>
-                <FormControl component="fieldset">
+                <FormControl style={{direction: "column", alignItems: "center"}} component="fieldset">
                     <FormLabel component="legend">How long will you be working at your NGO?</FormLabel>
                     <RadioGroup style={{paddingTop: 5, paddingLeft: "30%"}}aria-label="timeCommit" name="timeCommit" onChange={this.handleChange} required>
                         <FormControlLabel value="1" control={<Radio color="primary" />} label="Under 3 months" />
@@ -77,13 +76,10 @@ class PatientForm extends React.Component {
                         <FormControlLabel value="5" control={<Radio color="primary" />} label="60+" />
                         <FormControlLabel value="6" control={<Radio color="primary" />} label="No preference" />
                     </RadioGroup>
-                    <Button variant="contained" color="primary" type="submit" style={{ direction: "column", alignItems: "center", marginTop: '5%' }}>
+                    <Button variant="contained" color="primary" onClick={this.handleSubmit} type="submit" style={{ direction: "column", alignItems: "center", marginTop: '5%' }}>
                         Submit
                     </Button>
                 </FormControl>
-                <br />
-                
-            </form>
         )
     }
 }

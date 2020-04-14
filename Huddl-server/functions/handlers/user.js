@@ -57,7 +57,7 @@ exports.signup = (req, res) => {
         };
 
         // create user in the database
-        return db.doc(`/Users/${newUser.handle}`).set(userCredentials, {merge: true});
+        return db.doc(`/Users/${newUser.handle}`).set(userCredentials);
     }).then(() => {
         // return success to request
         return res.status(201).json({ token });
@@ -147,8 +147,11 @@ exports.sendSurvey = (req, res) => {
         preferredAge: req.body.preferredAge
     };
 
-    return db.doc(`/Users/${req.body.userID}`).update({
-        surveyData: surveyData
+    return db.collection('Users').doc(req.body.handle).update({
+        surveyData: suveryData
+    }).catch(err => {
+        console.error(err);
+        return res.status(500).json({ error: err.code });
     });
 
 }

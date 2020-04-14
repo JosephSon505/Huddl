@@ -28,13 +28,9 @@ class patientSurvey extends Component {
 
         //Add the user data to the survey
         const userCreds = store.getState().user.credentials;
-        surveyData.userID = userCreds.userID;
+        surveyData.handle = userCreds.handle;
 
-        axios.post('/patientSurvey', surveyData).then(data => {
-            this.props.history.push({pathname: '/home'})
-        }).catch(err => {
-            console.log('Error');
-        })
+        axios.post('/patientSurvey', surveyData);
     }
 
     render() {

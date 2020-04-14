@@ -15,6 +15,6 @@ app.post('/signup', signup);
 app.post('/login', login);
 app.get('/user', FirebaseAuth, getUser);
 app.get('/allUsers', getAllUsers);
-app.post('/patientSurvey', sendSurvey)
+app.post('/patientSurvey', sendSurvey);
 
 exports.api = functions.https.onRequest(app);
