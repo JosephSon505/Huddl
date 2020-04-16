@@ -55,7 +55,7 @@ class Sidebar extends Component {
             <Link to="/home"><BarChartFill /> </Link>
           </NavIcon>
           <NavText title="PORTAL">
-            <Link to="/home"> Portal </Link>
+            <Link to="/patientsurvey"> Portal </Link>
           </NavText>
         </NavItem>
         <NavItem eventKey="forums">
