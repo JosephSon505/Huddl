@@ -29,6 +29,7 @@ import providerSurvey from './pages/providerSurvey';
 import patientSurvey from './pages/patientSurvey';
 import chatpage from './pages/chatpage';
 import contentfeed from './pages/contentfeed';
+import contentpage from './pages/contentpage';
 
 
 axios.defaults.baseURL = 'https://us-central1-letshuddl.cloudfunctions.net/api';
@@ -88,6 +89,7 @@ class App extends Component {
                 <Route exact path="/providersurvey" component={providerSurvey} />
                 <Route exact path="/patientsurvey" component={patientSurvey} />
                 <Route exact path="/contentfeed" component={contentfeed} />
+                <Route exact path="/contentpage" component={contentpage} />
               </Switch>
             </Router>
           </div>

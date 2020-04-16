@@ -1,0 +1,105 @@
+h1 {
+    font-size: 150%;
+    position: absolute;
+    margin-left: 10%;
+    margin-top: -5%;
+    color: gray;
+
+}
+body {
+    font-family: 'Hind', sans-serif;
+}
+
+.feed-item {
+    box-shadow: none !important;
+    background-color: white;
+    margin-left: 10%;
+    width: 80%;
+    margin-top: 7%;
+    height: 100%;
+}
+
+.img {
+    box-shadow: none !important;
+    border: none;
+    height: 300px;
+    width: 100%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+.item-text {
+    padding: 5%;
+}
+.item-author {
+    margin-top: -5%;
+    font-size: 150%;
+    color: gray;
+    position: relative;
+    float: left;
+}
+.hrs {
+    margin-top: -5%;
+    font-size: 150%;
+    color: gray;
+    position: relative;
+    float: right;
+}
+.item-header {
+    position: relative;
+    font-size: 200%;
+    margin-top: 0%;
+}
+.item-desc {
+    font-size: 120%;
+    margin-top: 2%;
+    position: relative;
+}
+
+@media only screen and (max-width: 600px) {
+
+    h1 {
+        margin-left: 20%;
+        font-size: 100%;
+        margin-top: -10%;
+    }
+    .feed-item {
+        margin-left: 25%;
+        width: 70%;
+        margin-top: 15%;
+        height: 100%;
+    }
+    .img {
+        height: 300px;
+        width: 100%;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .item-text {
+        margin:auto;
+    }
+    .item-author {
+        font-size: 100%;
+        color: gray;
+        position: relative;
+        float: left;
+    }
+    .hrs {
+        font-size: 100%;
+        color: gray;
+        position: relative;
+        float: right;
+    }
+    .item-header {
+        position: relative;
+        margin-top: 6%;
+        font-size: 150%;
+    }
+    .item-desc {
+        position: relative;
+        font-size: 80%;
+    }
+    
+                
+}
