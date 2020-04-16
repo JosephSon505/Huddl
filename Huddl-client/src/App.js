@@ -13,7 +13,7 @@ import { SET_AUTHENTICATED } from './redux/types';
 import './App.css';
 
 // redux
-import {Provider} from 'react-redux';
+import { Provider } from 'react-redux';
 import store from './redux/store';
 
 // import pages
@@ -64,8 +64,8 @@ if (token) {
   //   store.dispatch(getUserData());
   // }
 
-    store.dispatch(logoutUser());
-    window.location.href = '/login';
+  store.dispatch(logoutUser());
+  window.location.href = '/login';
 }
 
 class App extends Component {
