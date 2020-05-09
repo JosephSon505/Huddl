@@ -129,7 +129,10 @@ exports.getAllUsers = (req, res) => {
                 firstName: doc.data().firstName,
                 lastName: doc.data().lastName,
                 email: doc.data().email,
-                handle: doc.data().handle
+                handle: doc.data().handle,
+                therapistId: doc.data().therapistId,
+                // surveyData: doc.data().surveyData
+                
             });
         });
         return res.json(users);
@@ -137,6 +140,44 @@ exports.getAllUsers = (req, res) => {
         res.status(500).json({error: `Error getting all users`});
         console.error("Error: " + error);    
     });
+}
+
+exports.getRandomTherapist = (req, res) => {
+    db.collection('Users').get().then((data) => {
+        let therapists = [];
+        data.forEach((doc) => {
+            if(doc.data().userGroup == 'Therapist') {
+                therapists.push({
+                    userID: doc.data().userID,
+                    firstName: doc.data().firstName,
+                    lastName: doc.data().lastName,
+                    email: doc.data().email,
+                    handle: doc.data().handle,
+                    therapistId: doc.data().therapistId,
+                    // surveyData: doc.data().surveyData
+                })
+            }
+        });
+        let therapist = therapists[Math.floor(Math.random() * therapists.length)];
+        return db.doc(`/Users/${req.user.handle}`).update({
+            therapistId: therapist.handle
+        })
+    }).catch(error => {
+        res.status(500).json({error: `Error getting a random therapist`});
+        console.error("Error: " + error);    
+    });
+}
+
+exports.setTherapist = (req, res) => {
+    const handle = req.body.handle;
+    const therapistHandle = req.body.therapistHandle;
+    return db.collection('Users').doc(req.body.handle).update({
+        therapistId: therapistHandle
+    }).catch(err => {
+        console.error(err);
+        return res.status(500).json({ error: err.code });
+    });
+
 }
 
 exports.sendSurvey = (req, res) => {
@@ -147,11 +188,10 @@ exports.sendSurvey = (req, res) => {
         preferredAge: req.body.preferredAge
     };
 
-    return db.collection('Users').doc(req.body.handle).update({
+    return db.doc(`/Users/${req.user.handle}`).update({
         surveyData: suveryData
     }).catch(err => {
         console.error(err);
         return res.status(500).json({ error: err.code });
     });
-
 }

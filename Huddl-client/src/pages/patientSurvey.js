@@ -31,6 +31,8 @@ class patientSurvey extends Component {
         surveyData.handle = userCreds.handle;
 
         axios.post('/patientSurvey', surveyData);
+        //This will have to be nested when the getTherapist depensd on the results of the survey
+        axios.get('/getTherapist', surveyData);
     }
 
     render() {
